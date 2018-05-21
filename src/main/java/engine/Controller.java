@@ -14,7 +14,7 @@ public class Controller {
     public Controller(MongoDb database) {
         this.database=database;
         //TODO set location after user logged in, based on users location
-        Common.setCurrentLocation(Location.SWEDEN);
+        Common.setCurrentLocation(Location.US);
     }
 
     public boolean login(String userName, String password) {
@@ -54,5 +54,9 @@ public class Controller {
 
     public boolean registerNewCustomer(String name, String custId, String occupation, String address) {
         return false;
+    }
+
+    public List<Employee> getEmployeesByDate(String dateFrom, String dateTo) {
+        return null;
     }
 }

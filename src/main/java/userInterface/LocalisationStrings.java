@@ -278,6 +278,7 @@ public class LocalisationStrings {
         switch (location){
             case US:
                 toReturn="Social security number (SSN)";
+                break;
             case ENGLAND:
                 toReturn="Id";
                 break;
@@ -414,7 +415,7 @@ public class LocalisationStrings {
         return toReturn;
     }
 
-public static String inputMismatch() {
+    public static String inputMismatch() {
         String toReturn="";
         switch (location){
             case US:
@@ -427,6 +428,62 @@ public static String inputMismatch() {
         }
         return toReturn;
     }
+
+    public static String listEmployyesByTime() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Employee listing on time period";
+                break;
+            case SWEDEN:
+                toReturn= "Lista över antsällda över en tidsperiod";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String searchByName() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Search by name";
+                break;
+            case SWEDEN:
+                toReturn= "Sök med namn";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String startDate() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Start date <yymmdd>";
+                break;
+            case SWEDEN:
+                toReturn= "Startdatum <yymmdd>";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String endDate() {
+            String toReturn="";
+            switch (location){
+                case US:
+                case ENGLAND:
+                    toReturn="End date <yymmdd>";
+                    break;
+                case SWEDEN:
+                    toReturn= "Slutdatum <yymmdd>";
+                    break;
+            }
+            return toReturn;
+        }
 
 
 }

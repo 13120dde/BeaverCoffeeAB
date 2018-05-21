@@ -1,5 +1,6 @@
 package userInterface;
 
+import domainEntities.Employee;
 import domainEntities.Product;
 import engine.Common;
 
@@ -27,5 +28,9 @@ public class TableCreator {
         }
         System.out.format("+-------+----------------------+--------+--------+--------+----------+%n");
 
+    }
+
+    public static void listEmployees(List<Employee> employees) {
+        
     }
 }

@@ -1,6 +1,6 @@
 package userInterface;
 
-import domainEntities.Customer;
+import domainEntities.Employee;
 import domainEntities.Product;
 import engine.Controller;
 import domainEntities.EmployePosition;
@@ -111,7 +111,7 @@ public class BeaverCLI {
                 break;
             case 4:
                 if(position!=EmployePosition.EMPLOYEE)
-                    cutomerMenu();
+                    customerMenu();
                 break;
             case 5:
                 if(position!=EmployePosition.EMPLOYEE)
@@ -126,9 +126,35 @@ public class BeaverCLI {
         }
     }
 
-    private void cutomerMenu() {
+    private void customerMenu() {
 
+        clearScreen();
         printHeader(LocalisationStrings.headerCustomer());
+        List<String> choices = new LinkedList<String>();
+        choices.add("1 - "+LocalisationStrings.listEmployyesByTime());
+        choices.add("2 - "+LocalisationStrings.searchByName());
+        choices.add("3 - "+LocalisationStrings.cancel());
+        printChoices(choices);
+        int choice = getInput(choices.size());
+
+        Scanner sc = new Scanner (System.in);
+        switch (choice){
+            case 0:
+            case -1:
+                customerMenu();
+                break;
+            case 1:
+                System.out.println(LocalisationStrings.startDate());
+                String dateFrom = sc.nextLine();
+                System.out.println(LocalisationStrings.endDate());
+                String dateTo = sc.nextLine();
+                List<Employee> employees = controller.getEmployeesByDate(dateFrom,dateTo);
+                if(employees!=null){
+                    TableCreator.listEmployees(employees);
+                }
+
+
+        }
     }
 
     private void stockMenu() {
