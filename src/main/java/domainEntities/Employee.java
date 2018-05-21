@@ -1,5 +1,6 @@
 package domainEntities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,8 @@ public class Employee {
         idNumber = "840309-****";
         location=Location.SWEDEN;
         serviceGrade = 0.75;
-        position = EmployePosition.BRANCH_LOCATION_MANAGER;
+        position = EmployePosition.MANAGER;
+        startDate = new Date();
 
     }
 
@@ -63,16 +65,22 @@ public class Employee {
         this.serviceGrade = serviceGrade;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public String getStartDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(startDate);
+        return date;
     }
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public String getEndDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date ="";
+        if (endDate!=null)
+          date = sdf.format(endDate);
+        return date;
     }
 
     public void setEndDate(Date endDate) {

@@ -2,6 +2,7 @@ package userInterface;
 
 import domainEntities.Employee;
 import domainEntities.Product;
+import engine.Common;
 import engine.Controller;
 import domainEntities.EmployePosition;
 
@@ -161,7 +162,8 @@ public class BeaverCLI {
                 System.out.println(LocalisationStrings.endDate());
                 String dateTo = sc.nextLine();
                 List<Employee> employees = controller.getEmployeesByDate(dateFrom,dateTo);
-                if(employees!=null || employees.isEmpty()) {
+                if(employees!=null || !employees.isEmpty()) {
+                    System.out.println("Listing all employees for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+Common.getCurrentLocation()+"\n\n");
                     TableCreator.listEmployees(employees);
                     employeeMenu();
                 }else{
@@ -187,6 +189,7 @@ public class BeaverCLI {
     }
 
     private void editEmployeeMenu(Employee employee) {
+        printHeader(LocalisationStrings.headerEditEmployee());
     }
 
     private void registerCustomerMenu() {
@@ -244,6 +247,7 @@ public class BeaverCLI {
 
         int choice = getInput(amountOfChoices);
 
+        //TODO check that cases match products when they are implemented
         switch (choice){
             case 0:
             case -1:

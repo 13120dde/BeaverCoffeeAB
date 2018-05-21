@@ -23,7 +23,7 @@ public class TableCreator {
             Product product = products.get(i);
             System.out.format(leftAlignFormat,
                     Integer.toString(i+1),
-                    product.getProductName(location),
+                    product.getProductName(),
                     Integer.toString(product.getVolume()),
                     product.getUnitType(),
                     Double.toString(product.getPrice(location)),
@@ -34,6 +34,28 @@ public class TableCreator {
     }
 
     public static void listEmployees(List<Employee> employees) {
+        String leftAlignFormat = "| %-20s | %-20s | %-20s | %-15s | %-15s | %-13s |%n";
+
+        String id = Common.getLocalId();
+        //name, id, position, start date, end date, service grade
+        System.out.format("+----------------------+----------------------+----------------------+-----------------+-----------------+---------------+%n");
+        System.out.format("|         NAME         |         ID           |       POSITION       |   START DATE    |   END DATE      | SERVICE GRADE |%n");
+        System.out.format("+----------------------+----------------------+----------------------+-----------------+-----------------+---------------+%n");
+
+        for(int i =0; i<employees.size();i++){
+            Employee employee = employees.get(i);
+            double serviceGrade = employee.getServiceGrade()*100;
+
+            System.out.format(leftAlignFormat,
+                    employee.getName(),
+                    employee.getIdNumber(),
+                    employee.getPosition(),
+                    employee.getStartDate(),
+                    employee.getEndDate(),
+                    serviceGrade+"%");
+        }
+        System.out.format("+----------------------+----------------------+----------------------+-----------------+-----------------+---------------+%n");
+
 
     }
 }

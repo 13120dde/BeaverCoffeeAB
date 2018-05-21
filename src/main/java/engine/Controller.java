@@ -15,7 +15,7 @@ public class Controller {
     public Controller(MongoDb database) {
         this.database=database;
         //TODO set location after user logged in, based on users location
-        Common.setCurrentLocation(Location.US);
+        Common.setCurrentLocation(Location.SWEDEN);
     }
 
     public boolean login(String userName, String password) {
@@ -36,6 +36,9 @@ public class Controller {
 
     public LinkedList<Product> getAvailableProducts() {
         LinkedList<Product> products = new LinkedList<Product>();
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
       //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
         //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
@@ -60,6 +63,7 @@ public class Controller {
     public List<Employee> getEmployeesByDate(String dateFrom, String dateTo) {
         List<Employee> employees = new LinkedList<Employee>();
 
+        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),1.00,new Date(),EmployePosition.CORPORATE_SALES));
         employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),1.00,new Date(),EmployePosition.EMPLOYEE));
         employees.add(new Employee());
         employees.add(new Employee());

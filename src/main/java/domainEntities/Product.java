@@ -1,6 +1,8 @@
 package domainEntities;
 
 
+import engine.Common;
+
 public class Product
 {
 
@@ -25,7 +27,8 @@ public class Product
         return nameSwe;
     }
 
-    public String getProductName(Location location){
+    public String getProductName(){
+        Location location = Common.getCurrentLocation();
         String productName="";
         switch (location){
             case US:

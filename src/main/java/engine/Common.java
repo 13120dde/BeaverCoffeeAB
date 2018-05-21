@@ -31,4 +31,20 @@ public class Common {
         }
         return currency;
     }
+
+    public static String getLocalId() {
+        String id ="";
+        switch (currentLocation){
+            case SWEDEN:
+                id ="PERSONNUMMER";
+                break;
+            case ENGLAND:
+                id="     ID     ";
+                break;
+            case US:
+                id="    SSN     ";
+                break;
+        }
+        return id;
+    }
 }

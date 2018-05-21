@@ -462,10 +462,10 @@ public class LocalisationStrings {
         switch (location){
             case US:
             case ENGLAND:
-                toReturn="Start date <yymmdd>";
+                toReturn="Start date <ddmmyyyy>";
                 break;
             case SWEDEN:
-                toReturn= "Startdatum <yymmdd>";
+                toReturn= "Startdatum <ddmmyyyy>";
                 break;
         }
         return toReturn;
@@ -476,10 +476,10 @@ public class LocalisationStrings {
             switch (location){
                 case US:
                 case ENGLAND:
-                    toReturn="End date <yymmdd>";
+                    toReturn="End date <ddmmyyyy>";
                     break;
                 case SWEDEN:
-                    toReturn= "Slutdatum <yymmdd>";
+                    toReturn= "Slutdatum <ddmmyyyy>";
                     break;
             }
             return toReturn;
@@ -509,6 +509,20 @@ public class LocalisationStrings {
                 break;
             case SWEDEN:
                 toReturn= "Kan ej lista anställda, se över inparametrarna";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String headerEditEmployee() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="EMPLOYEE INFO";
+                break;
+            case SWEDEN:
+                toReturn= "ANSTÄLLDINFORMATION";
                 break;
         }
         return toReturn;
