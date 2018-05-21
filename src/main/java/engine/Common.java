@@ -1,4 +1,6 @@
-package domainEntities;
+package engine;
+
+import domainEntities.Location;
 
 public class Common {
 

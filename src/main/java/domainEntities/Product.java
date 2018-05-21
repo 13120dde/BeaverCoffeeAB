@@ -1,5 +1,7 @@
 package domainEntities;
 
+import engine.Common;
+
 public class Product {
 
     private int productId;
