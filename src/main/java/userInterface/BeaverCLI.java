@@ -250,8 +250,9 @@ public class BeaverCLI {
                 newOrderMenu();
                 break;
             case 1:
-
-                order.add(products.get(choice-1));
+                if(!products.isEmpty()){
+                    order.add(products.get(choice-1));
+                }
                 newOrderMenu();
                 break;
             case 2:
