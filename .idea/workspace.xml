@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f638bba9-e7b7-43ea-bcb6-3df167462f31" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engine/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/engine/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/engine/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/userInterface/BeaverCLI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInterface/BeaverCLI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/userInterface/TableCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInterface/TableCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,8 +33,8 @@
           <file leaf-file-name="BeaverCLI.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+                <state relative-caret-position="289">
+                  <caret line="264" selection-start-line="264" selection-end-line="264" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#4338#4346#0" expanded="true" />
@@ -71,10 +65,23 @@
           <file leaf-file-name="LocalisationStrings.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+                <state relative-caret-position="592">
+                  <caret line="424" column="58" selection-start-line="424" selection-start-column="58" selection-end-line="424" selection-end-column="58" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Common.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/engine/Common.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#168#169#0" expanded="true" />
+                    <element signature="e#206#207#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -123,8 +130,8 @@
         <option value="$PROJECT_DIR$/src/main/java/database/MongoDb.java" />
         <option value="$PROJECT_DIR$/src/main/java/engine/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" />
         <option value="$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java" />
+        <option value="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" />
       </list>
     </option>
   </component>
@@ -242,6 +249,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="proceed&#9;PSI&#9;JAVA://userInterface.LocalisationStrings#proceed" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -329,12 +337,12 @@
       <option name="presentableId" value="Default" />
       <updated>1526824513657</updated>
       <workItem from="1526824518148" duration="13854000" />
-      <workItem from="1526903136216" duration="12340000" />
+      <workItem from="1526903136216" duration="14735000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26194000" />
+    <option name="totallyTimeSpent" value="28589000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
@@ -350,11 +358,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.32991952" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" x="1" y="23" width="1367" height="849" id="Run" order="2" type="WINDOWED" visible="true" weight="0.20025674" />
+      <window_info anchor="bottom" x="1" y="23" width="1367" height="849" id="Run" order="2" type="WINDOWED" weight="0.20025674" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32991013" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24871983" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.17849305" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -579,13 +587,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Common/CommonUtils.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/CommonUtils.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/engine/Common.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -679,10 +680,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/engine/Common.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding>
+            <element signature="e#168#169#0" expanded="true" />
+            <element signature="e#206#207#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        <state relative-caret-position="592">
+          <caret line="424" column="58" selection-start-line="424" selection-start-column="58" selection-end-line="424" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -691,8 +703,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+        <state relative-caret-position="289">
+          <caret line="264" selection-start-line="264" selection-end-line="264" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4338#4346#0" expanded="true" />

@@ -57,16 +57,16 @@ public class BeaverCLI {
         printHeader(LocalisationStrings.headerLogin());
         String userName, password;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Username: ");
+        System.out.println(LocalisationStrings.userName());
         userName = sc.nextLine();
-        System.out.println("Password: ");
+        System.out.println(LocalisationStrings.password());
         password = sc.nextLine();
 
         boolean loginOk = controller.login(userName, password);
         if(loginOk)
             showMainMenu();
         else{
-            System.out.println("Incorrect credentials, try again (Y/N)?");
+            System.out.println(LocalisationStrings.incorrectCredentials());
             String input = sc.nextLine();
             if(input.equalsIgnoreCase("y"))
                 loginMenu();
@@ -78,23 +78,23 @@ public class BeaverCLI {
 
     private void showMainMenu() {
         clearScreen();
-        printHeader("MAIN MENU");
+        printHeader(LocalisationStrings.headerMainMenu());
         List<String> choices = new LinkedList<String>();
-        choices.add(choices.size()+1+" - Place new order");
-        choices.add(choices.size()+1+" - Register new customer");
+        choices.add(choices.size()+1+LocalisationStrings.placeNewOrder());
+        choices.add(choices.size()+1+LocalisationStrings.registerNewCustomer());
         if(controller.getCurrentUserPosition()!=EmployePosition.EMPLOYEE){
-            choices.add(choices.size()+1+" - Employees");
-            choices.add(choices.size()+1+" - Customers ");
-            choices.add(choices.size()+1+" - Stock");
+            choices.add(choices.size()+1+LocalisationStrings.employees());
+            choices.add(choices.size()+1+LocalisationStrings.customers());
+            choices.add(choices.size()+1+LocalisationStrings.stock());
         }
-        choices.add("0 - Log out");
+        choices.add("0"+LocalisationStrings.logout());
         printChoices(choices);
         int choice = getInput(choices.size());
         EmployePosition position = controller.getCurrentUserPosition();
 
         switch (choice){
             case 6:
-                System.out.println("Wrong choice! Try again");
+                System.out.println(LocalisationStrings.wrongChoice());
             case -1:
                 showMainMenu();
                 break;
@@ -128,34 +128,34 @@ public class BeaverCLI {
 
     private void cutomerMenu() {
 
-        printHeader("CUSTOMER");
+        printHeader(LocalisationStrings.headerCustomer());
     }
 
     private void stockMenu() {
 
-        printHeader("STOCK");
+        printHeader(LocalisationStrings.headerStock());
     }
 
     private void employeeMenu() {
 
-        printHeader("EMPLOYEE");
+        printHeader(LocalisationStrings.headerEmployee());
     }
 
     private void registerCustomerMenu() {
-        printHeader("REGISTER CUSTOMER");
+        printHeader(LocalisationStrings.headerRegisterCustomer());
         Scanner sc = new Scanner(System.in);
-        System.out.println("Name: ");
+        System.out.println(LocalisationStrings.customerName());
         String name = sc.nextLine();
-        System.out.println("Id/ssn/personal number: ");
+        System.out.println(LocalisationStrings.customerId());
         String custId = sc.nextLine();
-        System.out.println("Occupation: ");
+        System.out.println(LocalisationStrings.occupation());
         String occupation = sc.nextLine();
-        System.out.println("Address <street,postal code,city>: ");
+        System.out.println(LocalisationStrings.address());
         String address = sc.nextLine();
 
         List<String> choices = new LinkedList<String>();
-        choices.add("1 - Proceed");
-        choices.add("2 - Cancel");
+        choices.add("1 - "+LocalisationStrings.proceed());
+        choices.add("2 - "+LocalisationStrings.cancel());
         printChoices(choices);
         int choice = getInput(choices.size());
 
@@ -167,7 +167,7 @@ public class BeaverCLI {
             case 1:
                 boolean registerOk =  controller.registerNewCustomer(name,custId,occupation,address);
                 if(!registerOk)
-                    System.out.println("Something went wrong. Try again later");
+                    System.out.println(LocalisationStrings.someThingWrong());
                 showMainMenu();
                 break;
             case 2:
@@ -181,16 +181,16 @@ public class BeaverCLI {
     private void newOrderMenu() {
 
         clearScreen();
-        printHeader("CREATE ORDER");
+        printHeader(LocalisationStrings.headerCreateOrder());
         List<Product> products = controller.getAvailableProducts();
         TableCreator.showProductsTable(products);
         int amountOfChoices = products.size()+1;
         List<String> choices = new LinkedList<String>();
-        choices.add(amountOfChoices+++" - Proceed with order");
-        choices.add(amountOfChoices+" - Cancel order");
+        choices.add(amountOfChoices+++" - "+LocalisationStrings.proceed());
+        choices.add(amountOfChoices+" - "+LocalisationStrings.cancel());
         printChoices(choices);
 
-        System.out.println("=====> products in order <=====");
+        System.out.println("=====> "+LocalisationStrings.productsInOrder()+" <=====");
         TableCreator.showProductsTable(order);
 
 
@@ -220,7 +220,7 @@ public class BeaverCLI {
                 break;
             case 5:
                 if(products.isEmpty()){
-                    System.out.println("No products selected");
+                    System.out.println(LocalisationStrings.noProductsSelected());
                     newOrderMenu();
                 }
                 checkIfRegisteredUserAndProceedWithOrder();
@@ -237,7 +237,7 @@ public class BeaverCLI {
 
     private void checkIfRegisteredUserAndProceedWithOrder() {
         clearScreen();
-        System.out.println("Enter user's barcode if registered, otherwise leave empty");
+        System.out.println(LocalisationStrings.enterUserBarcode());
         Scanner sc = new Scanner(System.in);
         String barcode = sc.nextLine();
         controller.registerOrder(order,barcode);
@@ -253,18 +253,14 @@ public class BeaverCLI {
         try{
             choice = sc.nextInt();
             if(choice<0 || choice>size){
-                System.out.println("Wrong choice! Try again");
+                System.out.println(LocalisationStrings.wrongChoice());
                 choice = -1;
             }
         }catch (InputMismatchException e){
-            System.out.println("Input mismatch! Try again.");
+            System.out.println(LocalisationStrings.inputMismatch());
             choice =-1;
         }
         return  choice;
-    }
-
-    private void printWrongChoice(int choice, String choices) {
-        System.out.println("Incorrect input: "+choices+"\n for choices: \n"+choices);
     }
 
     private void showWelcomeScreen() {
