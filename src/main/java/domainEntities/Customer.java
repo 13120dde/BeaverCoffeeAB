@@ -1,4 +1,4 @@
-package stakeholders;
+package domainEntities;
 
 import domainEntities.Order;
 

@@ -1,7 +1,8 @@
 package userInterface;
 
+import domainEntities.Product;
 import engine.Controller;
-import stakeholders.EmployePosition;
+import domainEntities.EmployePosition;
 
 import java.util.InputMismatchException;
 import java.util.LinkedList;
@@ -38,6 +39,10 @@ public class BeaverCLI {
         }
     }
 
+    /**
+     * TODO mask password
+     * @param choices
+     */
     private void printChoices(List<String> choices) {
         for (String s : choices){
             System.out.println(s);
@@ -72,7 +77,7 @@ public class BeaverCLI {
         clearScreen();
         printHeader("MAIN MENU");
         List<String> choices = new LinkedList<String>();
-        choices.add(choices.size()+1+" - New Order");
+        choices.add(choices.size()+1+" - Place new order");
         choices.add(choices.size()+1+" - Register new customer");
         if(controller.getCurrentUserPosition()!=EmployePosition.EMPLOYEE){
             choices.add(choices.size()+1+" - Employees");
@@ -85,6 +90,8 @@ public class BeaverCLI {
         EmployePosition position = controller.getCurrentUserPosition();
 
         switch (choice){
+            case 6:
+                System.out.println("Wrong choice! Try again");
             case -1:
                 showMainMenu();
                 break;
@@ -138,6 +145,37 @@ public class BeaverCLI {
     private void newOrderMenu() {
 
         printHeader("CREATE ORDER");
+        List<Product> products = controller.getAvailableProducts();
+        TableCreator.showProductsTable(products);
+        int choice = getInput(products.size());
+        switch (choice){
+            case -1:
+                newOrderMenu();
+                break;
+            case 1:
+
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+
+            case 5:
+
+                break;
+            case 6:
+                showMainMenu();
+                break;
+        }
+
     }
 
     private void printHeader(String header) {

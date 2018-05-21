@@ -2,7 +2,10 @@ package domainEntities;
 
 import engine.Common;
 
-public class Product {
+import java.util.LinkedList;
+import java.util.List;
+
+public class Product{
 
     private int productId;
     private String productName, unitType, flavour;
@@ -70,4 +73,5 @@ public class Product {
         String currency = Common.getLocalCurrency();
         return productId+" - "+productName+", "+flavour+", "+volume+" "+unitType+", "+price+currency;
     }
+
 }

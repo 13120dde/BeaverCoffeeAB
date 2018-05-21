@@ -1,7 +1,7 @@
 package database;
 
 import com.mongodb.MongoClient;
-import stakeholders.Employee;
+import domainEntities.Employee;
 
 import java.net.UnknownHostException;
 
