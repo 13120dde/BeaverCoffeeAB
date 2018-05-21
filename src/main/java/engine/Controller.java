@@ -3,6 +3,7 @@ package engine;
 import database.MongoDb;
 import domainEntities.*;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Controller {
 
     public boolean login(String userName, String password) {
        employee = new Employee();
-        // employee = database.login(userName,password);
+        // employee = database.login(employeeName,password);
         /*if(employee==null)
             return false;
         */return true;
@@ -57,6 +58,17 @@ public class Controller {
     }
 
     public List<Employee> getEmployeesByDate(String dateFrom, String dateTo) {
+        List<Employee> employees = new LinkedList<Employee>();
+
+        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),1.00,new Date(),EmployePosition.EMPLOYEE));
+        employees.add(new Employee());
+        employees.add(new Employee());
+        employees.add(new Employee());
+        employees.add(new Employee());
+        return employees;
+    }
+
+    public Employee getEmployeeByName(String employeeName) {
         return null;
     }
 }

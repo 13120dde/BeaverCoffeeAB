@@ -57,7 +57,7 @@ public class BeaverCLI {
         printHeader(LocalisationStrings.headerLogin());
         String userName, password;
         Scanner sc = new Scanner(System.in);
-        System.out.println(LocalisationStrings.userName());
+        System.out.println(LocalisationStrings.employeeName());
         userName = sc.nextLine();
         System.out.println(LocalisationStrings.password());
         password = sc.nextLine();
@@ -110,8 +110,10 @@ public class BeaverCLI {
                     employeeMenu();
                 break;
             case 4:
-                if(position!=EmployePosition.EMPLOYEE)
+                if(position!=EmployePosition.EMPLOYEE){
+                    clearScreen();
                     customerMenu();
+                }
                 break;
             case 5:
                 if(position!=EmployePosition.EMPLOYEE)
@@ -128,8 +130,18 @@ public class BeaverCLI {
 
     private void customerMenu() {
 
-        clearScreen();
         printHeader(LocalisationStrings.headerCustomer());
+
+    }
+
+    private void stockMenu() {
+
+        printHeader(LocalisationStrings.headerStock());
+    }
+
+    private void employeeMenu() {
+
+        printHeader(LocalisationStrings.headerEmployee());
         List<String> choices = new LinkedList<String>();
         choices.add("1 - "+LocalisationStrings.listEmployyesByTime());
         choices.add("2 - "+LocalisationStrings.searchByName());
@@ -149,22 +161,32 @@ public class BeaverCLI {
                 System.out.println(LocalisationStrings.endDate());
                 String dateTo = sc.nextLine();
                 List<Employee> employees = controller.getEmployeesByDate(dateFrom,dateTo);
-                if(employees!=null){
+                if(employees!=null || employees.isEmpty()) {
                     TableCreator.listEmployees(employees);
+                    employeeMenu();
+                }else{
+                    System.out.println(LocalisationStrings.empltyEmployeeList());
+                    employeeMenu();
                 }
-
-
+                break;
+            case 2:
+                System.out.println(LocalisationStrings.employeeName());
+                String employeeName = sc.nextLine();
+                Employee employee = controller.getEmployeeByName(employeeName);
+                if(employee!=null){
+                    editEmployeeMenu(employee);
+                }else{
+                    System.out.println(LocalisationStrings.cantFindEmployee(employeeName));
+                }
+                employeeMenu();
+                break;
+            case 3:
+                showMainMenu();
+                break;
         }
     }
 
-    private void stockMenu() {
-
-        printHeader(LocalisationStrings.headerStock());
-    }
-
-    private void employeeMenu() {
-
-        printHeader(LocalisationStrings.headerEmployee());
+    private void editEmployeeMenu(Employee employee) {
     }
 
     private void registerCustomerMenu() {

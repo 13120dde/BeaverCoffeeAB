@@ -5,22 +5,23 @@ import java.util.List;
 
 public class Employee {
 
-    private String name, idNumber, location;
+    private String name, idNumber;
     private double serviceGrade;
     private Date startDate, endDate;
     private List<String> comments;
     EmployePosition position;
+    Location location;
 
     public Employee(){
         name = "Dummmy";
         idNumber = "840309-****";
-        location="Sweden";
+        location=Location.SWEDEN;
         serviceGrade = 0.75;
         position = EmployePosition.BRANCH_LOCATION_MANAGER;
 
     }
 
-    public Employee(String name, String idNumber, String location, double serviceGrade, Date startDate, EmployePosition position){
+    public Employee(String name, String idNumber, Location location, double serviceGrade, Date startDate, EmployePosition position){
         this.name = name;
         this.idNumber=idNumber;
         this.location=location;
@@ -46,11 +47,11 @@ public class Employee {
         this.idNumber = idNumber;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 

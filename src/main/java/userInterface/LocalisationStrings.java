@@ -49,15 +49,15 @@ public class LocalisationStrings {
         return toReturn;
     }
 
-    public static String userName() {
+    public static String employeeName() {
         String toReturn="";
         switch (location){
             case US:
             case ENGLAND:
-                toReturn= "Username";
+                toReturn= "Employee name";
                 break;
             case SWEDEN:
-                toReturn= "Användarnamn";
+                toReturn= "Namn på anställd";
                 break;
         }
         return toReturn;
@@ -486,4 +486,31 @@ public class LocalisationStrings {
         }
 
 
+    public static String cantFindEmployee(String employeeName) {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Cant find employee: "+employeeName;
+                break;
+            case SWEDEN:
+                toReturn= "Kan ej hitta anställd med namnet: "+employeeName;
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String empltyEmployeeList() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Cant fetch employee listing, check input parameters";
+                break;
+            case SWEDEN:
+                toReturn= "Kan ej lista anställda, se över inparametrarna";
+                break;
+        }
+        return toReturn;
+    }
 }
