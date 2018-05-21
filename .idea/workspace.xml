@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f638bba9-e7b7-43ea-bcb6-3df167462f31" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/MongoDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/MongoDb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domainEntities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domainEntities/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engine/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/engine/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/engine/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInterface/BeaverCLI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInterface/BeaverCLI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInterface/TableCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInterface/TableCreator.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,52 +21,75 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TableCreator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BeaverCLI.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="102" column="22" lean-forward="true" selection-start-line="102" selection-start-column="22" selection-end-line="102" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4167#4175#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/engine/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="51" selection-start-line="51" selection-end-line="51" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="TableCreator.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="459">
+                  <caret line="27" column="58" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="BeaverCLI.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#4338#4346#0" expanded="true" />
+                    <element signature="e#4167#4175#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/engine/Controller.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="575">
+                  <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="21" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#1523#1524#0" expanded="true" />
+                    <element signature="e#1551#1552#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="LocalisationStrings.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="340">
+                  <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -95,9 +121,10 @@
         <option value="$PROJECT_DIR$/src/main/java/domainEntities/Tabluar.java" />
         <option value="$PROJECT_DIR$/src/main/java/domainEntities/Product.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/MongoDb.java" />
-        <option value="$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/engine/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java" />
       </list>
     </option>
   </component>
@@ -106,6 +133,32 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="BeaverCoffee" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="BeaverCoffee" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="BeaverCoffee" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="BeaverCoffee" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
@@ -276,12 +329,12 @@
       <option name="presentableId" value="Default" />
       <updated>1526824513657</updated>
       <workItem from="1526824518148" duration="13854000" />
-      <workItem from="1526903136216" duration="9716000" />
+      <workItem from="1526903136216" duration="12340000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23570000" />
+    <option name="totallyTimeSpent" value="26194000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
@@ -294,10 +347,10 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.32991952" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" x="1" y="23" width="1367" height="849" id="Run" order="2" type="WINDOWED" weight="0.20025674" />
+      <window_info active="true" anchor="bottom" x="1" y="23" width="1367" height="849" id="Run" order="2" type="WINDOWED" visible="true" weight="0.20025674" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32991013" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -428,6 +481,7 @@
           <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4338#4346#0" expanded="true" />
             <element signature="e#4167#4175#0" expanded="true" />
           </folding>
         </state>
@@ -472,13 +526,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -603,10 +650,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="459">
+          <caret line="27" column="58" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -615,8 +669,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/engine/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        <state relative-caret-position="575">
+          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1523#1524#0" expanded="true" />
+            <element signature="e#1551#1552#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -625,10 +691,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="102" column="22" lean-forward="true" selection-start-line="102" selection-start-column="22" selection-end-line="102" selection-end-column="22" />
+        <state relative-caret-position="323">
+          <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4338#4346#0" expanded="true" />
             <element signature="e#4167#4175#0" expanded="true" />
           </folding>
         </state>

@@ -1,5 +1,6 @@
 package userInterface;
 
+import domainEntities.Customer;
 import domainEntities.Product;
 import engine.Controller;
 import domainEntities.EmployePosition;
@@ -23,8 +24,8 @@ public class BeaverCLI {
 
     private void welcomeMenu() {
         List<String> choices = new LinkedList<String>();
-        choices.add("1 - Login");
-        choices.add("2 - Exit");
+        choices.add("1 - "+LocalisationStrings.login());
+        choices.add("2 - "+LocalisationStrings.exit());
         printChoices(choices);
         int choice = getInput(choices.size());
         switch (choice){
@@ -53,7 +54,7 @@ public class BeaverCLI {
 
     private void loginMenu() {
         clearScreen();
-        printHeader("LOGIN");
+        printHeader(LocalisationStrings.headerLogin());
         String userName, password;
         Scanner sc = new Scanner(System.in);
         System.out.println("Username: ");
@@ -142,6 +143,37 @@ public class BeaverCLI {
 
     private void registerCustomerMenu() {
         printHeader("REGISTER CUSTOMER");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Name: ");
+        String name = sc.nextLine();
+        System.out.println("Id/ssn/personal number: ");
+        String custId = sc.nextLine();
+        System.out.println("Occupation: ");
+        String occupation = sc.nextLine();
+        System.out.println("Address <street,postal code,city>: ");
+        String address = sc.nextLine();
+
+        List<String> choices = new LinkedList<String>();
+        choices.add("1 - Proceed");
+        choices.add("2 - Cancel");
+        printChoices(choices);
+        int choice = getInput(choices.size());
+
+        switch (choice){
+            case 0:
+            case -1:
+                registerCustomerMenu();
+                break;
+            case 1:
+                boolean registerOk =  controller.registerNewCustomer(name,custId,occupation,address);
+                if(!registerOk)
+                    System.out.println("Something went wrong. Try again later");
+                showMainMenu();
+                break;
+            case 2:
+                showMainMenu();
+                break;
+        }
 
     }
 
@@ -170,6 +202,7 @@ public class BeaverCLI {
                 newOrderMenu();
                 break;
             case 1:
+
                 order.add(products.get(choice-1));
                 newOrderMenu();
                 break;

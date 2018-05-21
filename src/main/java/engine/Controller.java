@@ -51,4 +51,8 @@ public class Controller {
 
 
     }
+
+    public boolean registerNewCustomer(String name, String custId, String occupation, String address) {
+        return false;
+    }
 }
