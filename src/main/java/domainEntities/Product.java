@@ -53,7 +53,7 @@ public class Product{
         this.flavour = flavour;
     }
 
-    public double getPrice() {
+    public double getPrice(Location currentLocation) {
         return price;
     }
 

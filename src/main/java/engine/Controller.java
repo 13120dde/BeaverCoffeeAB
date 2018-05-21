@@ -1,12 +1,10 @@
 package engine;
 
 import database.MongoDb;
-import domainEntities.Location;
-import domainEntities.Product;
-import domainEntities.EmployePosition;
-import domainEntities.Employee;
+import domainEntities.*;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Controller {
 
@@ -37,10 +35,20 @@ public class Controller {
 
     public LinkedList<Product> getAvailableProducts() {
         LinkedList<Product> products = new LinkedList<Product>();
-        products.add(new Product(0,"Coffe","l","roasted",39.90, 50));
-        products.add(new Product(1,"Tea","l","herbal",29.90, 50));
-        products.add(new Product(2,"Latte","l","vanilla",49.90, 50));
-        products.add(new Product(3,"Irish Cream","l","cognac",39.90, 50));
+        products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
+        products.add(new Product(2,"Tea","l","herbal",29.90, 50));
+        products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
+        products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
         return products;
+    }
+
+    /**
+     *
+     * @param productsInOrder :
+     * @param barcode : String
+     */
+    public void registerOrder(List<Product> productsInOrder, String barcode) {
+
+
     }
 }

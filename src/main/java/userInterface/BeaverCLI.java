@@ -12,6 +12,8 @@ import java.util.Scanner;
 public class BeaverCLI {
 
     private Controller controller;
+    private List<Product> order;
+
 
     public BeaverCLI(Controller controller){
         this.controller= controller;
@@ -96,6 +98,7 @@ public class BeaverCLI {
                 showMainMenu();
                 break;
             case 1:
+                order = new LinkedList<Product>();
                 newOrderMenu();
                 break;
             case 2:
@@ -142,40 +145,69 @@ public class BeaverCLI {
 
     }
 
+
     private void newOrderMenu() {
 
+        clearScreen();
         printHeader("CREATE ORDER");
         List<Product> products = controller.getAvailableProducts();
         TableCreator.showProductsTable(products);
-        int choice = getInput(products.size());
+        int amountOfChoices = products.size()+1;
+        List<String> choices = new LinkedList<String>();
+        choices.add(amountOfChoices+++" - Proceed with order");
+        choices.add(amountOfChoices+" - Cancel order");
+        printChoices(choices);
+
+        System.out.println("=====> products in order <=====");
+        TableCreator.showProductsTable(order);
+
+
+        int choice = getInput(amountOfChoices);
+
         switch (choice){
+            case 0:
             case -1:
                 newOrderMenu();
                 break;
             case 1:
-
+                order.add(products.get(choice-1));
+                newOrderMenu();
                 break;
-
             case 2:
-
+                order.add(products.get(choice-1));
+                newOrderMenu();
                 break;
-
             case 3:
-
+                order.add(products.get(choice-1));
+                newOrderMenu();
                 break;
-
             case 4:
-
+                order.add(products.get(choice-1));
+                newOrderMenu();
                 break;
-
             case 5:
-
+                if(products.isEmpty()){
+                    System.out.println("No products selected");
+                    newOrderMenu();
+                }
+                checkIfRegisteredUserAndProceedWithOrder();
+                order.clear();
+                showMainMenu();
                 break;
             case 6:
+                order.clear();
                 showMainMenu();
                 break;
         }
 
+    }
+
+    private void checkIfRegisteredUserAndProceedWithOrder() {
+        clearScreen();
+        System.out.println("Enter user's barcode if registered, otherwise leave empty");
+        Scanner sc = new Scanner(System.in);
+        String barcode = sc.nextLine();
+        controller.registerOrder(order,barcode);
     }
 
     private void printHeader(String header) {
