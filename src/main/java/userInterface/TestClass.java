@@ -13,7 +13,8 @@ public class TestClass
         {
             MongoDb db = new MongoDb();
             Employee e = new Employee();
-            db.addEmployee(e);
+            e.setName("Pluto");
+            db.updateEmployee(e);
         } catch (UnknownHostException e)
         {
             e.printStackTrace();

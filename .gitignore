@@ -7,3 +7,4 @@ target/classes/database/MongoDb.class
 target/classes/domainEntities/Customer.class
 *.class
 .idea/workspace.xml
+*.class
