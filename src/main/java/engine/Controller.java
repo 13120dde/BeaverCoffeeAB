@@ -16,7 +16,7 @@ public class Controller {
     public Controller(MongoDb database) {
         this.database=database;
         //TODO set location after user logged in, based on users location
-        Common.setCurrentLocation(Location.SWEDEN);
+        Common.setCurrentLocation(Location.ENGLAND);
     }
 
     public boolean getEmployeeDiscount() {
@@ -119,5 +119,21 @@ public class Controller {
         if(employeeDiscount)
             sum = sum*0.9;
         return sum;
+    }
+
+    public void setEmployeeDiscount(boolean b) {
+        employeeDiscount=b;
+    }
+
+    public List<Customer> getCustomersByDate(String dateFrom, String dateTo) {
+        List<Customer> customers = new LinkedList<Customer>();
+        customers.add(new Customer());
+        customers.add(new Customer());
+        customers.add(new Customer());
+        return customers;
+    }
+
+    public Customer getCustomerByName(String customerName) {
+        return new Customer();
     }
 }

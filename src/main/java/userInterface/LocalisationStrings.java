@@ -124,10 +124,10 @@ public class LocalisationStrings {
         switch (location){
             case US:
             case ENGLAND:
-                toReturn=" - Register new cutomer";
+                toReturn=" - Register new customer";
                 break;
             case SWEDEN:
-                toReturn= " - Registrera en ny användare";
+                toReturn= " - Registrera en ny kund";
                 break;
         }
         return toReturn;
@@ -138,10 +138,10 @@ public class LocalisationStrings {
         switch (location){
             case US:
             case ENGLAND:
-                toReturn=" - Employees";
+                toReturn=" - Employee menu";
                 break;
             case SWEDEN:
-                toReturn= " - Anställda";
+                toReturn= " - Anställdmeny";
                 break;
         }
         return toReturn;
@@ -152,10 +152,10 @@ public class LocalisationStrings {
         switch (location){
             case US:
             case ENGLAND:
-                toReturn=" - Customers";
+                toReturn=" - Customer menu";
                 break;
             case SWEDEN:
-                toReturn= " - Kunder";
+                toReturn= " - Kundmeny";
                 break;
         }
         return toReturn;
@@ -264,10 +264,10 @@ public class LocalisationStrings {
         switch (location){
             case US:
             case ENGLAND:
-                toReturn="Name: ";
+                toReturn="Customer ame: ";
                 break;
             case SWEDEN:
-                toReturn= "Namn: ";
+                toReturn= "Kundens namn: ";
                 break;
         }
         return toReturn;
@@ -486,29 +486,29 @@ public class LocalisationStrings {
         }
 
 
-    public static String cantFindEmployee(String employeeName) {
+    public static String cantFindPerson(String employeeName) {
         String toReturn="";
         switch (location){
             case US:
             case ENGLAND:
-                toReturn="Cant find employee: "+employeeName;
+                toReturn="Cant find person with name: "+employeeName;
                 break;
             case SWEDEN:
-                toReturn= "Kan ej hitta anställd med namnet: "+employeeName;
+                toReturn= "Kan ej hitta personen med namnet: "+employeeName;
                 break;
         }
         return toReturn;
     }
 
-    public static String empltyEmployeeList() {
+    public static String emptyList() {
         String toReturn="";
         switch (location){
             case US:
             case ENGLAND:
-                toReturn="Cant fetch employee listing, check input parameters";
+                toReturn="Cant fetch listing, check input parameters";
                 break;
             case SWEDEN:
-                toReturn= "Kan ej lista anställda, se över inparametrarna";
+                toReturn= "Kan ej hämta lista, se över inparametrarna";
                 break;
         }
         return toReturn;
@@ -848,6 +848,22 @@ public class LocalisationStrings {
                 break;
             case SWEDEN:
                 toReturn= "Summa";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String listCustomersByTime() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Customer listing on time period";
+
+                break;
+            case SWEDEN:
+                toReturn= "Lista över kunder över en tidsperiod";
+
                 break;
         }
         return toReturn;

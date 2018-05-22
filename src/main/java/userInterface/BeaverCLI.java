@@ -99,6 +99,7 @@ public class BeaverCLI {
                 break;
             case 1:
                 order = new LinkedList<Product>();
+                controller.setEmployeeDiscount(false);
                 newOrderMenu();
                 break;
             case 2:
@@ -130,6 +131,56 @@ public class BeaverCLI {
     private void customerMenu() {
 
         printHeader(LocalisationStrings.headerCustomer());
+
+        List<String> choices = new LinkedList<String>();
+        choices.add("1 - "+LocalisationStrings.listCustomersByTime());
+        choices.add("2 - "+LocalisationStrings.searchByName());
+        choices.add("3 - "+LocalisationStrings.cancel());
+        printChoices(choices);
+        int choice = getInput(choices.size());
+
+        Scanner sc = new Scanner (System.in);
+        switch (choice){
+            case 0:
+            case -1:
+                customerMenu();
+                break;
+            case 1:
+                System.out.println(LocalisationStrings.inputStartDate());
+                String dateFrom = sc.nextLine();
+                System.out.println(LocalisationStrings.inputEndDate());
+                String dateTo = sc.nextLine();
+                List<Customer> customers = controller.getCustomersByDate(dateFrom,dateTo);
+                if(customers!=null || !customers.isEmpty()) {
+                    System.out.println("Listing all customers for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+Common.getCurrentLocation()+"\n\n");
+                    //TODO
+                    TableCreator.listCustomers(customers);
+                    customerMenu();
+                }else{
+                    System.out.println(LocalisationStrings.emptyList());
+                    customerMenu();
+                }
+                break;
+            case 2:
+                System.out.println(LocalisationStrings.customerName());
+                String customerName = sc.nextLine();
+                Customer customer = controller.getCustomerByName(customerName);
+                if(customer!=null){
+                    //TODO
+                    editCustomerMenu(customer);
+                }else{
+                    System.out.println(LocalisationStrings.cantFindPerson(customerName));
+                }
+                customerMenu();
+                break;
+            case 3:
+                showMainMenu();
+                break;
+        }
+
+    }
+
+    private void editCustomerMenu(Customer customer) {
 
     }
 
@@ -166,7 +217,7 @@ public class BeaverCLI {
                     TableCreator.listEmployees(employees);
                     employeeMenu();
                 }else{
-                    System.out.println(LocalisationStrings.empltyEmployeeList());
+                    System.out.println(LocalisationStrings.emptyList());
                     employeeMenu();
                 }
                 break;
@@ -177,7 +228,7 @@ public class BeaverCLI {
                 if(employee!=null){
                     editEmployeeMenu(employee);
                 }else{
-                    System.out.println(LocalisationStrings.cantFindEmployee(employeeName));
+                    System.out.println(LocalisationStrings.cantFindPerson(employeeName));
                 }
                 employeeMenu();
                 break;

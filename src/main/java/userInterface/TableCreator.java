@@ -1,5 +1,6 @@
 package userInterface;
 
+import domainEntities.Customer;
 import domainEntities.Employee;
 import domainEntities.Location;
 import domainEntities.Product;
@@ -82,5 +83,8 @@ public class TableCreator {
         System.out.format("+-------+----------------------+----------------------+--------+--------+--------+----------+%n");
         System.out.println("\n"+LocalisationStrings.sum()+": "+sum+" "+Common.getLocalCurrency());
 
+    }
+
+    public static void listCustomers(List<Customer> customers) {
     }
 }

@@ -3,6 +3,7 @@ package domainEntities;
 import domainEntities.Order;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Customer {
@@ -19,6 +20,16 @@ public class Customer {
         this.address = address;
         this.registeredDate = registeredDate;
         this.orders = orders;
+    }
+
+    public Customer(){
+        this.name = "Kalle";
+        this.occupation = "Coffe critic";
+        this.barcode = "12345";
+        this.idNumber = "111";
+        this.address = "Coffe boulevard";
+        this.registeredDate = new Date();
+        this.orders = new LinkedList<Order>();
     }
 
     public boolean eligibleForDiscount(){
