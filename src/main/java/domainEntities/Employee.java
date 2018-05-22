@@ -95,13 +95,15 @@ public class Employee {
         return date;
     }
 
-    //TODO parse date
 
+    //TODO check if values are within reasonable range
     public void setStartDate(String startDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat inputFormat = new SimpleDateFormat("ddMMyyyy");
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
-            this.startDate = sdf.parse(startDate);
+            String formattedDate = myFormat.format(inputFormat.parse(startDate));
+            this.startDate = myFormat.parse(formattedDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -114,13 +116,14 @@ public class Employee {
           date = sdf.format(endDate);
         return date;
     }
-
-    //TODO parse date
+    //TODO check if values are within reasonable range
     public void setEndDate(String endDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat inputFormat = new SimpleDateFormat("ddMMyyyy");
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
-            this.endDate= sdf.parse(endDate);
+            String formattedDate = myFormat.format(inputFormat.parse(endDate));
+            this.endDate = myFormat.parse(formattedDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }

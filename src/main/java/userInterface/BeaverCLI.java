@@ -1,11 +1,8 @@
 package userInterface;
 
-import domainEntities.Comment;
-import domainEntities.Employee;
-import domainEntities.Product;
+import domainEntities.*;
 import engine.Common;
 import engine.Controller;
-import domainEntities.EmployePosition;
 
 import java.util.InputMismatchException;
 import java.util.LinkedList;
@@ -266,10 +263,11 @@ public class BeaverCLI {
         choices.add("2 - "+LocalisationStrings.edit()+" "+LocalisationStrings.id());
         choices.add("3 - "+LocalisationStrings.edit()+" "+LocalisationStrings.startDate());
         choices.add("4 - "+LocalisationStrings.edit()+" "+LocalisationStrings.endDate());
-        choices.add("5 - "+LocalisationStrings.edit()+" "+LocalisationStrings.position());
-        choices.add("6 - "+LocalisationStrings.showComments());
-        choices.add("7 - "+LocalisationStrings.writeComment());
-        choices.add("8 - "+LocalisationStrings.cancel());
+        choices.add("5 - "+LocalisationStrings.edit()+" "+LocalisationStrings.serviceGrade());
+        choices.add("6 - "+LocalisationStrings.edit()+" "+LocalisationStrings.position());
+        choices.add("7 - "+LocalisationStrings.showComments());
+        choices.add("8 - "+LocalisationStrings.writeComment());
+        choices.add("9 - "+LocalisationStrings.cancel());
         printChoices(choices);
 
         int choice = getInput(choices.size());
@@ -326,6 +324,24 @@ public class BeaverCLI {
                 editEmployeeMenu(employeeUpdated);
                 break;
             case 5:
+                System.out.println(LocalisationStrings.serviceGrade()+"(0-100): ");
+                int serviceGrade2=employee.getServiceGrade();
+                try{
+                    serviceGrade2= sc.nextInt();
+                    if(serviceGrade2<0 || serviceGrade2>100){
+                        System.out.println(LocalisationStrings.wrongChoice()+", "+LocalisationStrings.serviceGrade()+": "+serviceGrade2);
+                        editEmployeeMenu(employee);
+                    }
+                    employee.setServiceGrade(serviceGrade2);
+                    employeeUpdated = controller.updateEmployee(employee);
+                    editEmployeeMenu(employeeUpdated);
+
+                }catch (InputMismatchException e){
+                    System.out.println(LocalisationStrings.inputMismatch());
+                    editEmployeeMenu(employee);
+                }
+                break;
+            case 6:
                 System.out.println(LocalisationStrings.position()+": ");
                 List choicesPosition = new LinkedList();
                 choicesPosition.add("1 - "+LocalisationStrings.positionEmployee());
@@ -355,15 +371,15 @@ public class BeaverCLI {
                 }
                 editEmployeeMenu(employeeUpdated);
                 break;
-            case 6:
+            case 7:
                 showComments(employee);
                 editEmployeeMenu(employee);
                 break;
-            case 7:
+            case 8:
                 writeComment(employee);
                 editEmployeeMenu(employee);
                 break;
-            case 8:
+            case 9:
                 employeeMenu();
                 break;
 
@@ -445,6 +461,12 @@ public class BeaverCLI {
         clearScreen();
         printHeader(LocalisationStrings.headerCreateOrder());
         List<Product> products = controller.getAvailableProducts();
+
+        if(products.isEmpty()){
+            System.out.println(LocalisationStrings.someThingWrong());
+            showMainMenu();
+        }
+
         TableCreator.showProductsTable(products);
         int amountOfChoices = products.size()+1;
         List<String> choices = new LinkedList<String>();
@@ -453,10 +475,11 @@ public class BeaverCLI {
         printChoices(choices);
 
         System.out.println("=====> "+LocalisationStrings.productsInOrder()+" <=====");
-        TableCreator.showProductsTable(order);
+        TableCreator.showCurrentOrderInTable(order);
 
 
         int choice = getInput(amountOfChoices);
+        Product product;
 
         //TODO check that cases match products when they are implemented
         switch (choice){
@@ -465,9 +488,10 @@ public class BeaverCLI {
                 newOrderMenu();
                 break;
             case 1:
-                if(!products.isEmpty()){
-                    order.add(products.get(choice-1));
-                }
+                Flavour flavour = selectFlavour();
+                product = products.get(choice-1);
+                product.setFlavour(flavour);
+                order.add(product);
                 newOrderMenu();
                 break;
             case 2:
@@ -483,10 +507,8 @@ public class BeaverCLI {
                 newOrderMenu();
                 break;
             case 5:
-                if(products.isEmpty()){
-                    System.out.println(LocalisationStrings.noProductsSelected());
-                    newOrderMenu();
-                }
+                System.out.println(LocalisationStrings.noProductsSelected());
+                newOrderMenu();
                 checkIfRegisteredUserAndProceedWithOrder();
                 order.clear();
                 showMainMenu();
@@ -497,6 +519,44 @@ public class BeaverCLI {
                 break;
         }
 
+    }
+
+    //TODO refactor switch when flavours are implemented in db
+    private Flavour selectFlavour() {
+        List<Flavour> flavours = controller.getAvailableFlavours();
+        List<String> choices = new LinkedList<String>();
+        for(int i = 0; i<flavours.size();i++){
+            choices.add(i+1+" - "+flavours.get(i).getName());
+        }
+
+        printChoices(choices);
+        int choice = getInput(choices.size());
+
+        Flavour flavour=null;
+        switch (choice){
+            case 0:
+            case -1:
+                System.out.println(LocalisationStrings.wrongChoice());
+                selectFlavour();
+                break;
+            case 1:
+                flavour = flavours.get(choice-1);
+                break;
+
+            case 2:
+                flavour = flavours.get(choice-1);
+                break;
+
+            case 3:
+                flavour = flavours.get(choice-1);
+                break;
+
+            case 4:
+                flavour = flavours.get(choice-1);
+                break;
+
+        }
+        return flavour;
     }
 
     private void checkIfRegisteredUserAndProceedWithOrder() {

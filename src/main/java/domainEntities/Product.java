@@ -9,6 +9,7 @@ public class Product
     private String nameSwe, nameEng, unitType;
     private double priceSEK, priceGBP, priceUSD;
     private int volume;
+    private Flavour flavour;
 
     public Product(String nameSwe, String nameEng, double priceSEK, double priceGBP, double priceUSD,
                    String unitType, int volume)
@@ -20,6 +21,16 @@ public class Product
         this.priceUSD = priceUSD;
         this.unitType = unitType;
         this.volume = volume;
+        flavour = null;
+    }
+
+
+    public Flavour getFlavour() {
+        return flavour;
+    }
+
+    public void setFlavour(Flavour flavour) {
+        this.flavour = flavour;
     }
 
     public String getNameSwe()
