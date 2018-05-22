@@ -136,4 +136,8 @@ public class Controller {
     public Customer getCustomerByName(String customerName) {
         return new Customer();
     }
+
+    public Customer updateCustomer(Customer customer) {
+        return customer;
+    }
 }

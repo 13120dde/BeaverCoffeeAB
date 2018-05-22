@@ -153,7 +153,6 @@ public class BeaverCLI {
                 List<Customer> customers = controller.getCustomersByDate(dateFrom,dateTo);
                 if(customers!=null || !customers.isEmpty()) {
                     System.out.println("Listing all customers for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+Common.getCurrentLocation()+"\n\n");
-                    //TODO
                     TableCreator.listCustomers(customers);
                     customerMenu();
                 }else{
@@ -181,6 +180,111 @@ public class BeaverCLI {
     }
 
     private void editCustomerMenu(Customer customer) {
+
+        clearScreen();
+        printHeader(LocalisationStrings.headerEditCustomer());
+
+        //name, id, occupation, barcode, address, regDate, counter
+        System.out.println(LocalisationStrings.name()+": "+customer.getName());
+        System.out.println(LocalisationStrings.id()+": "+customer.getIdNumber());
+        System.out.println(LocalisationStrings.registeredDate()+": "+customer.getRegisteredDate());
+        System.out.println(LocalisationStrings.address()+": "+customer.getAddress());
+        System.out.println(LocalisationStrings.occupation()+": "+customer.getOccupation());
+        System.out.println(LocalisationStrings.barcode()+": "+customer.getBarcode());
+        System.out.println(LocalisationStrings.amountOfPurchases()+": "+customer.getTotalPurchases());
+        System.out.println();
+
+        List<String> choices = new LinkedList<String>();
+        choices.add("1 - "+LocalisationStrings.edit()+" "+LocalisationStrings.name());
+        choices.add("2 - "+LocalisationStrings.edit()+" "+LocalisationStrings.id());
+        choices.add("3 - "+LocalisationStrings.edit()+" "+LocalisationStrings.registeredDate());
+        choices.add("4 - "+LocalisationStrings.edit()+" "+LocalisationStrings.address());
+        choices.add("5 - "+LocalisationStrings.edit()+" "+LocalisationStrings.occupation());
+        choices.add("6 - "+LocalisationStrings.edit()+" "+LocalisationStrings.barcode());
+        choices.add("7 - "+LocalisationStrings.cancel());
+
+        printChoices(choices);
+        int choice = getInput(choices.size());
+
+        Scanner sc = new Scanner(System.in);
+        Customer customerUpdated=null;
+        switch (choice){
+            case 0:
+            case -1:
+                System.out.println(LocalisationStrings.wrongChoice());
+                editCustomerMenu(customer);
+                break;
+            case 1:
+                System.out.println(LocalisationStrings.name()+": ");
+                String name = sc.nextLine();
+                customer.setName(name);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 2:
+                System.out.println(LocalisationStrings.id()+": ");
+                String id = sc.nextLine();
+                customer.setIdNumber(id);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 3:
+                System.out.println(LocalisationStrings.inputStartDate()+": ");
+                String startDate = sc.nextLine();
+                customer.setRegisteredDate(startDate);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 4:
+                System.out.println(LocalisationStrings.address()+": ");
+                String address = sc.nextLine();
+                customer.setAddress(address);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 5:
+                System.out.println(LocalisationStrings.occupation()+": ");
+                String occupation = sc.nextLine();
+                customer.setOccupation(occupation);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 6:
+                System.out.println(LocalisationStrings.barcode()+": ");
+                String barcode = sc.nextLine();
+                customer.setBarcode(barcode);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 7:
+                employeeMenu();
+                break;
+
+        }
 
     }
 
@@ -308,6 +412,7 @@ public class BeaverCLI {
         String serviceGrade = Integer.toString(employee.getServiceGrade())+"%";
         System.out.println(LocalisationStrings.serviceGrade()+": "+serviceGrade);
         System.out.println(LocalisationStrings.position()+": "+employee.getPosition());
+        System.out.println();
 
         List<String> choices = new LinkedList<String>();
         choices.add("1 - "+LocalisationStrings.edit()+" "+LocalisationStrings.name());

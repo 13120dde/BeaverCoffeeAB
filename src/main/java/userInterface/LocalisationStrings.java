@@ -264,7 +264,7 @@ public class LocalisationStrings {
         switch (location){
             case US:
             case ENGLAND:
-                toReturn="Customer ame: ";
+                toReturn="Customer's name: ";
                 break;
             case SWEDEN:
                 toReturn= "Kundens namn: ";
@@ -863,6 +863,70 @@ public class LocalisationStrings {
                 break;
             case SWEDEN:
                 toReturn= "Lista över kunder över en tidsperiod";
+
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String headerEditCustomer() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="EDIT CUSTOMER";
+
+                break;
+            case SWEDEN:
+                toReturn= "REDIGERA KUND";
+
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String registeredDate() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Date of registration";
+
+                break;
+            case SWEDEN:
+                toReturn= "Registreringsdatum";
+
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String barcode() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Barcode";
+
+                break;
+            case SWEDEN:
+                toReturn= "Streckkod";
+
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String amountOfPurchases() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Total amount of purchases";
+
+                break;
+            case SWEDEN:
+                toReturn= "Antal genomförda köp";
 
                 break;
         }
