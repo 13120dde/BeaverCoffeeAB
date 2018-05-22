@@ -58,5 +58,11 @@ public class MongoDb {
         return true;
     }
 
+    public boolean addComment()
+    {
+
+        return true;
+    }
+
 
 }
