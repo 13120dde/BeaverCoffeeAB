@@ -457,7 +457,7 @@ public class LocalisationStrings {
         return toReturn;
     }
 
-    public static String startDate() {
+    public static String inputStartDate() {
         String toReturn="";
         switch (location){
             case US:
@@ -471,7 +471,7 @@ public class LocalisationStrings {
         return toReturn;
     }
 
-    public static String endDate() {
+    public static String inputEndDate() {
             String toReturn="";
             switch (location){
                 case US:
@@ -523,6 +523,246 @@ public class LocalisationStrings {
                 break;
             case SWEDEN:
                 toReturn= "ANSTÄLLDINFORMATION";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String name() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Name";
+                break;
+            case SWEDEN:
+                toReturn= "Namn";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String id() {
+        String toReturn="";
+        switch (location){
+            case US:
+                toReturn="SSN";
+                break;
+            case ENGLAND:
+                toReturn="Id";
+                break;
+            case SWEDEN:
+                toReturn= "Personnummer";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String endDate() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="End date";
+                break;
+            case SWEDEN:
+                toReturn= "Slutdatum";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String  startDate() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Start date";
+                break;
+            case SWEDEN:
+                toReturn= "Startdatum";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String serviceGrade() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Service grade";
+                break;
+            case SWEDEN:
+                toReturn= "Tjänstgöringsgrad";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String createEmployee() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Register new employee";
+                break;
+            case SWEDEN:
+                toReturn= "Registrera en ny anställd";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String positionEmployee() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Employee";
+                break;
+            case SWEDEN:
+                toReturn= "Anställd";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String positionManager() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Branch Manager";
+                break;
+            case SWEDEN:
+                toReturn= "Butikschef";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String positionCorporate() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Corporate Manager";
+                break;
+            case SWEDEN:
+                toReturn= "Företagschef";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String edit() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Edit";
+                break;
+            case SWEDEN:
+                toReturn= "Redigera";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String position() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Position";
+                break;
+            case SWEDEN:
+                toReturn= "Roll";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String showComments() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Show comments";
+                break;
+            case SWEDEN:
+                toReturn= "Visa kommentarer";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String writeComment() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Write comment";
+                break;
+            case SWEDEN:
+                toReturn= "Skriv kommentar";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String comment() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="comments";
+                break;
+            case SWEDEN:
+                toReturn= "kommentarer";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String  employerId() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="EMPLOYER ID";
+                break;
+            case SWEDEN:
+                toReturn= "UPPDRAGSGIVARENS ID";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String  date() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="DATE";
+                break;
+            case SWEDEN:
+                toReturn= "DATUM";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String commentTooBig() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Comment to large, 300 characters max.";
+                break;
+            case SWEDEN:
+                toReturn= "Kommentaren är för lång, maximalt antal tecken är 300.";
                 break;
         }
         return toReturn;

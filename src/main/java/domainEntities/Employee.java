@@ -1,15 +1,18 @@
 package domainEntities;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class Employee {
 
     private String name, idNumber;
-    private double serviceGrade;
+    private int serviceGrade, id;
     private Date startDate, endDate;
-    private List<String> comments;
+    private List<Comment> comments;
     EmployePosition position;
     Location location;
 
@@ -17,13 +20,26 @@ public class Employee {
         name = "Dummmy";
         idNumber = "840309-****";
         location=Location.SWEDEN;
-        serviceGrade = 0.75;
+        serviceGrade = 75;
         position = EmployePosition.MANAGER;
         startDate = new Date();
+        comments = new LinkedList<Comment>();
+        id = new Random().nextInt(1000);
+
+        Comment c = new Comment();
+        c.setEmployerId(0);
+        c.setDate(new Date());
+        c.setComment("Lazy bum, always late!");
+        addComment(c);
+        c = new Comment();
+        c.setEmployerId(1);
+        c.setDate(new Date());
+        c.setComment(" some comment here");
+        addComment(c);
 
     }
 
-    public Employee(String name, String idNumber, Location location, double serviceGrade, Date startDate, EmployePosition position){
+    public Employee(String name, String idNumber, Location location, int serviceGrade, Date startDate, EmployePosition position){
         this.name = name;
         this.idNumber=idNumber;
         this.location=location;
@@ -32,6 +48,14 @@ public class Employee {
         this.position=position;
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -57,11 +81,11 @@ public class Employee {
         this.location = location;
     }
 
-    public double getServiceGrade() {
+    public int getServiceGrade() {
         return serviceGrade;
     }
 
-    public void setServiceGrade(double serviceGrade) {
+    public void setServiceGrade(int serviceGrade) {
         this.serviceGrade = serviceGrade;
     }
 
@@ -71,8 +95,16 @@ public class Employee {
         return date;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    //TODO parse date
+
+    public void setStartDate(String startDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            this.startDate = sdf.parse(startDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getEndDate() {
@@ -83,16 +115,23 @@ public class Employee {
         return date;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    //TODO parse date
+    public void setEndDate(String endDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            this.endDate= sdf.parse(endDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    public List<String> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<String> comments) {
-        this.comments = comments;
+    public void addComment(Comment comment) {
+        comments.add(comment);
     }
 
     public EmployePosition getPosition() {

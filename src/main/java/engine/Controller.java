@@ -63,8 +63,8 @@ public class Controller {
     public List<Employee> getEmployeesByDate(String dateFrom, String dateTo) {
         List<Employee> employees = new LinkedList<Employee>();
 
-        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),1.00,new Date(),EmployePosition.CORPORATE_SALES));
-        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),1.00,new Date(),EmployePosition.EMPLOYEE));
+        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),90,new Date(),EmployePosition.CORPORATE_SALES));
+        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),100,new Date(),EmployePosition.EMPLOYEE));
         employees.add(new Employee());
         employees.add(new Employee());
         employees.add(new Employee());
@@ -73,6 +73,21 @@ public class Controller {
     }
 
     public Employee getEmployeeByName(String employeeName) {
-        return null;
+        return new Employee();
+    }
+
+    public boolean registerNewEmployee(String name, String id, int servieGrade, String startDate, String endDate, EmployePosition position) {
+        return false;
+    }
+
+    public Employee updateEmployee(Employee employee) {
+        return employee;
+    }
+
+    //TODO return -1 for error writing to db, 0 for too long comment (300charmax), 1 for ok
+    public int writeComment(Employee employee, String comment) {
+        if(comment.length()>=300)
+            return 0;
+        return 1;
     }
 }

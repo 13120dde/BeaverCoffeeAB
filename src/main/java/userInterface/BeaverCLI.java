@@ -1,5 +1,6 @@
 package userInterface;
 
+import domainEntities.Comment;
 import domainEntities.Employee;
 import domainEntities.Product;
 import engine.Common;
@@ -146,7 +147,8 @@ public class BeaverCLI {
         List<String> choices = new LinkedList<String>();
         choices.add("1 - "+LocalisationStrings.listEmployyesByTime());
         choices.add("2 - "+LocalisationStrings.searchByName());
-        choices.add("3 - "+LocalisationStrings.cancel());
+        choices.add("3 - "+LocalisationStrings.createEmployee());
+        choices.add("4 - "+LocalisationStrings.cancel());
         printChoices(choices);
         int choice = getInput(choices.size());
 
@@ -157,9 +159,9 @@ public class BeaverCLI {
                 customerMenu();
                 break;
             case 1:
-                System.out.println(LocalisationStrings.startDate());
+                System.out.println(LocalisationStrings.inputStartDate());
                 String dateFrom = sc.nextLine();
-                System.out.println(LocalisationStrings.endDate());
+                System.out.println(LocalisationStrings.inputEndDate());
                 String dateTo = sc.nextLine();
                 List<Employee> employees = controller.getEmployeesByDate(dateFrom,dateTo);
                 if(employees!=null || !employees.isEmpty()) {
@@ -183,13 +185,222 @@ public class BeaverCLI {
                 employeeMenu();
                 break;
             case 3:
+                showRegisterNewEmployeeMenu();
+                employeeMenu();
+                break;
+            case 4:
                 showMainMenu();
                 break;
         }
     }
 
+    private void showRegisterNewEmployeeMenu() {
+        clearScreen();
+        Scanner sc = new Scanner(System.in);
+        System.out.println(LocalisationStrings.name()+":");
+        String name = sc.nextLine();
+        System.out.println(LocalisationStrings.id()+": ");
+        String id = sc.nextLine();
+        System.out.println(LocalisationStrings.serviceGrade()+": ");
+        int servieGrade=1;
+        try{
+            servieGrade = sc.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println(LocalisationStrings.inputMismatch());
+            showRegisterNewEmployeeMenu();
+        }
+        System.out.println(LocalisationStrings.inputStartDate()+": ");
+        sc = new Scanner(System.in);
+        String startDate = sc.nextLine();
+        System.out.println(LocalisationStrings.inputEndDate()+": ");
+        String endDate = sc.nextLine();
+
+        List<String> choices = new LinkedList<String>();
+        choices.add("1 - "+LocalisationStrings.positionEmployee());
+        choices.add("2 - "+LocalisationStrings.positionManager());
+        choices.add("3 - "+LocalisationStrings.positionCorporate());
+        printChoices(choices);
+
+        EmployePosition position = null;
+        int choice = getInput(choices.size());
+        switch (choice){
+            case 0:
+            case -1:
+                System.out.println(LocalisationStrings.wrongChoice());
+                showRegisterNewEmployeeMenu();
+                break;
+            case 1:
+                position = EmployePosition.EMPLOYEE;
+                break;
+            case 2:
+                position = EmployePosition.MANAGER;
+                break;
+            case 3:
+                position = EmployePosition.CORPORATE_SALES;
+                break;
+        }
+
+        boolean registerOk = controller.registerNewEmployee(name, id,servieGrade,startDate,endDate,position);
+        if(registerOk){
+            System.out.println("OK");
+            employeeMenu();
+        }else{
+            System.out.println(LocalisationStrings.someThingWrong());
+            employeeMenu();
+        }
+    }
+
     private void editEmployeeMenu(Employee employee) {
+        clearScreen();
         printHeader(LocalisationStrings.headerEditEmployee());
+        System.out.println(LocalisationStrings.name()+": "+employee.getName());
+        System.out.println(LocalisationStrings.id()+": "+employee.getIdNumber());
+        System.out.println(LocalisationStrings.startDate()+": "+employee.getStartDate());
+        System.out.println(LocalisationStrings.endDate()+": "+employee.getEndDate());
+        String serviceGrade = Integer.toString(employee.getServiceGrade())+"%";
+        System.out.println(LocalisationStrings.serviceGrade()+": "+serviceGrade);
+        System.out.println(LocalisationStrings.position()+": "+employee.getPosition());
+
+        List<String> choices = new LinkedList<String>();
+        choices.add("1 - "+LocalisationStrings.edit()+" "+LocalisationStrings.name());
+        choices.add("2 - "+LocalisationStrings.edit()+" "+LocalisationStrings.id());
+        choices.add("3 - "+LocalisationStrings.edit()+" "+LocalisationStrings.startDate());
+        choices.add("4 - "+LocalisationStrings.edit()+" "+LocalisationStrings.endDate());
+        choices.add("5 - "+LocalisationStrings.edit()+" "+LocalisationStrings.position());
+        choices.add("6 - "+LocalisationStrings.showComments());
+        choices.add("7 - "+LocalisationStrings.writeComment());
+        choices.add("8 - "+LocalisationStrings.cancel());
+        printChoices(choices);
+
+        int choice = getInput(choices.size());
+        Scanner sc = new Scanner(System.in);
+        Employee employeeUpdated =null;
+        switch (choice){
+            case 0:
+            case -1:
+                System.out.println(LocalisationStrings.wrongChoice());
+                editEmployeeMenu(employee);
+                break;
+            case 1:
+                System.out.println(LocalisationStrings.name()+": ");
+                String name = sc.nextLine();
+                employee.setName(name);
+                employeeUpdated = controller.updateEmployee(employee);
+                if(employeeUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editEmployeeMenu(employee);
+                }
+                editEmployeeMenu(employeeUpdated);
+                break;
+            case 2:
+                System.out.println(LocalisationStrings.id()+": ");
+                String id = sc.nextLine();
+                employee.setIdNumber(id);
+                employeeUpdated = controller.updateEmployee(employee);
+                if(employeeUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editEmployeeMenu(employee);
+                }
+                editEmployeeMenu(employeeUpdated);
+                break;
+            case 3:
+                System.out.println(LocalisationStrings.inputStartDate()+": ");
+                String startDate = sc.nextLine();
+                employee.setStartDate(startDate);
+                employeeUpdated = controller.updateEmployee(employee);
+                if(employeeUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editEmployeeMenu(employee);
+                }
+                editEmployeeMenu(employeeUpdated);
+                break;
+            case 4:
+                System.out.println(LocalisationStrings.inputEndDate()+": ");
+                String endDate = sc.nextLine();
+                employee.setEndDate(endDate);
+                employeeUpdated = controller.updateEmployee(employee);
+                if(employeeUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editEmployeeMenu(employee);
+                }
+                editEmployeeMenu(employeeUpdated);
+                break;
+            case 5:
+                System.out.println(LocalisationStrings.position()+": ");
+                List choicesPosition = new LinkedList();
+                choicesPosition.add("1 - "+LocalisationStrings.positionEmployee());
+                choicesPosition.add("2 - "+LocalisationStrings.positionManager());
+                choicesPosition.add("3 - "+LocalisationStrings.positionCorporate());
+                printChoices(choicesPosition);
+                int positionChoice = getInput(choicesPosition.size());
+                EmployePosition position = employee.getPosition();
+                if(positionChoice ==0 || positionChoice ==-1){
+                    System.out.println(LocalisationStrings.wrongChoice());
+                    editEmployeeMenu(employee);
+                }
+                if(positionChoice==1){
+                    position = EmployePosition.EMPLOYEE;
+                }
+                if(positionChoice==2){
+                    position = EmployePosition.MANAGER;
+                }
+                if(positionChoice==3){
+                    position = EmployePosition.CORPORATE_SALES;
+                }
+                employee.setPosition(position);
+                employeeUpdated = controller.updateEmployee(employee);
+                if(employeeUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editEmployeeMenu(employee);
+                }
+                editEmployeeMenu(employeeUpdated);
+                break;
+            case 6:
+                showComments(employee);
+                editEmployeeMenu(employee);
+                break;
+            case 7:
+                writeComment(employee);
+                editEmployeeMenu(employee);
+                break;
+            case 8:
+                employeeMenu();
+                break;
+
+        }
+    }
+
+    private void writeComment(Employee employee) {
+        printHeader(LocalisationStrings.writeComment()+" - "+employee.getName());
+        Scanner sc = new Scanner(System.in);
+        String comment = sc.nextLine();
+        int returnCode = controller.writeComment(employee,comment);
+        switch (returnCode){
+            case -1:
+                System.out.println(LocalisationStrings.someThingWrong());
+                writeComment(employee);
+                break;
+            case 0:
+                System.out.println(LocalisationStrings.commentTooBig());
+                writeComment(employee);
+                break;
+            case 1:
+                System.out.println("OK");
+                editEmployeeMenu(controller.getEmployeeByName(employee.getName()));
+                break;
+        }
+
+    }
+
+    private void showComments(Employee employee) {
+        clearScreen();
+        printHeader(employee.getName()+" "+LocalisationStrings.comment());
+        List<Comment> comments = employee.getComments();
+        String leftAlignFormat = "%-20s, %-20s: %-310s %n";
+
+        for(Comment comment : comments){
+            System.out.format(leftAlignFormat,comment.getDate(),comment.getEmployerId(),comment.getComment());
+        }
     }
 
     private void registerCustomerMenu() {
