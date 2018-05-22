@@ -56,7 +56,7 @@ public class BeaverCLI {
         printHeader(LocalisationStrings.headerLogin());
         String userName, password;
         Scanner sc = new Scanner(System.in);
-        System.out.println(LocalisationStrings.employeeName());
+        System.out.println(LocalisationStrings.name());
         userName = sc.nextLine();
         System.out.println(LocalisationStrings.password());
         password = sc.nextLine();

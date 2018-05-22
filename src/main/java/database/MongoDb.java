@@ -3,12 +3,14 @@ package database;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import domainEntities.Customer;
 import domainEntities.Employee;
 import domainEntities.Product;
 import org.bson.Document;
 
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.List;
 
 public class MongoDb {
 
@@ -29,7 +31,6 @@ public class MongoDb {
     {
         MongoCollection <Document> collection = mongoDb.getCollection("product");
         Document doc = new Document("name_swe", product.getNameSwe())
-                .append("name_eng", product.getNameEng())
                 .append("price_sek", product.getPriceSEK())
                 .append("price_gbp", product.getPriceGBP())
                 .append("price_usd", product.getPriceUSD())
@@ -40,4 +41,28 @@ public class MongoDb {
 
         return true;
     }
+
+    public boolean addEmployee(Employee employee)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("employee");
+        Document doc = new Document("name", employee.getName())
+                .append("ssn", employee.getIdNumber())
+                .append("position", employee.getLocation().name())
+                .append("start_date", employee.getStartDate())
+                .append("end_date", employee.getEndDate())
+                .append("location", employee.getLocation().name())
+                .append("service_grade", employee.getServiceGrade())
+                .append("comments","" );
+        collection.insertOne(doc);
+
+        return true;
+    }
+
+    public boolean addComment()
+    {
+
+        return true;
+    }
+
+
 }

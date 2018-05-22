@@ -4,10 +4,20 @@ import java.util.Date;
 
 public class Comment {
 
+    private int employeeId;
     private int employerId;
     private Date date;
     private String comment;
 
+    public void setEmployeeId(int id)
+    {
+        this.employeeId = id;
+    }
+
+    public int getEmployeeId()
+    {
+        return employeeId;
+    }
 
     public int getEmployerId() {
         return employerId;
