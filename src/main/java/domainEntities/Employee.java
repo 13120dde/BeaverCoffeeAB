@@ -21,7 +21,7 @@ public class Employee {
         idNumber = "840309-****";
         location=Location.SWEDEN;
         serviceGrade = 75;
-        position = EmployePosition.MANAGER;
+        position = EmployePosition.EMPLOYEE;
         startDate = new Date();
         comments = new LinkedList<Comment>();
         id = new Random().nextInt(1000);

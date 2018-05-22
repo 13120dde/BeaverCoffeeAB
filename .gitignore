@@ -8,3 +8,4 @@ target/classes/domainEntities/Customer.class
 *.class
 .idea/workspace.xml
 *.class
+*.class

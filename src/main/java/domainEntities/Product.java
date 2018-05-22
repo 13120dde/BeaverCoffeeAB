@@ -53,7 +53,8 @@ public class Product
         return productName;
     }
 
-    public double getPrice(Location location){
+    public double getPrice(){
+        Location location = Common.getCurrentLocation();
         double price=0;
         switch (location){
             case US:

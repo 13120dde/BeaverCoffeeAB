@@ -558,6 +558,8 @@ public class LocalisationStrings {
         return toReturn;
     }
 
+
+
     public static String endDate() {
         String toReturn="";
         switch (location){
@@ -763,6 +765,89 @@ public class LocalisationStrings {
                 break;
             case SWEDEN:
                 toReturn= "Kommentaren är för lång, maximalt antal tecken är 300.";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String flavour() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Flavour";
+                break;
+            case SWEDEN:
+                toReturn= "Smak";
+                break;
+        }
+        return toReturn;
+    }
+    public static String select() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Select";
+                break;
+            case SWEDEN:
+                toReturn= "Välj";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String remove() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Remove";
+                break;
+            case SWEDEN:
+                toReturn= "Radera";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String product() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="product";
+                break;
+            case SWEDEN:
+                toReturn= "produkt";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String employeeDiscount() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Employee discount";
+                break;
+            case SWEDEN:
+                toReturn= "Anställd rabatt";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String sum() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Sum";
+                break;
+            case SWEDEN:
+                toReturn= "Summa";
                 break;
         }
         return toReturn;

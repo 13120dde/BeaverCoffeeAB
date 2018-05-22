@@ -11,11 +11,16 @@ public class Controller {
 
     private MongoDb database;
     private Employee employee;
+    private boolean employeeDiscount = false;
 
     public Controller(MongoDb database) {
         this.database=database;
         //TODO set location after user logged in, based on users location
         Common.setCurrentLocation(Location.SWEDEN);
+    }
+
+    public boolean getEmployeeDiscount() {
+        return employeeDiscount;
     }
 
     public boolean login(String userName, String password) {
@@ -51,9 +56,10 @@ public class Controller {
      * @param productsInOrder :
      * @param barcode : String
      */
-    public void registerOrder(List<Product> productsInOrder, String barcode) {
+    public boolean registerOrder(List<Product> productsInOrder, String barcode) {
 
 
+        return true;
     }
 
     public boolean registerNewCustomer(String name, String custId, String occupation, String address) {
@@ -99,5 +105,19 @@ public class Controller {
         flavours.add(new Flavour());
 
         return flavours;
+    }
+
+    public void swithEmployeeDiscount() {
+        employeeDiscount = !employeeDiscount;
+    }
+
+    public double calculateOrderSum(List<Product> order) {
+        double sum =0;
+        for(Product p : order)
+            sum+=p.getPrice();
+
+        if(employeeDiscount)
+            sum = sum*0.9;
+        return sum;
     }
 }

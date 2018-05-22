@@ -26,7 +26,7 @@ public class TableCreator {
                     product.getProductName(),
                     Integer.toString(product.getVolume()),
                     product.getUnitType(),
-                    Double.toString(product.getPrice(location)),
+                    Double.toString(product.getPrice()),
                     Common.getLocalCurrency());
         }
         System.out.format("+-------+----------------------+--------+--------+--------+----------+%n");
@@ -59,7 +59,7 @@ public class TableCreator {
 
     }
 
-    public static void showCurrentOrderInTable(List<Product> products) {
+    public static void showCurrentOrderInTable(List<Product> products, double sum) {
         String leftAlignFormat = "| %-5s | %-20s | %-20s | %-6s | %-6s | %-6s | %-8s |%n";
 
         System.out.format("+-------+----------------------+----------------------+--------+--------+--------+----------+%n");
@@ -76,10 +76,11 @@ public class TableCreator {
                     product.getFlavour().getName(),
                     Integer.toString(product.getVolume()),
                     product.getUnitType(),
-                    Double.toString(product.getPrice(location)),
+                    Double.toString(product.getPrice()),
                     Common.getLocalCurrency());
         }
         System.out.format("+-------+----------------------+----------------------+--------+--------+--------+----------+%n");
+        System.out.println("\n"+LocalisationStrings.sum()+": "+sum+" "+Common.getLocalCurrency());
 
     }
 }
