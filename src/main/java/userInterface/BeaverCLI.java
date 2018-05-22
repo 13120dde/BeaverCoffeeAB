@@ -467,19 +467,24 @@ public class BeaverCLI {
             showMainMenu();
         }
 
+        System.out.println(LocalisationStrings.employeeDiscount()+": "+controller.getEmployeeDiscount());
         TableCreator.showProductsTable(products);
         int amountOfChoices = products.size()+1;
         List<String> choices = new LinkedList<String>();
+        choices.add(amountOfChoices+++" - "+LocalisationStrings.employeeDiscount());
+        choices.add(amountOfChoices+++" - "+LocalisationStrings.remove()+" "+LocalisationStrings.product());
         choices.add(amountOfChoices+++" - "+LocalisationStrings.proceed());
         choices.add(amountOfChoices+" - "+LocalisationStrings.cancel());
         printChoices(choices);
 
         System.out.println("=====> "+LocalisationStrings.productsInOrder()+" <=====");
-        TableCreator.showCurrentOrderInTable(order);
+        double sum = controller.calculateOrderSum(order);
+        TableCreator.showCurrentOrderInTable(order, sum);
 
 
         int choice = getInput(amountOfChoices);
         Product product;
+        Flavour flavour;
 
         //TODO check that cases match products when they are implemented
         switch (choice){
@@ -488,32 +493,57 @@ public class BeaverCLI {
                 newOrderMenu();
                 break;
             case 1:
-                Flavour flavour = selectFlavour();
+                flavour = selectFlavour();
                 product = products.get(choice-1);
                 product.setFlavour(flavour);
                 order.add(product);
                 newOrderMenu();
                 break;
             case 2:
-                order.add(products.get(choice-1));
+                flavour = selectFlavour();
+                product = products.get(choice-1);
+                product.setFlavour(flavour);
+                order.add(product);
                 newOrderMenu();
                 break;
             case 3:
-                order.add(products.get(choice-1));
+                flavour = selectFlavour();
+                product = products.get(choice-1);
+                product.setFlavour(flavour);
+                order.add(product);
                 newOrderMenu();
                 break;
             case 4:
-                order.add(products.get(choice-1));
+                controller.swithEmployeeDiscount();
                 newOrderMenu();
                 break;
             case 5:
-                System.out.println(LocalisationStrings.noProductsSelected());
-                newOrderMenu();
-                checkIfRegisteredUserAndProceedWithOrder();
-                order.clear();
-                showMainMenu();
+                System.out.println(LocalisationStrings.remove()+" id: ");
+                int choiceRemoveProduct;
+                Scanner sc = new Scanner(System.in);
+                try{
+                    choiceRemoveProduct = sc.nextInt();
+                    if(choiceRemoveProduct<1 || choiceRemoveProduct>order.size()){
+                        System.out.println(LocalisationStrings.wrongChoice());
+                        newOrderMenu();
+                    }
+                    order.remove(choiceRemoveProduct-1);
+                    newOrderMenu();
+                }catch (InputMismatchException e){
+                    System.out.println(LocalisationStrings.wrongChoice());
+                    newOrderMenu();
+                }
                 break;
             case 6:
+                if(!order.isEmpty()){
+                    checkIfRegisteredUserAndProceedWithOrder();
+                    order.clear();
+                }else{
+                    System.out.println(LocalisationStrings.noProductsSelected());
+                }
+                showMainMenu();
+                break;
+            case 7:
                 order.clear();
                 showMainMenu();
                 break;
@@ -525,6 +555,7 @@ public class BeaverCLI {
     private Flavour selectFlavour() {
         List<Flavour> flavours = controller.getAvailableFlavours();
         List<String> choices = new LinkedList<String>();
+        System.out.println(LocalisationStrings.select()+" " +LocalisationStrings.flavour()+": ");
         for(int i = 0; i<flavours.size();i++){
             choices.add(i+1+" - "+flavours.get(i).getName());
         }
@@ -561,10 +592,17 @@ public class BeaverCLI {
 
     private void checkIfRegisteredUserAndProceedWithOrder() {
         clearScreen();
-        System.out.println(LocalisationStrings.enterUserBarcode());
-        Scanner sc = new Scanner(System.in);
-        String barcode = sc.nextLine();
-        controller.registerOrder(order,barcode);
+        String barcode="";
+        if(!controller.getEmployeeDiscount()){
+            System.out.println(LocalisationStrings.enterUserBarcode());
+            Scanner sc = new Scanner(System.in);
+            barcode = sc.nextLine();
+        }
+        boolean registerOk = controller.registerOrder(order,barcode);
+        if(!registerOk)
+            System.out.println(LocalisationStrings.someThingWrong());
+        else
+            System.out.println("OK");
     }
 
     private void printHeader(String header) {
