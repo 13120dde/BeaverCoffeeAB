@@ -3,3 +3,6 @@
 *.xml
 .idea/misc.xml
 *.class
+target/classes/database/MongoDb.class
+target/classes/domainEntities/Customer.class
+*.class
