@@ -90,4 +90,14 @@ public class Controller {
             return 0;
         return 1;
     }
+
+    public List<Flavour> getAvailableFlavours() {
+        List<Flavour> flavours = new LinkedList<Flavour>();
+        flavours.add(new Flavour("Plain","Enkel","cl",10)); //dont remove this, selected when user dont want any flavour
+        flavours.add(new Flavour("Vanilla","Vanilj","cl",10)); //dont remove this, selected when user dont want any flavour
+        flavours.add(new Flavour("Caramelle","Godis","cl",10)); //dont remove this, selected when user dont want any flavour
+        flavours.add(new Flavour());
+
+        return flavours;
+    }
 }
