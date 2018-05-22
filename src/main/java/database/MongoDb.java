@@ -1,6 +1,8 @@
 package database;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -13,11 +15,11 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
-
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.mongodb.client.model.Filters.eq;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -28,10 +30,11 @@ public class MongoDb {
     private CodecRegistry pojoCodecRegistry;
 
     public MongoDb() throws UnknownHostException {
-        mongoClient = new MongoClient();
-        mongoDb = mongoClient.getDatabase("BeaverCoffee");
         pojoCodecRegistry = fromRegistries(MongoClient.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+        MongoClient mongoClient = new MongoClient("localhost", MongoClientOptions.builder().codecRegistry(pojoCodecRegistry).build());
+        mongoDb = mongoClient.getDatabase("BeaverCoffee");
+
 
     }
 
@@ -74,10 +77,10 @@ public class MongoDb {
     public boolean updateEmployee(Employee employee)
     {
         MongoCollection <Document> collection = mongoDb.getCollection("employee");
-        Bson filter = new Document("ssn", new ObjectId(employee.getIdNumber()));
+        Bson filter = new Document("ssn", employee.getIdNumber());
         Bson newValue = new Document("name", employee.getName())
                 .append("ssn", employee.getIdNumber())
-                .append("position", employee.getPosition())
+                .append("position", employee.getPosition().name())
                 .append("start_date", employee.getStartDate())
                 .append("end_date", employee.getEndDate())
                 .append("location", employee.getLocation().name())
@@ -91,14 +94,8 @@ public class MongoDb {
 
     public boolean addComment(Comment comment)
     {
-        int employeeId = comment.getEmployeeId();
-//        Filters filter = new Filters()
-
-//        Bson filter = new Document("_id", "Harish Taware");
-//        Bson newValue = new Document("salary", 90000);
-//        Bson updateOperationDocument = new Document("$set", newValue);
-//        collection.updateOne(filter, updateOperationDocument);
-//
+        MongoCollection <Document> collection = mongoDb.getCollection("employee");
+        collection.updateOne(eq("ssn", "840309-****"), new Document("$push", new Document("comment", comment)));
         return true;
     }
 
