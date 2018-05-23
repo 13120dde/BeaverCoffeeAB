@@ -1,15 +1,13 @@
 package database;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import domainEntities.Comment;
-import domainEntities.Customer;
-import domainEntities.Employee;
-import domainEntities.Product;
+import domainEntities.*;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -74,6 +72,19 @@ public class MongoDb {
         return true;
     }
 
+    public boolean addOrder(Order order)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("order");
+        Document doc = new Document("customer_id", order.getCustomerId())
+                .append("employee_id", order.getEmployeeId())
+                .append("date", order.getOrderDate())
+                .append("location", order.getLocation())
+                .append("products", order.getProducts());
+
+        collection.insertOne(doc);
+        return true;
+    }
+
     public boolean addCustomer(Customer customer)
     {
         MongoCollection <Document> collection = mongoDb.getCollection("customer");
@@ -87,6 +98,36 @@ public class MongoDb {
                 .append("address", customer.getAddress() );
         collection.insertOne(doc);
 
+
+        return true;
+    }
+
+    public boolean updateCustomer (Customer customer)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("customer");
+        Bson filter = new Document("ssn", customer.getIdNumber());
+        Bson newValue = new Document("name", customer.getName())
+                .append("ssn", customer.getIdNumber())
+                .append("barcode", customer.getBarcode())
+                .append("occupation", customer.getOccupation())
+                .append("date", customer.getRegisteredDate())
+                .append("counter", customer.getTotalPurchases())
+                .append("date", customer.getRegisteredDate())
+                .append("address", customer.getAddress() );
+
+        Bson updateOperationDocument = new Document("$set", newValue);
+        collection.updateOne(filter, updateOperationDocument);
+
+        return true;
+    }
+
+    public boolean increasePurchases(String barcode)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("customer");
+        Bson filter = new Document("barcode", barcode);
+        Bson newValue = new Document("counter",1 );
+        Bson updateOperationDocument = new Document("$inc", newValue);
+        collection.updateOne(filter, updateOperationDocument);
 
         return true;
     }
