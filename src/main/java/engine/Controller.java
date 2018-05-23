@@ -140,4 +140,24 @@ public class Controller {
     public Customer updateCustomer(Customer customer) {
         return customer;
     }
+
+    public List<Employee> getEmployeesByDateAndLocation(String dateFrom, String dateTo, Location location) {
+        List<Employee> employees = new LinkedList<Employee>();
+
+        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),90,new Date(),EmployePosition.CORPORATE_SALES));
+        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),100,new Date(),EmployePosition.EMPLOYEE));
+        employees.add(new Employee());
+        employees.add(new Employee());
+        employees.add(new Employee());
+        employees.add(new Employee());
+        return employees;
+    }
+
+    public List<Customer> getCustomersByDateAndLocation(String dateFrom, String dateTo, Location locationToList) {
+        List<Customer> customers = new LinkedList<Customer>();
+        customers.add(new Customer());
+        customers.add(new Customer());
+        customers.add(new Customer());
+        return customers;
+    }
 }

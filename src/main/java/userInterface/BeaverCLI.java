@@ -150,10 +150,20 @@ public class BeaverCLI {
                 String dateFrom = sc.nextLine();
                 System.out.println(LocalisationStrings.inputEndDate());
                 String dateTo = sc.nextLine();
-                List<Customer> customers = controller.getCustomersByDate(dateFrom,dateTo);
+                Location locationToList = Common.getCurrentLocation();
+                EmployePosition position = controller.getCurrentUserPosition();
+                List<Customer> customers = null;
+
+                if(position==EmployePosition.CORPORATE_SALES){
+                    locationToList = selectLocation();
+                    customers = controller.getCustomersByDateAndLocation(dateFrom,dateTo,locationToList);
+                }
+                if(position==EmployePosition.MANAGER){
+                    customers= controller.getCustomersByDate(dateFrom,dateTo);
+                }
+
                 if(customers!=null || !customers.isEmpty()) {
-                    System.out.println("Listing all customers for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+Common.getCurrentLocation()+"\n\n");
-                    TableCreator.listCustomers(customers);
+                    TableCreator.listCustomers(customers,locationToList,dateFrom,dateTo);
                     customerMenu();
                 }else{
                     System.out.println(LocalisationStrings.emptyList());
@@ -177,6 +187,21 @@ public class BeaverCLI {
                 break;
         }
 
+    }
+
+    private Location selectLocation() {
+        List<String> choicesLocation = new LinkedList<String>();
+        Location[] locations = Location.values();
+        for(int i = 0; i<locations.length;i++){
+            choicesLocation.add((i+1)+" - "+locations[i].name());
+        }
+        printChoices(choicesLocation);
+        int chosenLocation = getInput(choicesLocation.size());
+        if(chosenLocation<1 || chosenLocation>locations.length){
+            System.out.println(LocalisationStrings.wrongChoice());
+            employeeMenu();
+        }
+        return locations[chosenLocation-1];
     }
 
     private void editCustomerMenu(Customer customer) {
@@ -315,10 +340,21 @@ public class BeaverCLI {
                 String dateFrom = sc.nextLine();
                 System.out.println(LocalisationStrings.inputEndDate());
                 String dateTo = sc.nextLine();
-                List<Employee> employees = controller.getEmployeesByDate(dateFrom,dateTo);
+
+                Location locationToList = Common.getCurrentLocation();
+                EmployePosition position = controller.getCurrentUserPosition();
+                List<Employee> employees=null;
+                
+                if(position==EmployePosition.CORPORATE_SALES){
+                    locationToList = selectLocation();
+                    employees = controller.getEmployeesByDateAndLocation(dateFrom,dateTo,locationToList);
+                }
+                if(position==EmployePosition.MANAGER){
+                    employees= controller.getEmployeesByDate(dateFrom,dateTo);
+                }
+
                 if(employees!=null || !employees.isEmpty()) {
-                    System.out.println("Listing all employees for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+Common.getCurrentLocation()+"\n\n");
-                    TableCreator.listEmployees(employees);
+                    TableCreator.listEmployees(employees, locationToList, dateFrom,dateTo );
                     employeeMenu();
                 }else{
                     System.out.println(LocalisationStrings.emptyList());

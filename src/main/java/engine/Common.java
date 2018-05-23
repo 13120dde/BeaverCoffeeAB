@@ -5,6 +5,7 @@ import domainEntities.Location;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class Common {
 
@@ -69,4 +70,5 @@ public class Common {
     public static SimpleDateFormat getSimpleDateFormat() {
         return new SimpleDateFormat("dd/MM/yyyy");
     }
+
 }

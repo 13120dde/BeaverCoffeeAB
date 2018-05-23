@@ -33,8 +33,10 @@ public class TableCreator {
 
     }
 
-    public static void listEmployees(List<Employee> employees) {
+    public static void listEmployees(List<Employee> employees, Location locationToList, String dateFrom, String dateTo) {
         String leftAlignFormat = "| %-20s | %-20s | %-20s | %-15s | %-15s | %-13s |%n";
+        System.out.println("Listing all employees for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+locationToList+"\n");
+
 
         //name, id, position, start date, end date, service grade
         System.out.format("+----------------------+----------------------+----------------------+-----------------+-----------------+---------------+%n");
@@ -82,7 +84,9 @@ public class TableCreator {
 
     }
 
-    public static void listCustomers(List<Customer> customers) {
+    public static void listCustomers(List<Customer> customers, Location locationToList, String dateFrom, String dateTo) {
+        System.out.println("Listing all customers for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+locationToList  +"\n");
+
         String leftAlignFormat = "| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-10s |%n";
 
         System.out.format("+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+------------+%n");
