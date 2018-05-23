@@ -195,8 +195,38 @@ public class BeaverCLI {
                 reportMenu();
                 break;
             case 3:
-                
+                System.out.println(LocalisationStrings.zipcode()+": ");
+                String zip = sc.nextLine();
+                if(position==EmployePosition.CORPORATE_SALES){
+                    location = selectLocation();
+                }
+                products = controller.getSalesPerCustomerZipCode(zip,location);
+                if(products==null || products.isEmpty()){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    reportMenu();
+                }
+                sum = controller.calculateOrderSum(products);
+                zip+=","+LocalisationStrings.zipcode();
+                TableCreator.listProductSalesZipOrOccupation(products,location,zip,sum);
+                reportMenu();
+                break;
+
             case 4:
+                System.out.println(LocalisationStrings.occupation()+": ");
+                String occupation = sc.nextLine();
+                if(position==EmployePosition.CORPORATE_SALES){
+                    location = selectLocation();
+                }
+                products = controller.getSalesPerCustomerOccupation(occupation,location);
+                if(products==null || products.isEmpty()){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    reportMenu();
+                }
+                sum = controller.calculateOrderSum(products);
+                occupation+=","+LocalisationStrings.occupation();
+                TableCreator.listProductSalesZipOrOccupation(products,location,occupation,sum);
+                reportMenu();
+                break;
             case 5:
             case 6:
         }

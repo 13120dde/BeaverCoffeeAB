@@ -186,4 +186,28 @@ public class Controller {
         //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
         return products;
     }
+
+    public List<Product> getSalesPerCustomerZipCode(String zip, Location location) {
+        LinkedList<Product> products = new LinkedList<Product>();
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
+        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
+        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
+        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
+        return products;
+    }
+
+    public List<Product> getSalesPerCustomerOccupation(String occupation, Location location) {
+        LinkedList<Product> products = new LinkedList<Product>();
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
+        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
+        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
+        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
+        return products;
+    }
 }

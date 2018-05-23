@@ -1031,4 +1031,18 @@ public class LocalisationStrings {
         }
         return toReturn;
     }
+
+    public static String zipcode() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Zip code";
+                break;
+            case SWEDEN:
+                toReturn= "postnummer";
+                break;
+        }
+        return toReturn;
+    }
 }

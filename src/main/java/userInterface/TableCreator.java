@@ -133,4 +133,28 @@ public class TableCreator {
 
 
     }
+
+    public static void listProductSalesZipOrOccupation(List<Product> products, Location location, String zipOrOccupation, double sum) {
+        String[] zipOrOcc = zipOrOccupation.split(",");
+        System.out.println("Listing all sales for "+zipOrOcc[1]+": "+zipOrOcc[0]+"\nLocation: "+location  +"\n");
+
+        String leftAlignFormat = "| %-20s | %-20s | %-20s |%n";
+
+
+        System.out.format("+----------------------+----------------------+----------------------+%n");
+        System.out.format("|        PRODUCT       |       UNITS SOLD     |      TOTAL VALUE     |%n");
+        System.out.format("+----------------------+----------------------+----------------------+%n");
+        // System.out.format(leftAlignFormat,"ID","PRODUCT","FLAVOUR","VOLUME","UNIT","PRICE","CURRENCY" );
+
+        for (int i = 0; i < products.size(); i++) {
+            Product product = products.get(i);
+            System.out.format(leftAlignFormat,
+                    product.getProductName(),
+                    Integer.toString(product.getVolume()),
+                    Double.toString(product.getPrice())
+            );
+        }
+        System.out.format("+----------------------+----------------------+----------------------+%n");
+        System.out.println("\n"+LocalisationStrings.sum()+": "+sum+" "+Common.getLocalCurrency(location));
+    }
 }
