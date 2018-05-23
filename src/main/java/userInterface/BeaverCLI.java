@@ -563,9 +563,10 @@ public class BeaverCLI {
         choices.add("4 - "+LocalisationStrings.edit()+" "+LocalisationStrings.endDate());
         choices.add("5 - "+LocalisationStrings.edit()+" "+LocalisationStrings.serviceGrade());
         choices.add("6 - "+LocalisationStrings.edit()+" "+LocalisationStrings.position());
-        choices.add("7 - "+LocalisationStrings.showComments());
-        choices.add("8 - "+LocalisationStrings.writeComment());
-        choices.add("9 - "+LocalisationStrings.cancel());
+        choices.add("7 - "+LocalisationStrings.orderHistory());
+        choices.add("8 - "+LocalisationStrings.showComments());
+        choices.add("9 - "+LocalisationStrings.writeComment());
+        choices.add("10 - "+LocalisationStrings.cancel());
         printChoices(choices);
 
         int choice = getInput(choices.size());
@@ -670,18 +671,32 @@ public class BeaverCLI {
                 editEmployeeMenu(employeeUpdated);
                 break;
             case 7:
-                showComments(employee);
+                showOrderHistoryMenu(employee);
                 editEmployeeMenu(employee);
                 break;
             case 8:
-                writeComment(employee);
+                showComments(employee);
                 editEmployeeMenu(employee);
                 break;
             case 9:
+                writeComment(employee);
+                editEmployeeMenu(employee);
+                break;
+            case 10:
                 employeeMenu();
                 break;
 
         }
+    }
+
+    private void showOrderHistoryMenu(Employee employee) {
+        printHeader(LocalisationStrings.orderHistory());
+        String[] dates = inputDates();
+        Location location = Common.getCurrentLocation();
+        if(controller.getCurrentUserPosition()==EmployePosition.CORPORATE_SALES){
+            location = selectLocation();
+        }
+        List<Order> ordersByEmployee = controller.getOrdersMadeByEmployee(employee,dates[0],dates[1],location);
     }
 
     private void writeComment(Employee employee) {

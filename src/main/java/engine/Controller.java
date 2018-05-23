@@ -210,4 +210,10 @@ public class Controller {
         //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
         return products;
     }
+
+    public List<Order> getOrdersMadeByEmployee(Employee employee, String dateFrom, String dateTo, Location location) {
+        List<Order> orders = new LinkedList<Order>();
+
+        return orders;
+    }
 }

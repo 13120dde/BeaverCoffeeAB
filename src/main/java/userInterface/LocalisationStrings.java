@@ -1045,4 +1045,18 @@ public class LocalisationStrings {
         }
         return toReturn;
     }
+
+    public static String orderHistory() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Order history";
+                break;
+            case SWEDEN:
+                toReturn= "Orderhistorik";
+                break;
+        }
+        return toReturn;
+    }
 }

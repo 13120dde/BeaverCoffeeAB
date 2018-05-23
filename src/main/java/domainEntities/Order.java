@@ -6,17 +6,18 @@ import java.util.List;
 public class Order {
     private int orderId, customerId, employeeId;
     private Date orderDate;
-    private String location;
-    private List<Product> products;
+    private Location location;
+    private double sum;
 
-    public Order(int orderId, int customerId, int employeeId, Date orderDate, String location, List<Product> products) {
+    public Order(int orderId, int customerId, int employeeId, Date orderDate, Location location) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.employeeId = employeeId;
         this.orderDate = orderDate;
         this.location = location;
-        this.products = products;
     }
+
+
 
     public int getOrderId() {
         return orderId;
@@ -50,20 +51,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     public String toString(){
@@ -73,11 +66,6 @@ public class Order {
         orderInfo.append("Customer id:"+customerId+"\n");
         orderInfo.append("Location:"+location+"\n");
         orderInfo.append("Date:"+orderDate+"\n");
-        orderInfo.append("### PRODUCTS ###");
-        for(Product p : products){
-            orderInfo.append(products.toString()+"\n");
-        }
-        orderInfo.append("################");
         return orderInfo.toString();
     }
 }
