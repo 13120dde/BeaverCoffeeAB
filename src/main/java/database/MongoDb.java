@@ -72,16 +72,18 @@ public class MongoDb {
         return true;
     }
 
+    //TODO Behöver skilja på brewed och bagged coffee för gratis kaffe samt räkna antal
     public boolean addOrder(Order order)
     {
         MongoCollection <Document> collection = mongoDb.getCollection("order");
-        Document doc = new Document("customer_id", order.getCustomerId())
+        Document doc = new Document("barcode", order.getCustomerBarcode())
                 .append("employee_id", order.getEmployeeId())
                 .append("date", order.getOrderDate())
-                .append("location", order.getLocation())
+                .append("location", order.getLocation().name())
                 .append("products", order.getProducts());
 
         collection.insertOne(doc);
+        increasePurchases(order.getCustomerBarcode());
         return true;
     }
 

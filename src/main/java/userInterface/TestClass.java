@@ -39,7 +39,7 @@ public class TestClass
             l.add(p);
             l.add(p2);
             Common.setCurrentLocation(Location.SWEDEN);
-            Order o = new Order(12, 123, 432, new Date(), "SWEDEN", l);
+            Order o = new Order(12, "12345", 432, new Date(), Location.SWEDEN, l);
             db.addOrder(o);
 
 

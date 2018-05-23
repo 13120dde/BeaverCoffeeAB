@@ -10,13 +10,17 @@ public class Order {
     private double sum;
     private String customerBarcode;
     private boolean employeeDiscount;
+    private List <Product> products;
 
-    public Order(int orderId, String customerBarcode, int employeeId, Date orderDate, Location location) {
+    public Order(int orderId, String customerBarcode, int employeeId, Date orderDate,
+                    Location location, List <Product> products) {
+
         this.orderId = orderId;
         this.customerBarcode= customerBarcode;
         this.employeeId = employeeId;
         this.orderDate = orderDate;
         this.location = location;
+        this.products = products;
     }
 
     public double getSum() {
@@ -62,6 +66,16 @@ public class Order {
 
     public Location getLocation() {
         return location;
+    }
+
+    public List<Product> getProducts()
+    {
+        return products;
+    }
+
+    public void setProducts(List<Product> products)
+    {
+        this.products = products;
     }
 
     public void setLocation(Location location) {
