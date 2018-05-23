@@ -58,6 +58,7 @@ public class Controller {
      */
     public boolean registerOrder(List<Product> productsInOrder, String barcode) {
 
+        //TODO check class viariable employeeDiscount and this variable to order aswell, want to show in orderslistings
 
         return true;
     }
@@ -200,6 +201,34 @@ public class Controller {
     }
 
     public List<Product> getSalesPerCustomerOccupation(String occupation, Location location) {
+        LinkedList<Product> products = new LinkedList<Product>();
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
+        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
+        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
+        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
+        return products;
+    }
+
+    public List<Order> getOrdersMadeByEmployee(Employee employee, String dateFrom, String dateTo, Location location) {
+        List<Order> orders = new LinkedList<Order>();
+
+        //fetch all orders made by employee on dates
+        Order order = new Order(1345,"12345654",123,Common.formatDate(dateFrom),Common.getCurrentLocation());
+        //for each order fetch all products in order
+        //calculate sum for order, get orderdate, ecustomerbarcode
+        List<Product> productsInOrder = getProductsInOrder(order);
+        order.setSum(calculateOrderSum(productsInOrder));
+        orders.add(order);
+        orders.add(order);
+        orders.add(order);
+
+        return orders;
+    }
+
+    private List<Product> getProductsInOrder(Order order) {
         LinkedList<Product> products = new LinkedList<Product>();
         products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
         products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));

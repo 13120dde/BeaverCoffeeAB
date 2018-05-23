@@ -1,9 +1,6 @@
 package userInterface;
 
-import domainEntities.Customer;
-import domainEntities.Employee;
-import domainEntities.Location;
-import domainEntities.Product;
+import domainEntities.*;
 import engine.Common;
 
 import java.util.List;
@@ -101,7 +98,7 @@ public class TableCreator {
                     customer.getOccupation(),
                     customer.getBarcode(),
                     customer.getIdNumber(),
-                    customer.getAddress(),
+                    customer.getAddress().toString(),
                     customer.getRegisteredDate(),
                     customer.getTotalPurchases());
         }
@@ -156,5 +153,29 @@ public class TableCreator {
         }
         System.out.format("+----------------------+----------------------+----------------------+%n");
         System.out.println("\n"+LocalisationStrings.sum()+": "+sum+" "+Common.getLocalCurrency(location));
+    }
+
+    public static void listOrdersByEmployee(Employee employee, List<Order> ordersByEmployee,Location location) {
+        System.out.println("Listing all orders for: "+employee.getName()+"\nLocation: "+location  +"\n");
+
+        String leftAlignFormat = "| %-20s | %-20s | %-20s | %-10s | %-10s |%n";
+
+
+        System.out.format("+----------------------+----------------------+----------------------+%n");
+        System.out.format("|          ID          |       DATE           |    CUSTOMER BARCODE  |%n");
+        System.out.format("+----------------------+----------------------+----------------------+%n");
+        // System.out.format(leftAlignFormat,"ID","PRODUCT","FLAVOUR","VOLUME","UNIT","PRICE","CURRENCY" );
+
+        for (int i = 0; i < ordersByEmployee.size(); i++) {
+            Order order = ordersByEmployee.get(i);
+            order.getOrderId();
+            order.getOrderDate();
+            order.getCustomerBarcode();
+            order.getSum();
+            String currency = Common.getLocalCurrency(order.getLocation());
+            order.getEmployeeDiscount();
+            System.out.format(leftAlignFormat);
+        }
+        System.out.format("+----------------------+----------------------+----------------------+%n");
     }
 }
