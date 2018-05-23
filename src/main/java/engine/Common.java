@@ -71,4 +71,19 @@ public class Common {
         return new SimpleDateFormat("dd/MM/yyyy");
     }
 
+    public static String getLocalCurrency(Location location) {
+        String currency="";
+        switch (location){
+            case US:
+                currency = "$";
+                break;
+            case SWEDEN:
+                currency ="kr";
+                break;
+            case ENGLAND:
+                currency  ="£";
+                break;
+        }
+        return currency;
+    }
 }

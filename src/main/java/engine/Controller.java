@@ -160,4 +160,30 @@ public class Controller {
         customers.add(new Customer());
         return customers;
     }
+
+    //TODO slå samman alla av samma produkter till en, listan som ska returneras ska innehålla UNIKA produkter, på volume ska antal försäljningar av den unika produkten summeras, på pris totalsumman av försäljningarna
+    public List<Product> getSalesOverTimePeriod(String dateFrom, String dateTo, Location location) {
+        LinkedList<Product> products = new LinkedList<Product>();
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
+        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
+        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
+        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
+        return products;
+    }
+
+    //TODO samma som ovan, men nu ska man returnera bara den produkt som anges som inputparameter
+    public List<Product> getSalesOverTimePeriodAndProduct(String date, String date1, Location location, Product product) {
+        LinkedList<Product> products = new LinkedList<Product>();
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
+        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
+        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
+        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
+        return products;
+    }
 }

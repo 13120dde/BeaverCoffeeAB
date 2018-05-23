@@ -79,20 +79,22 @@ public class BeaverCLI {
         clearScreen();
         printHeader(LocalisationStrings.headerMainMenu());
         List<String> choices = new LinkedList<String>();
-        choices.add(choices.size()+1+LocalisationStrings.placeNewOrder());
-        choices.add(choices.size()+1+LocalisationStrings.registerNewCustomer());
+        choices.add(choices.size()+LocalisationStrings.logout());
+        choices.add(choices.size()+LocalisationStrings.placeNewOrder());
+        choices.add(choices.size()+LocalisationStrings.registerNewCustomer());
         if(controller.getCurrentUserPosition()!=EmployePosition.EMPLOYEE){
-            choices.add(choices.size()+1+LocalisationStrings.employees());
-            choices.add(choices.size()+1+LocalisationStrings.customers());
-            choices.add(choices.size()+1+LocalisationStrings.stock());
+            choices.add(choices.size()+LocalisationStrings.employees());
+            choices.add(choices.size()+LocalisationStrings.customers());
+            choices.add(choices.size()+LocalisationStrings.stock());
+            choices.add(choices.size()+" - "+LocalisationStrings.report());
         }
-        choices.add("0"+LocalisationStrings.logout());
         printChoices(choices);
         int choice = getInput(choices.size());
         EmployePosition position = controller.getCurrentUserPosition();
 
         switch (choice){
-            case 6:
+
+            case 7:
                 System.out.println(LocalisationStrings.wrongChoice());
             case -1:
                 showMainMenu();
@@ -119,6 +121,8 @@ public class BeaverCLI {
                 if(position!=EmployePosition.EMPLOYEE)
                     stockMenu();
                 break;
+            case 6:
+                reportMenu();
             case 0:
                 controller.logout();
                 showWelcomeScreen();
@@ -126,6 +130,86 @@ public class BeaverCLI {
                 break;
 
         }
+    }
+
+    private void reportMenu() {
+        printHeader(LocalisationStrings.report());
+        List<String> choices = new LinkedList<String>();
+        choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerTimePeriod());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerTimePeriodPerProducts());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerCustomerZipCode());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerCustomerOccupation());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.stockQantityPerTimePeriod());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.ordersServerByEmployeePerTimePeriod());
+
+        printChoices(choices);
+        int choice = getInput(choices.size());
+
+        Scanner sc = new Scanner(System.in);
+        String[] dates = new String [2];
+        EmployePosition position = controller.getCurrentUserPosition();
+        Location location = Common.getCurrentLocation();
+        List<Product> products = null;
+        double sum =0;
+
+        switch (choice){
+            case 0:
+                System.out.println(LocalisationStrings.wrongChoice());
+            case -1:
+                reportMenu();
+                break;
+            case 1:
+                dates = inputDates();
+                if(position==EmployePosition.CORPORATE_SALES){
+                    location = selectLocation();
+                }
+                products = controller.getSalesOverTimePeriod(dates[0],dates[0],location);
+                if(products==null || products.isEmpty()){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    reportMenu();
+                }
+                sum = controller.calculateOrderSum(products);
+                TableCreator.listProductSales(products,location,dates[0],dates[1],sum);
+                reportMenu();
+                break;
+            case 2:
+                dates = inputDates();
+                if(position==EmployePosition.CORPORATE_SALES){
+                    location = selectLocation();
+                }
+                List<Product> availableProducts = controller.getAvailableProducts();
+                TableCreator.showProductsTable(availableProducts);
+                int chosenProduct = getInput(availableProducts.size());
+                if(chosenProduct==-1){
+                    System.out.println(LocalisationStrings.wrongChoice());
+                    reportMenu();
+                }
+                Product product = availableProducts.get(chosenProduct);
+                products = controller.getSalesOverTimePeriodAndProduct(dates[0],dates[0],location,product);
+                if(products==null || products.isEmpty()){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    reportMenu();
+                }
+                sum = controller.calculateOrderSum(products);
+                TableCreator.listProductSales(products,location,dates[0],dates[1],sum);
+                reportMenu();
+                break;
+            case 3:
+                
+            case 4:
+            case 5:
+            case 6:
+        }
+    }
+
+    private String[] inputDates() {
+        String[] dates = new String[2];
+        Scanner sc = new Scanner(System.in);
+        System.out.println(LocalisationStrings.inputStartDate());
+        dates[0] = sc.nextLine();
+        System.out.println(LocalisationStrings.inputEndDate());
+        dates[1] = sc.nextLine();
+        return dates;
     }
 
     private void customerMenu() {
@@ -175,7 +259,6 @@ public class BeaverCLI {
                 String customerName = sc.nextLine();
                 Customer customer = controller.getCustomerByName(customerName);
                 if(customer!=null){
-                    //TODO
                     editCustomerMenu(customer);
                 }else{
                     System.out.println(LocalisationStrings.cantFindPerson(customerName));
@@ -344,7 +427,7 @@ public class BeaverCLI {
                 Location locationToList = Common.getCurrentLocation();
                 EmployePosition position = controller.getCurrentUserPosition();
                 List<Employee> employees=null;
-                
+
                 if(position==EmployePosition.CORPORATE_SALES){
                     locationToList = selectLocation();
                     employees = controller.getEmployeesByDateAndLocation(dateFrom,dateTo,locationToList);

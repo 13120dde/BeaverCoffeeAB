@@ -108,4 +108,29 @@ public class TableCreator {
         System.out.format("+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-----------+%n");
 
     }
+
+    public static void listProductSales(List<Product> products, Location location, String dateFrom, String dateTo, double sum) {
+        System.out.println("Listing all sales for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+location  +"\n");
+
+        String leftAlignFormat = "| %-20s | %-20s | %-20s |%n";
+
+
+        System.out.format("+----------------------+----------------------+----------------------+%n");
+        System.out.format("|        PRODUCT       |       UNITS SOLD     |      TOTAL VALUE     |%n");
+        System.out.format("+----------------------+----------------------+----------------------+%n");
+        // System.out.format(leftAlignFormat,"ID","PRODUCT","FLAVOUR","VOLUME","UNIT","PRICE","CURRENCY" );
+
+        for (int i = 0; i < products.size(); i++) {
+            Product product = products.get(i);
+            System.out.format(leftAlignFormat,
+                    product.getProductName(),
+                    Integer.toString(product.getVolume()),
+                    Double.toString(product.getPrice())
+            );
+        }
+        System.out.format("+----------------------+----------------------+----------------------+%n");
+        System.out.println("\n"+LocalisationStrings.sum()+": "+sum+" "+Common.getLocalCurrency(location));
+
+
+    }
 }

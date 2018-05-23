@@ -932,4 +932,103 @@ public class LocalisationStrings {
         }
         return toReturn;
     }
+
+    public static String report() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Reports";
+                break;
+            case SWEDEN:
+                toReturn= "Rapporter";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String salesPerTimePeriod() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Sales over a time period";
+                break;
+            case SWEDEN:
+                toReturn= "Försäljningar över en tidsperiod";
+                break;
+        }
+        return toReturn;
+
+    }
+
+    public static String salesPerTimePeriodPerProducts() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Sales for products over a time period";
+                break;
+            case SWEDEN:
+                toReturn= "Försäljningar för produkt över en tidsperiod";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String salesPerCustomerZipCode() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Sales per customer zip code";
+                break;
+            case SWEDEN:
+                toReturn= "Försäljningar per kundens postnummer";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String salesPerCustomerOccupation() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Sales per customer occupation";
+                break;
+            case SWEDEN:
+                toReturn= "Försäljningar per kundens sysselsättning";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String ordersServerByEmployeePerTimePeriod() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Orders served by employee over a time period";
+                break;
+            case SWEDEN:
+                toReturn= "Ordrar serverade av en anställd över en tidsperiod";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String stockQantityPerTimePeriod() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Stock quantities of a product over a time period";
+                break;
+            case SWEDEN:
+                toReturn= "Lagerstatus för en produkt över en tidsperiod";
+                break;
+        }
+        return toReturn;
+    }
 }
