@@ -253,4 +253,9 @@ public class Controller {
 
         return  productQuantities;
     }
+
+    public boolean updateQuantityForProduct(Product chosenProduct, int quantityNew)
+    {
+        return true;
+    }
 }

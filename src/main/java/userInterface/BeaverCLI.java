@@ -476,8 +476,8 @@ public class BeaverCLI {
         if(controller.getCurrentUserPosition()==EmployePosition.CORPORATE_SALES)
             location = selectLocation();
 
-        HashMap<Product,Integer> productToShow = controller.getProductStockInformation(Common.formatDate(date[0]),Common.formatDate(date[1]),location,chosenProduct);
-        TableCreator.showStock(productToShow,location,Common.formatDate(date[0]),Common.formatDate(date[1]));
+//        HashMap<Product,Integer> productToShow = controller.getProductStockInformation(Common.formatDate(date[0]),Common.formatDate(date[1]),location,chosenProduct);
+//        TableCreator.showStock(productToShow,location,Common.formatDate(date[0]),Common.formatDate(date[1]));
     }
 
     private void editQuantityMenu(ArrayList<Product> productsToChoose) {
