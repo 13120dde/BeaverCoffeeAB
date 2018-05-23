@@ -3,6 +3,8 @@ package userInterface;
 import domainEntities.*;
 import engine.Common;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class TableCreator {
@@ -178,6 +180,31 @@ public class TableCreator {
             );
         }
         System.out.format("+----------------------+----------------------+----------------------+----------------------+----------------------+%n");
+
+    }
+
+    public static void showStock(HashMap<Product, Integer> productsInStock, Location location, Date dateFrom, Date dateTo) {
+        System.out.println(LocalisationStrings.stock()+" - "+location+"\n"+dateFrom+" - "+dateTo);
+
+        String leftAlignFormat = "| %-10s | %-20s | %-20s | %-20s |%n";
+
+
+        System.out.format("+------------+----------------------+----------------------+----------------------+%n");
+        System.out.format("|    ID      |       PRODUCT        |   NUMBER OF UNITS    |         VOLUME       |%n");
+        System.out.format("+------------|----------------------+----------------------+----------------------+%n");
+
+        int i =1;
+        for(Product p : productsInStock.keySet()){
+            int quantity = productsInStock.get(p);
+
+            System.out.format(leftAlignFormat,
+                    Integer.toString(i++),
+                    p.getProductName(),
+                    Integer.toString(quantity),
+                    p.getVolume()+" "+p.getUnitType()
+            );
+        }
+        System.out.format("+------------|----------------------+----------------------+----------------------+%n");
 
     }
 }

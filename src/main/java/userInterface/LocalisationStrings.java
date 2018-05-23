@@ -1059,4 +1059,32 @@ public class LocalisationStrings {
         }
         return toReturn;
     }
+
+    public static String quantity() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="quantity";
+                break;
+            case SWEDEN:
+                toReturn= "kvantitet";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String listProductsOnTime() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="List products over a time period";
+                break;
+            case SWEDEN:
+                toReturn= "Lista produkter över en tidsperiod";
+                break;
+        }
+        return toReturn;
+    }
 }
