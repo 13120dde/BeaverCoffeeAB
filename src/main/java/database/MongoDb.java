@@ -15,6 +15,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -76,6 +77,7 @@ public class MongoDb {
     }
 
     //TODO Behöver skilja på brewed och bagged coffee för gratis kaffe samt räkna antal
+    //TODO Order in i customer?
     public boolean addOrder(Order order)
     {
         MongoCollection <Document> collection = mongoDb.getCollection("order");
@@ -154,20 +156,67 @@ public class MongoDb {
         return true;
     }
 
-    public boolean getCustomersByDate(Date from, Date to)
+    public List getCustomersByDate(Date from, Date to)
     {
         MongoCollection <Document> collection = mongoDb.getCollection("customer");
         MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
                 .append("$lt", to))).iterator();
 
+
+
+        if (cursor.hasNext())
+            System.out.println("Träff");
+
+        else
+            System.out.println("NAJ");
+
+        List <Customer> customerList = new ArrayList<Customer>();
         try {
             while (cursor.hasNext()) {
-                System.out.println(cursor.next().toJson());
+
+                Document d = cursor.next();
+                String name = d.getString("name");
+                String occupation = d.getString("occupation");
+                String barcode = d.getString("barcode");
+                String idNumber = d.getString("ssn");
+                Date registered = d.getDate("date");
+
+                Object address = d.get("address");
+                Document addressDoc = (Document)address;
+                String city = addressDoc.getString("street");
+                String location = addressDoc.getString("location");
+                String street = addressDoc.getString("street");
+                String zip = addressDoc.getString("zip");
+
+//                List a = new ArrayList();
+//
+//                Product p = new Product("Kaffe", "Coffee", 10, 2, 3,
+//                        "l", 2);
+//
+//                Product p2 = new Product("Sko", "Shoe", 10, 2, 3,
+//                        "kg", 6);
+//
+//                a.add(p);
+//                a.add(p2);
+//
+//                Order o = new Order(12, "12345", 432, new Date(), Location.SWEDEN, a);
+//
+//                List <Order> l2 = new ArrayList();
+//                l2.add(o);
+
+                Location l = Enum.valueOf(Location.class, location);
+                Address ad = new Address(street, zip, city,l );
+                Customer c = new Customer(name, occupation, barcode,idNumber, ad, registered  );
+                customerList.add(c);
+
+//                Customer c = new Customer()
+
+//                System.out.println(cursor.next().toJson());
             }
         } finally {
             cursor.close();
         }
-        return true;
+        return customerList;
     }
 
     //SSN hårdkodat

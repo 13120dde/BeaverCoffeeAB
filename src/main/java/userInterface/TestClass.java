@@ -43,12 +43,15 @@ public class TestClass
 //            Order o = new Order(12, "12345", 432, new Date(), Location.SWEDEN, l);
 //            db.addOrder(o);
 
-            Date from = new Date();
-            Date to = new Date();
-            from = new GregorianCalendar(2017, 01, 01).getTime();
-            to = new GregorianCalendar(2019, 01, 01).getTime();
 
-            db.getCustomersByDate(from, to);
+            Date from = new GregorianCalendar(2017, 1,1).getTime();
+            Date to = new GregorianCalendar(2019, 1, 1).getTime();
+
+            List <Customer> l = db.getCustomersByDate(from, to);
+            Customer i = l.get(0);
+            System.out.println(i.getName());
+            System.out.println(i.getOccupation());
+
 
         } catch (UnknownHostException e)
         {

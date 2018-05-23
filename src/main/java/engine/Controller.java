@@ -213,8 +213,8 @@ public class Controller {
         return products;
     }
 
-//    public List<Order> getOrdersMadeByEmployee(Employee employee, String dateFrom, String dateTo, Location location) {
-//        List<Order> orders = new LinkedList<Order>();
+    public List<Order> getOrdersMadeByEmployee(Employee employee, String dateFrom, String dateTo, Location location) {
+        List<Order> orders = new LinkedList<Order>();
 //
 //        //fetch all orders made by employee on dates
 //        Order order = new Order(1345,"12345654",123,Common.formatDate(dateFrom),Common.getCurrentLocation());
@@ -226,8 +226,8 @@ public class Controller {
 //        orders.add(order);
 //        orders.add(order);
 //
-//        return orders;
-//    }
+        return orders;
+    }
 
     private List<Product> getProductsInOrder(Order order) {
         LinkedList<Product> products = new LinkedList<Product>();

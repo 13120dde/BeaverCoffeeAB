@@ -14,16 +14,14 @@ public class Customer {
     private Address address;
     private int totalPurchases;
     private Date registeredDate;
-    private List<Order> orders;
 
-    public Customer(String name, String occupation, String barcode, String idNumber, Address address, String registeredDate, List<Order> orders) {
+    public Customer(String name, String occupation, String barcode, String idNumber, Address address, Date registeredDate) {
         this.name = name;
         this.occupation = occupation;
         this.barcode = barcode;
         this.idNumber = idNumber;
         this.address = address;
-        this.registeredDate =Common.formatDate(registeredDate);
-        this.orders = orders;
+        this.registeredDate = registeredDate;
     }
 
     public Customer(){
@@ -33,7 +31,6 @@ public class Customer {
         this.idNumber = "111";
         this.address = new Address ("Storgatan", "22320", "Stockholm", Location.SWEDEN );
         this.registeredDate = Common.formatDate("12042018");
-        this.orders = new LinkedList<Order>();
     }
 
     public String getName() {
@@ -86,13 +83,7 @@ public class Customer {
         this.registeredDate = Common.formatDate(registeredDate);
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 
     public String toString(){
         return "Id number: "+idNumber+"\n+" +
@@ -100,8 +91,7 @@ public class Customer {
                 "Occupation: "+occupation+"\n"+
                 "Barcode: "+barcode+"\n"+
                 "Address: "+address+"\n"+
-                "Date of registration: "+registeredDate+"\n"+
-                "Number of orders: "+orders.size();
+                "Date of registration: "+registeredDate;
     }
 
     public int getTotalPurchases() {
