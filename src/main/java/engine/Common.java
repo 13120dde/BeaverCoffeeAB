@@ -25,13 +25,13 @@ public class Common {
         String currency="";
         switch (currentLocation){
             case US:
-                currency = "$";
+                currency = "USD";
                 break;
             case SWEDEN:
-                currency ="kr";
+                currency ="SEK";
                 break;
             case ENGLAND:
-                currency  ="£";
+                currency  ="GBP";
                 break;
         }
         return currency;
@@ -75,13 +75,13 @@ public class Common {
         String currency="";
         switch (location){
             case US:
-                currency = "$";
+                currency = "USD";
                 break;
             case SWEDEN:
-                currency ="kr";
+                currency ="SEK";
                 break;
             case ENGLAND:
-                currency  ="£";
+                currency  ="GBP";
                 break;
         }
         return currency;
