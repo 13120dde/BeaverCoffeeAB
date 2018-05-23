@@ -421,8 +421,11 @@ public class BeaverCLI {
     }
 
     private void stockMenu() {
-
         printHeader(LocalisationStrings.headerStock());
+        //get products in stock
+        //get products in stock on time <manager: local, corp: any location>
+
+      //  List<Product> productsInStock = controller.getProductsInStock();
     }
 
     private void employeeMenu() {
