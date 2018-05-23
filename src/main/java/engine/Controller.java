@@ -18,6 +18,7 @@ public class Controller {
         this.database=database;
         //TODO set location after user logged in, based on users location
         Common.setCurrentLocation(Location.ENGLAND);
+
     }
 
     public boolean getEmployeeDiscount() {

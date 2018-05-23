@@ -10,6 +10,7 @@ public class Product
     private double priceSEK, priceGBP, priceUSD;
     private int volume;
     private Flavour flavour;
+    private boolean eligibleForDiscount;
 
     public Product(String nameSwe, String nameEng, double priceSEK, double priceGBP, double priceUSD,
                    String unitType, int volume)
@@ -22,8 +23,17 @@ public class Product
         this.unitType = unitType;
         this.volume = volume;
         flavour = null;
+        eligibleForDiscount = true;
     }
 
+
+    public boolean isEligibleForDiscount() {
+        return eligibleForDiscount;
+    }
+
+    public void setEligibleForDiscount(boolean eligibleForDiscount) {
+        this.eligibleForDiscount = eligibleForDiscount;
+    }
 
     public Flavour getFlavour() {
         return flavour;
@@ -134,6 +144,7 @@ public class Product
     {
         this.volume = volume;
     }
+
 
 //    public String toString(){
 //        String currency = Common.getLocalCurrency();

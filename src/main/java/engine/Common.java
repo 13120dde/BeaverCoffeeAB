@@ -6,6 +6,7 @@ import userInterface.LocalisationStrings;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Common {
@@ -53,10 +54,10 @@ public class Common {
         }
         return id;
     }
-
-    public static Date formatDate(String date) {
+    public static Date formatDate2(String date) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("ddMMyyyy");
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date dateFormatted =null;
 
         try {
@@ -67,6 +68,14 @@ public class Common {
             return new Date();
         }
         return dateFormatted;
+    }
+    public static Date formatDate(String date) {
+        Date dateFormatted = new Date();
+        int year = Integer.parseInt(date.substring(4));
+        int day = Integer.parseInt(date.substring(0,1));
+        int month = Integer.parseInt(date.substring(2,3))-1;
+
+        return new GregorianCalendar(year,month,day).getTime();
     }
 
     public static SimpleDateFormat getSimpleDateFormat() {
