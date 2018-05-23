@@ -698,6 +698,8 @@ public class BeaverCLI {
             location = selectLocation();
         }
         List<Order> ordersByEmployee = controller.getOrdersMadeByEmployee(employee,dates[0],dates[1],location);
+        TableCreator.listOrdersByEmployee(employee,ordersByEmployee,location);
+        editEmployeeMenu(employee);
     }
 
     private void writeComment(Employee employee) {

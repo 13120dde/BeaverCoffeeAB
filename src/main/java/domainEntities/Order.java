@@ -4,20 +4,36 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
-    private int orderId, customerId, employeeId;
+    private int orderId, employeeId;
     private Date orderDate;
     private Location location;
     private double sum;
+    private String customerBarcode;
+    private boolean employeeDiscount;
 
-    public Order(int orderId, int customerId, int employeeId, Date orderDate, Location location) {
+    public Order(int orderId, String customerBarcode, int employeeId, Date orderDate, Location location) {
         this.orderId = orderId;
-        this.customerId = customerId;
+        this.customerBarcode= customerBarcode;
         this.employeeId = employeeId;
         this.orderDate = orderDate;
         this.location = location;
     }
 
+    public double getSum() {
+        return sum;
+    }
 
+    public void setSum(double sum) {
+        this.sum = sum;
+    }
+
+    public String getCustomerBarcode() {
+        return customerBarcode;
+    }
+
+    public void setCustomerBarcode(String customerBarcode) {
+        this.customerBarcode = customerBarcode;
+    }
 
     public int getOrderId() {
         return orderId;
@@ -27,13 +43,6 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
 
     public int getEmployeeId() {
         return employeeId;
@@ -63,9 +72,14 @@ public class Order {
         StringBuilder orderInfo = new StringBuilder();
         orderInfo.append("Order id:"+orderId+"\n");
         orderInfo.append("Employee id:"+employeeId+"\n");
-        orderInfo.append("Customer id:"+customerId+"\n");
+        orderInfo.append("Customer barcode:"+customerBarcode+"\n");
         orderInfo.append("Location:"+location+"\n");
         orderInfo.append("Date:"+orderDate+"\n");
         return orderInfo.toString();
     }
+
+    public boolean getEmployeeDiscount() {
+        return employeeDiscount;
+    }
+
 }

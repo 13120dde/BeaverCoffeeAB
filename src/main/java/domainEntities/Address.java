@@ -55,4 +55,8 @@ public class Address
         this.location = location;
     }
 
+    public String toString(){
+        return city+", "+zip;
+    }
+
 }
