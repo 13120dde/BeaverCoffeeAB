@@ -11,7 +11,7 @@ import java.util.List;
 public class TableCreator {
 
 
-    public static void showProductsTable(List<Product> products) {
+    protected static void showProductsTable(List<Product> products) {
         String leftAlignFormat = "| %-5s | %-20s | %-6s | %-6s | %-6s | %-8s |%n";
 
         System.out.format("+-------+----------------------+--------+--------+--------+----------+%n");
@@ -33,7 +33,7 @@ public class TableCreator {
 
     }
 
-    public static void listEmployees(List<Employee> employees, Location locationToList, String dateFrom, String dateTo) {
+    protected static void listEmployees(List<Employee> employees, Location locationToList, String dateFrom, String dateTo) {
         String leftAlignFormat = "| %-20s | %-20s | %-20s | %-15s | %-15s | %-13s |%n";
         System.out.println("Listing all employees for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+locationToList+"\n");
 
@@ -60,7 +60,7 @@ public class TableCreator {
 
     }
 
-    public static void showCurrentOrderInTable(List<Product> products, double sum) {
+    protected static void showCurrentOrderInTable(List<Product> products, double sum) {
         String leftAlignFormat = "| %-5s | %-20s | %-20s | %-6s | %-6s | %-6s | %-8s |%n";
 
         System.out.format("+-------+----------------------+----------------------+--------+--------+--------+----------+%n");
@@ -84,7 +84,7 @@ public class TableCreator {
 
     }
 
-    public static void listCustomers(List<Customer> customers, Location locationToList, String dateFrom, String dateTo) {
+    protected static void listCustomers(List<Customer> customers, Location locationToList, String dateFrom, String dateTo) {
         System.out.println("Listing all customers for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+locationToList  +"\n");
 
         String leftAlignFormat = "| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-10s |%n";
@@ -109,7 +109,7 @@ public class TableCreator {
 
     }
 
-    public static void listProductSales(List<Product> products, Location location, String dateFrom, String dateTo, double sum) {
+    protected static void listProductSales(List<Product> products, Location location, String dateFrom, String dateTo, double sum) {
         System.out.println("Listing all sales for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+location  +"\n");
 
         String leftAlignFormat = "| %-20s | %-20s | %-20s |%n";
@@ -134,7 +134,7 @@ public class TableCreator {
 
     }
 
-    public static void listProductSalesZipOrOccupation(List<Product> products, Location location, String zipOrOccupation, double sum) {
+    protected static void listProductSalesZipOrOccupation(List<Product> products, Location location, String zipOrOccupation, double sum) {
         String[] zipOrOcc = zipOrOccupation.split(",");
         System.out.println("Listing all sales for "+zipOrOcc[1]+": "+zipOrOcc[0]+"\nLocation: "+location  +"\n");
 

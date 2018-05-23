@@ -41,16 +41,13 @@ public class BeaverCLI {
         }
     }
 
-    /**
-     * TODO mask password
-     * @param choices
-     */
     private void printChoices(List<String> choices) {
         for (String s : choices){
             System.out.println(s);
         }
     }
 
+    //TODO MASK PASSWORD
     private void loginMenu() {
         clearScreen();
         printHeader(LocalisationStrings.headerLogin());
@@ -108,18 +105,14 @@ public class BeaverCLI {
                 registerCustomerMenu();
                 break;
             case 3:
-                if(position!=EmployePosition.EMPLOYEE)
-                    employeeMenu();
+                employeeMenu();
                 break;
             case 4:
-                if(position!=EmployePosition.EMPLOYEE){
-                    clearScreen();
-                    customerMenu();
-                }
+                clearScreen();
+                customerMenu();
                 break;
             case 5:
-                if(position!=EmployePosition.EMPLOYEE)
-                    stockMenu();
+                stockMenu();
                 break;
             case 6:
                 reportMenu();
@@ -139,23 +132,22 @@ public class BeaverCLI {
         choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerTimePeriodPerProducts());
         choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerCustomerZipCode());
         choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerCustomerOccupation());
-        choices.add(choices.size()+1+" - "+LocalisationStrings.stockQantityPerTimePeriod());
-        choices.add(choices.size()+1+" - "+LocalisationStrings.ordersServerByEmployeePerTimePeriod());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.cancel());
 
         printChoices(choices);
         int choice = getInput(choices.size());
 
         Scanner sc = new Scanner(System.in);
-        String[] dates = new String [2];
+        String[] dates;
         EmployePosition position = controller.getCurrentUserPosition();
         Location location = Common.getCurrentLocation();
-        List<Product> products = null;
-        double sum =0;
+        List<Product> products;
+        double sum;
 
         switch (choice){
             case 0:
-                System.out.println(LocalisationStrings.wrongChoice());
             case -1:
+                System.out.println(LocalisationStrings.wrongChoice());
                 reportMenu();
                 break;
             case 1:
@@ -163,7 +155,7 @@ public class BeaverCLI {
                 if(position==EmployePosition.CORPORATE_SALES){
                     location = selectLocation();
                 }
-                products = controller.getSalesOverTimePeriod(dates[0],dates[0],location);
+                products = controller.getSalesOverTimePeriod(dates[0],dates[1],location);
                 if(products==null || products.isEmpty()){
                     System.out.println(LocalisationStrings.someThingWrong());
                     reportMenu();
@@ -185,7 +177,7 @@ public class BeaverCLI {
                     reportMenu();
                 }
                 Product product = availableProducts.get(chosenProduct);
-                products = controller.getSalesOverTimePeriodAndProduct(dates[0],dates[0],location,product);
+                products = controller.getSalesOverTimePeriodAndProduct(dates[0],dates[1],location,product);
                 if(products==null || products.isEmpty()){
                     System.out.println(LocalisationStrings.someThingWrong());
                     reportMenu();
@@ -228,7 +220,8 @@ public class BeaverCLI {
                 reportMenu();
                 break;
             case 5:
-            case 6:
+                showMainMenu();
+                break;
         }
     }
 
