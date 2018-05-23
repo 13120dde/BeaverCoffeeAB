@@ -74,6 +74,23 @@ public class MongoDb {
         return true;
     }
 
+    public boolean addCustomer(Customer customer)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("customer");
+        Document doc = new Document("name", customer.getName())
+                .append("ssn", customer.getIdNumber())
+                .append("barcode", customer.getBarcode())
+                .append("occupation", customer.getOccupation())
+                .append("date", customer.getRegisteredDate())
+                .append("counter", 0)
+                .append("date", customer.getRegisteredDate())
+                .append("address", customer.getAddress() );
+        collection.insertOne(doc);
+
+
+        return true;
+    }
+
     public boolean updateEmployee(Employee employee)
     {
         MongoCollection <Document> collection = mongoDb.getCollection("employee");
@@ -84,20 +101,21 @@ public class MongoDb {
                 .append("start_date", employee.getStartDate())
                 .append("end_date", employee.getEndDate())
                 .append("location", employee.getLocation().name())
-                .append("service_grade", employee.getServiceGrade())
-                .append("comments","" );
+                .append("service_grade", employee.getServiceGrade());
         Bson updateOperationDocument = new Document("$set", newValue);
         collection.updateOne(filter, updateOperationDocument);
 
         return true;
     }
 
+    //SSN hårdkodat
     public boolean addComment(Comment comment)
     {
         MongoCollection <Document> collection = mongoDb.getCollection("employee");
         collection.updateOne(eq("ssn", "840309-****"), new Document("$push", new Document("comment", comment)));
         return true;
     }
+
 
 
 }

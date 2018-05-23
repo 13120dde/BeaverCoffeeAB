@@ -10,11 +10,31 @@ import java.util.List;
 
 public class Customer {
 
-    private String name, occupation, barcode, idNumber, address;
+    private String name, occupation, barcode, idNumber;
+    private Address address;
     private int totalPurchases;
     private Date registeredDate;
     private List<Order> orders;
 
+    public Customer(String name, String occupation, String barcode, String idNumber, Address address, String registeredDate, List<Order> orders) {
+        this.name = name;
+        this.occupation = occupation;
+        this.barcode = barcode;
+        this.idNumber = idNumber;
+        this.address = address;
+        this.registeredDate =Common.formatDate(registeredDate);
+        this.orders = orders;
+    }
+
+    public Customer(){
+        this.name = "Kalle";
+        this.occupation = "Coffe critic";
+        this.barcode = "12345";
+        this.idNumber = "111";
+        this.address = new Address ("Storgatan", "22320", "Stockholm", Location.SWEDEN );
+        this.registeredDate = Common.formatDate("12042018");
+        this.orders = new LinkedList<Order>();
+    }
 
     public String getName() {
         return name;
@@ -48,11 +68,11 @@ public class Customer {
         this.idNumber = idNumber;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -72,26 +92,6 @@ public class Customer {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }
-
-    public Customer(String name, String occupation, String barcode, String idNumber, String address, String registeredDate, List<Order> orders) {
-        this.name = name;
-        this.occupation = occupation;
-        this.barcode = barcode;
-        this.idNumber = idNumber;
-        this.address = address;
-        this.registeredDate =Common.formatDate(registeredDate);
-        this.orders = orders;
-    }
-
-    public Customer(){
-        this.name = "Kalle";
-        this.occupation = "Coffe critic";
-        this.barcode = "12345";
-        this.idNumber = "111";
-        this.address = "Coffe boulevard";
-        this.registeredDate = Common.formatDate("12042018");
-        this.orders = new LinkedList<Order>();
     }
 
     public String toString(){
