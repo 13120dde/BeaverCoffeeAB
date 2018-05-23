@@ -411,7 +411,7 @@ public class BeaverCLI {
                 editCustomerMenu(customerUpdated);
                 break;
             case 7:
-                employeeMenu();
+                customerMenu();
                 break;
 
         }
