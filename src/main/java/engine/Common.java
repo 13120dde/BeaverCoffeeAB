@@ -1,6 +1,7 @@
 package engine;
 
 import domainEntities.Location;
+import userInterface.LocalisationStrings;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,7 +63,8 @@ public class Common {
             String formattedDate = myFormat.format(inputFormat.parse(date));
             dateFormatted= myFormat.parse(formattedDate);
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println(LocalisationStrings.inputMismatch());
+            return new Date();
         }
         return dateFormatted;
     }

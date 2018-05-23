@@ -3,10 +3,7 @@ package engine;
 import database.MongoDb;
 import domainEntities.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Controller {
 
@@ -213,21 +210,21 @@ public class Controller {
         return products;
     }
 
-//    public List<Order> getOrdersMadeByEmployee(Employee employee, String dateFrom, String dateTo, Location location) {
-//        List<Order> orders = new LinkedList<Order>();
-//
-//        //fetch all orders made by employee on dates
-//        Order order = new Order(1345,"12345654",123,Common.formatDate(dateFrom),Common.getCurrentLocation());
-//        //for each order fetch all products in order
-//        //calculate sum for order, get orderdate, ecustomerbarcode
-//        List<Product> productsInOrder = getProductsInOrder(order);
-//        order.setSum(calculateOrderSum(productsInOrder));
-//        orders.add(order);
-//        orders.add(order);
-//        orders.add(order);
-//
-//        return orders;
-//    }
+    public List<Order> getOrdersMadeByEmployee(Employee employee, String dateFrom, String dateTo, Location location) {
+        List<Order> orders = new LinkedList<Order>();
+
+        //fetch all orders made by employee on dates
+      /*  Order order = new Order(1345,"12345654",123,Common.formatDate(dateFrom),Common.getCurrentLocation());
+        //for each order fetch all products in order
+        //calculate sum for order, get orderdate, ecustomerbarcode
+        List<Product> productsInOrder = getProductsInOrder(order);
+        order.setSum(calculateOrderSum(productsInOrder));
+        orders.add(order);
+        orders.add(order);
+        orders.add(order);*/
+
+        return orders;
+    }
 
     private List<Product> getProductsInOrder(Order order) {
         LinkedList<Product> products = new LinkedList<Product>();
@@ -242,15 +239,38 @@ public class Controller {
     }
 
     public HashMap<Product, Integer> getProductsInStock(Location location, String dateFrom, String dateTo) {
+
         LinkedList<Product> availableProducts= getAvailableProducts();
         HashMap<Product, Integer> productQuantities = new HashMap<Product, Integer>();
-        Date dateFrom1 = Common.formatDate(dateFrom);
-        Date dateTo1 = Common.formatDate(dateTo);
+
+        Date dateFrom1, dateTo1;
+        if(dateFrom.isEmpty()){
+            dateFrom1 = new Date();
+
+        }else{
+            dateFrom1= Common.formatDate(dateFrom);
+        }
+        if(dateTo.isEmpty()){
+            dateTo1 = new Date();
+
+        }else{
+            dateTo1 = Common.formatDate(dateTo);
+        }
         for(Product p : availableProducts){
             int stockQuantity = 1; //db.getStockQuantity(p, location,dateFrom1, dateTo1);
             productQuantities.put(p,stockQuantity);
         }
 
         return  productQuantities;
+    }
+
+    public boolean updateQuantityForProduct(Product chosenProduct, int quantityNew) {
+        return true;
+    }
+
+    public HashMap<Product, Integer> getProductStockInformation(Date date, Date date1, Location location, Product chosenProduct) {
+        HashMap<Product, Integer> productQuantities = new HashMap<Product, Integer>();
+        productQuantities.put(chosenProduct, 1);
+        return productQuantities;
     }
 }

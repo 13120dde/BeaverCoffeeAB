@@ -4,10 +4,8 @@ import domainEntities.*;
 import engine.Common;
 import engine.Controller;
 
-import java.util.InputMismatchException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class BeaverCLI {
 
@@ -422,10 +420,94 @@ public class BeaverCLI {
 
     private void stockMenu() {
         printHeader(LocalisationStrings.headerStock());
-        //get products in stock
-        //get products in stock on time <manager: local, corp: any location>
+        Location location = Common.getCurrentLocation();
+        HashMap<Product,Integer> productsInStock = controller.getProductsInStock(location,"","");
+        TableCreator.showStock(productsInStock,location,new Date(),new Date());
 
-      //  List<Product> productsInStock = controller.getProductsInStock();
+        ArrayList<Product> productsToChoose = new ArrayList<Product>();
+        for(Product p : productsInStock.keySet())
+            productsToChoose.add(p);
+
+        int amountOfProducts = productsToChoose.size()+1;
+        List<String> choices = new LinkedList<String>();
+        choices.add(choices.size()+1+" - "+LocalisationStrings.edit()+" "+LocalisationStrings.quantity());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.product()+" "+LocalisationStrings.listProductsOnTime());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.cancel());
+
+        //TODO choices must match realtime products when implemented
+        printChoices(choices);
+        int choice = getInput(productsToChoose.size()+choices.size());
+        switch (choice){
+            case 0:
+            case -1:
+                System.out.println(LocalisationStrings.wrongChoice());
+                stockMenu();
+                break;
+            case 1:
+                editQuantityMenu(productsToChoose);
+                stockMenu();
+                break;
+            case 2:
+                productListOnTimeMenu(productsToChoose);
+                stockMenu();
+            case 3:
+                showMainMenu();
+                break;
+
+        }
+        stockMenu();
+
+    }
+
+    private void productListOnTimeMenu(ArrayList<Product> productsToChoose) {
+        printHeader(LocalisationStrings.select()+" "+LocalisationStrings.product());
+        LinkedList<String> choices = new LinkedList<String>();
+        for(Product p : productsToChoose)
+            choices.add(choices.size()+1+" -  "+p.getProductName());
+        printChoices(choices);
+        int choice = getInput(choices.size());
+        if(choice<1 || choice>=choices.size()){
+            System.out.println(LocalisationStrings.wrongChoice());
+            stockMenu();
+        }
+        Product chosenProduct = productsToChoose.get(choice-1);
+        String[] date = inputDates();
+        Location location = Common.getCurrentLocation();
+        if(controller.getCurrentUserPosition()==EmployePosition.CORPORATE_SALES)
+            location = selectLocation();
+
+        HashMap<Product,Integer> productToShow = controller.getProductStockInformation(Common.formatDate(date[0]),Common.formatDate(date[1]),location,chosenProduct);
+        TableCreator.showStock(productToShow,location,Common.formatDate(date[0]),Common.formatDate(date[1]));
+    }
+
+    private void editQuantityMenu(ArrayList<Product> productsToChoose) {
+        LinkedList<String> choices = new LinkedList<String>();
+        for(Product p : productsToChoose)
+            choices.add(choices.size()+1+" -  "+p.getProductName());
+        printChoices(choices);
+        int choice = getInput(choices.size());
+        if(choice<1 || choice>choices.size()){
+            System.out.println(LocalisationStrings.wrongChoice());
+            stockMenu();
+        }
+        Product chosenProduct = productsToChoose.get(choice-1);
+        Scanner sc = new Scanner(System.in);
+        int quantityNew=0;
+        System.out.println(chosenProduct.getProductName()+" "+LocalisationStrings.quantity()+": ");
+        try {
+            quantityNew = sc.nextInt();
+            boolean updateOk = controller.updateQuantityForProduct(chosenProduct, quantityNew);
+            if(!updateOk){
+                System.out.println(LocalisationStrings.someThingWrong());
+            }else{
+                System.out.println("OK");
+            }
+            stockMenu();
+        }catch (InputMismatchException e){
+            System.out.println(LocalisationStrings.inputMismatch());
+            stockMenu();
+        }
+
     }
 
     private void employeeMenu() {
