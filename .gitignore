@@ -9,3 +9,5 @@ target/classes/domainEntities/Customer.class
 .idea/workspace.xml
 *.class
 *.class
+.idea/workspace.xml
+target/classes/database/MongoDb.class

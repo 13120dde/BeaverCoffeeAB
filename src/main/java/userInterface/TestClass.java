@@ -14,8 +14,9 @@ public class TestClass
         try
         {
             MongoDb db = new MongoDb();
-//            Employee e = new Employee();
-//            e.setName("Pluto");
+            Employee e = new Employee();
+            e.setName("Sven");
+            db.updateEmployee(e);
             Comment c = new Comment();
             c.setComment("Alltid sen");
             c.setDate(new Date());
@@ -25,6 +26,5 @@ public class TestClass
         {
             e.printStackTrace();
         }
-
     }
 }

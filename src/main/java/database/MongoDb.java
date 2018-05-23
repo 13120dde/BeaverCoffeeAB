@@ -74,6 +74,8 @@ public class MongoDb {
         return true;
     }
 
+    
+
     public boolean updateEmployee(Employee employee)
     {
         MongoCollection <Document> collection = mongoDb.getCollection("employee");
@@ -84,8 +86,7 @@ public class MongoDb {
                 .append("start_date", employee.getStartDate())
                 .append("end_date", employee.getEndDate())
                 .append("location", employee.getLocation().name())
-                .append("service_grade", employee.getServiceGrade())
-                .append("comments","" );
+                .append("service_grade", employee.getServiceGrade());
         Bson updateOperationDocument = new Document("$set", newValue);
         collection.updateOne(filter, updateOperationDocument);
 
@@ -98,6 +99,7 @@ public class MongoDb {
         collection.updateOne(eq("ssn", "840309-****"), new Document("$push", new Document("comment", comment)));
         return true;
     }
+
 
 
 }
