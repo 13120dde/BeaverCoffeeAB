@@ -74,7 +74,22 @@ public class MongoDb {
         return true;
     }
 
-    
+    public boolean addCustomer(Customer customer)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("customer");
+        Document doc = new Document("name", customer.getName())
+                .append("ssn", customer.getIdNumber())
+                .append("barcode", customer.getBarcode())
+                .append("occupation", customer.getOccupation())
+                .append("date", customer.getRegisteredDate())
+                .append("counter", 0)
+                .append("date", customer.getRegisteredDate())
+                .append("address", customer.getAddress() );
+        collection.insertOne(doc);
+
+
+        return true;
+    }
 
     public boolean updateEmployee(Employee employee)
     {
@@ -93,6 +108,7 @@ public class MongoDb {
         return true;
     }
 
+    //SSN hårdkodat
     public boolean addComment(Comment comment)
     {
         MongoCollection <Document> collection = mongoDb.getCollection("employee");

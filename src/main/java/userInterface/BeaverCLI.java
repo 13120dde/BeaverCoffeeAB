@@ -381,7 +381,8 @@ public class BeaverCLI {
             case 4:
                 System.out.println(LocalisationStrings.address()+": ");
                 String address = sc.nextLine();
-                customer.setAddress(address);
+                String[] addressVals = address.split(",");
+                customer.setAddress(new Address(addressVals[0],addressVals[1],addressVals[2], Common.getCurrentLocation()));
                 customerUpdated = controller.updateCustomer(customer);
                 if(customerUpdated==null){
                     System.out.println(LocalisationStrings.someThingWrong());
