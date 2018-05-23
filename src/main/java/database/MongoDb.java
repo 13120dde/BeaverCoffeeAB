@@ -5,6 +5,7 @@ import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import domainEntities.*;
@@ -15,9 +16,11 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.sun.org.apache.xml.internal.security.keys.keyresolver.KeyResolver.iterator;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -148,6 +151,22 @@ public class MongoDb {
         Bson updateOperationDocument = new Document("$set", newValue);
         collection.updateOne(filter, updateOperationDocument);
 
+        return true;
+    }
+
+    public boolean getCustomersByDate(Date from, Date to)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("customer");
+        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
+                .append("$lt", to))).iterator();
+
+        try {
+            while (cursor.hasNext()) {
+                System.out.println(cursor.next().toJson());
+            }
+        } finally {
+            cursor.close();
+        }
         return true;
     }
 
