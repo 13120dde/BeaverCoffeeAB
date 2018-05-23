@@ -4,6 +4,7 @@ import database.MongoDb;
 import domainEntities.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -238,5 +239,18 @@ public class Controller {
         //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
         //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
         return products;
+    }
+
+    public HashMap<Product, Integer> getProductsInStock(Location location, String dateFrom, String dateTo) {
+        LinkedList<Product> availableProducts= getAvailableProducts();
+        HashMap<Product, Integer> productQuantities = new HashMap<Product, Integer>();
+        Date dateFrom1 = Common.formatDate(dateFrom);
+        Date dateTo1 = Common.formatDate(dateTo);
+        for(Product p : availableProducts){
+            int stockQuantity = 1; //db.getStockQuantity(p, location,dateFrom1, dateTo1);
+            productQuantities.put(p,stockQuantity);
+        }
+
+        return  productQuantities;
     }
 }
