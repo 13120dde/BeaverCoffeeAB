@@ -41,16 +41,13 @@ public class BeaverCLI {
         }
     }
 
-    /**
-     * TODO mask password
-     * @param choices
-     */
     private void printChoices(List<String> choices) {
         for (String s : choices){
             System.out.println(s);
         }
     }
 
+    //TODO MASK PASSWORD
     private void loginMenu() {
         clearScreen();
         printHeader(LocalisationStrings.headerLogin());
@@ -79,45 +76,46 @@ public class BeaverCLI {
         clearScreen();
         printHeader(LocalisationStrings.headerMainMenu());
         List<String> choices = new LinkedList<String>();
-        choices.add(choices.size()+1+LocalisationStrings.placeNewOrder());
-        choices.add(choices.size()+1+LocalisationStrings.registerNewCustomer());
+        choices.add(choices.size()+LocalisationStrings.logout());
+        choices.add(choices.size()+LocalisationStrings.placeNewOrder());
+        choices.add(choices.size()+LocalisationStrings.registerNewCustomer());
         if(controller.getCurrentUserPosition()!=EmployePosition.EMPLOYEE){
-            choices.add(choices.size()+1+LocalisationStrings.employees());
-            choices.add(choices.size()+1+LocalisationStrings.customers());
-            choices.add(choices.size()+1+LocalisationStrings.stock());
+            choices.add(choices.size()+LocalisationStrings.employees());
+            choices.add(choices.size()+LocalisationStrings.customers());
+            choices.add(choices.size()+LocalisationStrings.stock());
+            choices.add(choices.size()+" - "+LocalisationStrings.report());
         }
-        choices.add("0"+LocalisationStrings.logout());
         printChoices(choices);
         int choice = getInput(choices.size());
         EmployePosition position = controller.getCurrentUserPosition();
 
         switch (choice){
-            case 6:
+
+            case 7:
                 System.out.println(LocalisationStrings.wrongChoice());
             case -1:
                 showMainMenu();
                 break;
             case 1:
                 order = new LinkedList<Product>();
+                controller.setEmployeeDiscount(false);
                 newOrderMenu();
                 break;
             case 2:
                 registerCustomerMenu();
                 break;
             case 3:
-                if(position!=EmployePosition.EMPLOYEE)
-                    employeeMenu();
+                employeeMenu();
                 break;
             case 4:
-                if(position!=EmployePosition.EMPLOYEE){
-                    clearScreen();
-                    customerMenu();
-                }
+                clearScreen();
+                customerMenu();
                 break;
             case 5:
-                if(position!=EmployePosition.EMPLOYEE)
-                    stockMenu();
+                stockMenu();
                 break;
+            case 6:
+                reportMenu();
             case 0:
                 controller.logout();
                 showWelcomeScreen();
@@ -127,9 +125,297 @@ public class BeaverCLI {
         }
     }
 
+    private void reportMenu() {
+        printHeader(LocalisationStrings.report());
+        List<String> choices = new LinkedList<String>();
+        choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerTimePeriod());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerTimePeriodPerProducts());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerCustomerZipCode());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.salesPerCustomerOccupation());
+        choices.add(choices.size()+1+" - "+LocalisationStrings.cancel());
+
+        printChoices(choices);
+        int choice = getInput(choices.size());
+
+        Scanner sc = new Scanner(System.in);
+        String[] dates;
+        EmployePosition position = controller.getCurrentUserPosition();
+        Location location = Common.getCurrentLocation();
+        List<Product> products;
+        double sum;
+
+        switch (choice){
+            case 0:
+            case -1:
+                System.out.println(LocalisationStrings.wrongChoice());
+                reportMenu();
+                break;
+            case 1:
+                dates = inputDates();
+                if(position==EmployePosition.CORPORATE_SALES){
+                    location = selectLocation();
+                }
+                products = controller.getSalesOverTimePeriod(dates[0],dates[1],location);
+                if(products==null || products.isEmpty()){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    reportMenu();
+                }
+                sum = controller.calculateOrderSum(products);
+                TableCreator.listProductSales(products,location,dates[0],dates[1],sum);
+                reportMenu();
+                break;
+            case 2:
+                dates = inputDates();
+                if(position==EmployePosition.CORPORATE_SALES){
+                    location = selectLocation();
+                }
+                List<Product> availableProducts = controller.getAvailableProducts();
+                TableCreator.showProductsTable(availableProducts);
+                int chosenProduct = getInput(availableProducts.size());
+                if(chosenProduct==-1){
+                    System.out.println(LocalisationStrings.wrongChoice());
+                    reportMenu();
+                }
+                Product product = availableProducts.get(chosenProduct);
+                products = controller.getSalesOverTimePeriodAndProduct(dates[0],dates[1],location,product);
+                if(products==null || products.isEmpty()){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    reportMenu();
+                }
+                sum = controller.calculateOrderSum(products);
+                TableCreator.listProductSales(products,location,dates[0],dates[1],sum);
+                reportMenu();
+                break;
+            case 3:
+                System.out.println(LocalisationStrings.zipcode()+": ");
+                String zip = sc.nextLine();
+                if(position==EmployePosition.CORPORATE_SALES){
+                    location = selectLocation();
+                }
+                products = controller.getSalesPerCustomerZipCode(zip,location);
+                if(products==null || products.isEmpty()){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    reportMenu();
+                }
+                sum = controller.calculateOrderSum(products);
+                zip+=","+LocalisationStrings.zipcode();
+                TableCreator.listProductSalesZipOrOccupation(products,location,zip,sum);
+                reportMenu();
+                break;
+
+            case 4:
+                System.out.println(LocalisationStrings.occupation()+": ");
+                String occupation = sc.nextLine();
+                if(position==EmployePosition.CORPORATE_SALES){
+                    location = selectLocation();
+                }
+                products = controller.getSalesPerCustomerOccupation(occupation,location);
+                if(products==null || products.isEmpty()){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    reportMenu();
+                }
+                sum = controller.calculateOrderSum(products);
+                occupation+=","+LocalisationStrings.occupation();
+                TableCreator.listProductSalesZipOrOccupation(products,location,occupation,sum);
+                reportMenu();
+                break;
+            case 5:
+                showMainMenu();
+                break;
+        }
+    }
+
+    private String[] inputDates() {
+        String[] dates = new String[2];
+        Scanner sc = new Scanner(System.in);
+        System.out.println(LocalisationStrings.inputStartDate());
+        dates[0] = sc.nextLine();
+        System.out.println(LocalisationStrings.inputEndDate());
+        dates[1] = sc.nextLine();
+        return dates;
+    }
+
     private void customerMenu() {
 
         printHeader(LocalisationStrings.headerCustomer());
+
+        List<String> choices = new LinkedList<String>();
+        choices.add("1 - "+LocalisationStrings.listCustomersByTime());
+        choices.add("2 - "+LocalisationStrings.searchByName());
+        choices.add("3 - "+LocalisationStrings.cancel());
+        printChoices(choices);
+        int choice = getInput(choices.size());
+
+        Scanner sc = new Scanner (System.in);
+        switch (choice){
+            case 0:
+            case -1:
+                customerMenu();
+                break;
+            case 1:
+                System.out.println(LocalisationStrings.inputStartDate());
+                String dateFrom = sc.nextLine();
+                System.out.println(LocalisationStrings.inputEndDate());
+                String dateTo = sc.nextLine();
+                Location locationToList = Common.getCurrentLocation();
+                EmployePosition position = controller.getCurrentUserPosition();
+                List<Customer> customers = null;
+
+                if(position==EmployePosition.CORPORATE_SALES){
+                    locationToList = selectLocation();
+                    customers = controller.getCustomersByDateAndLocation(dateFrom,dateTo,locationToList);
+                }
+                if(position==EmployePosition.MANAGER){
+                    customers= controller.getCustomersByDate(dateFrom,dateTo);
+                }
+
+                if(customers!=null || !customers.isEmpty()) {
+                    TableCreator.listCustomers(customers,locationToList,dateFrom,dateTo);
+                    customerMenu();
+                }else{
+                    System.out.println(LocalisationStrings.emptyList());
+                    customerMenu();
+                }
+                break;
+            case 2:
+                System.out.println(LocalisationStrings.customerName());
+                String customerName = sc.nextLine();
+                Customer customer = controller.getCustomerByName(customerName);
+                if(customer!=null){
+                    editCustomerMenu(customer);
+                }else{
+                    System.out.println(LocalisationStrings.cantFindPerson(customerName));
+                }
+                customerMenu();
+                break;
+            case 3:
+                showMainMenu();
+                break;
+        }
+
+    }
+
+    private Location selectLocation() {
+        List<String> choicesLocation = new LinkedList<String>();
+        Location[] locations = Location.values();
+        for(int i = 0; i<locations.length;i++){
+            choicesLocation.add((i+1)+" - "+locations[i].name());
+        }
+        printChoices(choicesLocation);
+        int chosenLocation = getInput(choicesLocation.size());
+        if(chosenLocation<1 || chosenLocation>locations.length){
+            System.out.println(LocalisationStrings.wrongChoice());
+            employeeMenu();
+        }
+        return locations[chosenLocation-1];
+    }
+
+    private void editCustomerMenu(Customer customer) {
+
+        clearScreen();
+        printHeader(LocalisationStrings.headerEditCustomer());
+
+        //name, id, occupation, barcode, address, regDate, counter
+        System.out.println(LocalisationStrings.name()+": "+customer.getName());
+        System.out.println(LocalisationStrings.id()+": "+customer.getIdNumber());
+        System.out.println(LocalisationStrings.registeredDate()+": "+customer.getRegisteredDate());
+        System.out.println(LocalisationStrings.address()+": "+customer.getAddress());
+        System.out.println(LocalisationStrings.occupation()+": "+customer.getOccupation());
+        System.out.println(LocalisationStrings.barcode()+": "+customer.getBarcode());
+        System.out.println(LocalisationStrings.amountOfPurchases()+": "+customer.getTotalPurchases());
+        System.out.println();
+
+        List<String> choices = new LinkedList<String>();
+        choices.add("1 - "+LocalisationStrings.edit()+" "+LocalisationStrings.name());
+        choices.add("2 - "+LocalisationStrings.edit()+" "+LocalisationStrings.id());
+        choices.add("3 - "+LocalisationStrings.edit()+" "+LocalisationStrings.registeredDate());
+        choices.add("4 - "+LocalisationStrings.edit()+" "+LocalisationStrings.address());
+        choices.add("5 - "+LocalisationStrings.edit()+" "+LocalisationStrings.occupation());
+        choices.add("6 - "+LocalisationStrings.edit()+" "+LocalisationStrings.barcode());
+        choices.add("7 - "+LocalisationStrings.cancel());
+
+        printChoices(choices);
+        int choice = getInput(choices.size());
+
+        Scanner sc = new Scanner(System.in);
+        Customer customerUpdated=null;
+        switch (choice){
+            case 0:
+            case -1:
+                System.out.println(LocalisationStrings.wrongChoice());
+                editCustomerMenu(customer);
+                break;
+            case 1:
+                System.out.println(LocalisationStrings.name()+": ");
+                String name = sc.nextLine();
+                customer.setName(name);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 2:
+                System.out.println(LocalisationStrings.id()+": ");
+                String id = sc.nextLine();
+                customer.setIdNumber(id);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 3:
+                System.out.println(LocalisationStrings.inputStartDate()+": ");
+                String startDate = sc.nextLine();
+                customer.setRegisteredDate(startDate);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 4:
+                System.out.println(LocalisationStrings.address()+": ");
+                String address = sc.nextLine();
+                customer.setAddress(address);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 5:
+                System.out.println(LocalisationStrings.occupation()+": ");
+                String occupation = sc.nextLine();
+                customer.setOccupation(occupation);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 6:
+                System.out.println(LocalisationStrings.barcode()+": ");
+                String barcode = sc.nextLine();
+                customer.setBarcode(barcode);
+                customerUpdated = controller.updateCustomer(customer);
+                if(customerUpdated==null){
+                    System.out.println(LocalisationStrings.someThingWrong());
+                    editCustomerMenu(customer);
+                }
+                editCustomerMenu(customerUpdated);
+                break;
+            case 7:
+                employeeMenu();
+                break;
+
+        }
 
     }
 
@@ -160,13 +446,24 @@ public class BeaverCLI {
                 String dateFrom = sc.nextLine();
                 System.out.println(LocalisationStrings.inputEndDate());
                 String dateTo = sc.nextLine();
-                List<Employee> employees = controller.getEmployeesByDate(dateFrom,dateTo);
+
+                Location locationToList = Common.getCurrentLocation();
+                EmployePosition position = controller.getCurrentUserPosition();
+                List<Employee> employees=null;
+
+                if(position==EmployePosition.CORPORATE_SALES){
+                    locationToList = selectLocation();
+                    employees = controller.getEmployeesByDateAndLocation(dateFrom,dateTo,locationToList);
+                }
+                if(position==EmployePosition.MANAGER){
+                    employees= controller.getEmployeesByDate(dateFrom,dateTo);
+                }
+
                 if(employees!=null || !employees.isEmpty()) {
-                    System.out.println("Listing all employees for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+Common.getCurrentLocation()+"\n\n");
-                    TableCreator.listEmployees(employees);
+                    TableCreator.listEmployees(employees, locationToList, dateFrom,dateTo );
                     employeeMenu();
                 }else{
-                    System.out.println(LocalisationStrings.empltyEmployeeList());
+                    System.out.println(LocalisationStrings.emptyList());
                     employeeMenu();
                 }
                 break;
@@ -177,7 +474,7 @@ public class BeaverCLI {
                 if(employee!=null){
                     editEmployeeMenu(employee);
                 }else{
-                    System.out.println(LocalisationStrings.cantFindEmployee(employeeName));
+                    System.out.println(LocalisationStrings.cantFindPerson(employeeName));
                 }
                 employeeMenu();
                 break;
@@ -257,6 +554,7 @@ public class BeaverCLI {
         String serviceGrade = Integer.toString(employee.getServiceGrade())+"%";
         System.out.println(LocalisationStrings.serviceGrade()+": "+serviceGrade);
         System.out.println(LocalisationStrings.position()+": "+employee.getPosition());
+        System.out.println();
 
         List<String> choices = new LinkedList<String>();
         choices.add("1 - "+LocalisationStrings.edit()+" "+LocalisationStrings.name());

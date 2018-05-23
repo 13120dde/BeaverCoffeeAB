@@ -1,5 +1,7 @@
 package domainEntities;
 
+import engine.Common;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +23,7 @@ public class Employee {
         idNumber = "840309-****";
         location=Location.SWEDEN;
         serviceGrade = 75;
-        position = EmployePosition.EMPLOYEE;
+        position = EmployePosition.CORPORATE_SALES;
         startDate = new Date();
         comments = new LinkedList<Comment>();
         id = new Random().nextInt(1000);
@@ -96,17 +98,8 @@ public class Employee {
     }
 
 
-    //TODO check if values are within reasonable range
     public void setStartDate(String startDate) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("ddMMyyyy");
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-        try {
-            String formattedDate = myFormat.format(inputFormat.parse(startDate));
-            this.startDate = myFormat.parse(formattedDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.startDate = Common.formatDate(startDate);
     }
 
     public String getEndDate() {
@@ -116,17 +109,8 @@ public class Employee {
           date = sdf.format(endDate);
         return date;
     }
-    //TODO check if values are within reasonable range
     public void setEndDate(String endDate) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("ddMMyyyy");
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-        try {
-            String formattedDate = myFormat.format(inputFormat.parse(endDate));
-            this.endDate = myFormat.parse(formattedDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.endDate= Common.formatDate(endDate);
     }
 
     public List<Comment> getComments() {

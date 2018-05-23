@@ -124,10 +124,10 @@ public class LocalisationStrings {
         switch (location){
             case US:
             case ENGLAND:
-                toReturn=" - Register new cutomer";
+                toReturn=" - Register new customer";
                 break;
             case SWEDEN:
-                toReturn= " - Registrera en ny användare";
+                toReturn= " - Registrera en ny kund";
                 break;
         }
         return toReturn;
@@ -138,10 +138,10 @@ public class LocalisationStrings {
         switch (location){
             case US:
             case ENGLAND:
-                toReturn=" - Employees";
+                toReturn=" - Employee menu";
                 break;
             case SWEDEN:
-                toReturn= " - Anställda";
+                toReturn= " - Anställdmeny";
                 break;
         }
         return toReturn;
@@ -152,10 +152,10 @@ public class LocalisationStrings {
         switch (location){
             case US:
             case ENGLAND:
-                toReturn=" - Customers";
+                toReturn=" - Customer menu";
                 break;
             case SWEDEN:
-                toReturn= " - Kunder";
+                toReturn= " - Kundmeny";
                 break;
         }
         return toReturn;
@@ -264,10 +264,10 @@ public class LocalisationStrings {
         switch (location){
             case US:
             case ENGLAND:
-                toReturn="Name: ";
+                toReturn="Customer's name: ";
                 break;
             case SWEDEN:
-                toReturn= "Namn: ";
+                toReturn= "Kundens namn: ";
                 break;
         }
         return toReturn;
@@ -486,29 +486,29 @@ public class LocalisationStrings {
         }
 
 
-    public static String cantFindEmployee(String employeeName) {
+    public static String cantFindPerson(String employeeName) {
         String toReturn="";
         switch (location){
             case US:
             case ENGLAND:
-                toReturn="Cant find employee: "+employeeName;
+                toReturn="Cant find person with name: "+employeeName;
                 break;
             case SWEDEN:
-                toReturn= "Kan ej hitta anställd med namnet: "+employeeName;
+                toReturn= "Kan ej hitta personen med namnet: "+employeeName;
                 break;
         }
         return toReturn;
     }
 
-    public static String empltyEmployeeList() {
+    public static String emptyList() {
         String toReturn="";
         switch (location){
             case US:
             case ENGLAND:
-                toReturn="Cant fetch employee listing, check input parameters";
+                toReturn="Cant fetch listing, check input parameters";
                 break;
             case SWEDEN:
-                toReturn= "Kan ej lista anställda, se över inparametrarna";
+                toReturn= "Kan ej hämta lista, se över inparametrarna";
                 break;
         }
         return toReturn;
@@ -848,6 +848,199 @@ public class LocalisationStrings {
                 break;
             case SWEDEN:
                 toReturn= "Summa";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String listCustomersByTime() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Customer listing on time period";
+
+                break;
+            case SWEDEN:
+                toReturn= "Lista över kunder över en tidsperiod";
+
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String headerEditCustomer() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="EDIT CUSTOMER";
+
+                break;
+            case SWEDEN:
+                toReturn= "REDIGERA KUND";
+
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String registeredDate() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Date of registration";
+
+                break;
+            case SWEDEN:
+                toReturn= "Registreringsdatum";
+
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String barcode() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Barcode";
+
+                break;
+            case SWEDEN:
+                toReturn= "Streckkod";
+
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String amountOfPurchases() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Total amount of purchases";
+
+                break;
+            case SWEDEN:
+                toReturn= "Antal genomförda köp";
+
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String report() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Reports";
+                break;
+            case SWEDEN:
+                toReturn= "Rapporter";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String salesPerTimePeriod() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Sales over a time period";
+                break;
+            case SWEDEN:
+                toReturn= "Försäljningar över en tidsperiod";
+                break;
+        }
+        return toReturn;
+
+    }
+
+    public static String salesPerTimePeriodPerProducts() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Sales for products over a time period";
+                break;
+            case SWEDEN:
+                toReturn= "Försäljningar för produkt över en tidsperiod";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String salesPerCustomerZipCode() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Sales per customer zip code";
+                break;
+            case SWEDEN:
+                toReturn= "Försäljningar per kundens postnummer";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String salesPerCustomerOccupation() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Sales per customer occupation";
+                break;
+            case SWEDEN:
+                toReturn= "Försäljningar per kundens sysselsättning";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String ordersServerByEmployeePerTimePeriod() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Orders served by employee over a time period";
+                break;
+            case SWEDEN:
+                toReturn= "Ordrar serverade av en anställd över en tidsperiod";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String stockQantityPerTimePeriod() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Stock quantities of a product over a time period";
+                break;
+            case SWEDEN:
+                toReturn= "Lagerstatus för en produkt över en tidsperiod";
+                break;
+        }
+        return toReturn;
+    }
+
+    public static String zipcode() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Zip code";
+                break;
+            case SWEDEN:
+                toReturn= "postnummer";
                 break;
         }
         return toReturn;

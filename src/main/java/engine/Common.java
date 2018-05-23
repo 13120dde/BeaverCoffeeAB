@@ -2,6 +2,11 @@ package engine;
 
 import domainEntities.Location;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 public class Common {
 
     private static Location currentLocation;
@@ -46,5 +51,39 @@ public class Common {
                 break;
         }
         return id;
+    }
+
+    public static Date formatDate(String date) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("ddMMyyyy");
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date dateFormatted =null;
+
+        try {
+            String formattedDate = myFormat.format(inputFormat.parse(date));
+            dateFormatted= myFormat.parse(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateFormatted;
+    }
+
+    public static SimpleDateFormat getSimpleDateFormat() {
+        return new SimpleDateFormat("dd/MM/yyyy");
+    }
+
+    public static String getLocalCurrency(Location location) {
+        String currency="";
+        switch (location){
+            case US:
+                currency = "$";
+                break;
+            case SWEDEN:
+                currency ="kr";
+                break;
+            case ENGLAND:
+                currency  ="£";
+                break;
+        }
+        return currency;
     }
 }

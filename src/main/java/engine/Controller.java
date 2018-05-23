@@ -16,7 +16,7 @@ public class Controller {
     public Controller(MongoDb database) {
         this.database=database;
         //TODO set location after user logged in, based on users location
-        Common.setCurrentLocation(Location.SWEDEN);
+        Common.setCurrentLocation(Location.ENGLAND);
     }
 
     public boolean getEmployeeDiscount() {
@@ -119,5 +119,95 @@ public class Controller {
         if(employeeDiscount)
             sum = sum*0.9;
         return sum;
+    }
+
+    public void setEmployeeDiscount(boolean b) {
+        employeeDiscount=b;
+    }
+
+    public List<Customer> getCustomersByDate(String dateFrom, String dateTo) {
+        List<Customer> customers = new LinkedList<Customer>();
+        customers.add(new Customer());
+        customers.add(new Customer());
+        customers.add(new Customer());
+        return customers;
+    }
+
+    public Customer getCustomerByName(String customerName) {
+        return new Customer();
+    }
+
+    public Customer updateCustomer(Customer customer) {
+        return customer;
+    }
+
+    public List<Employee> getEmployeesByDateAndLocation(String dateFrom, String dateTo, Location location) {
+        List<Employee> employees = new LinkedList<Employee>();
+
+        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),90,new Date(),EmployePosition.CORPORATE_SALES));
+        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),100,new Date(),EmployePosition.EMPLOYEE));
+        employees.add(new Employee());
+        employees.add(new Employee());
+        employees.add(new Employee());
+        employees.add(new Employee());
+        return employees;
+    }
+
+    public List<Customer> getCustomersByDateAndLocation(String dateFrom, String dateTo, Location locationToList) {
+        List<Customer> customers = new LinkedList<Customer>();
+        customers.add(new Customer());
+        customers.add(new Customer());
+        customers.add(new Customer());
+        return customers;
+    }
+
+    //TODO slå samman alla av samma produkter till en, listan som ska returneras ska innehålla UNIKA produkter, på volume ska antal försäljningar av den unika produkten summeras, på pris totalsumman av försäljningarna
+    public List<Product> getSalesOverTimePeriod(String dateFrom, String dateTo, Location location) {
+        LinkedList<Product> products = new LinkedList<Product>();
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
+        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
+        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
+        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
+        return products;
+    }
+
+    //TODO samma som ovan, men nu ska man returnera bara den produkt som anges som inputparameter
+    public List<Product> getSalesOverTimePeriodAndProduct(String date, String date1, Location location, Product product) {
+        LinkedList<Product> products = new LinkedList<Product>();
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
+        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
+        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
+        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
+        return products;
+    }
+
+    public List<Product> getSalesPerCustomerZipCode(String zip, Location location) {
+        LinkedList<Product> products = new LinkedList<Product>();
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
+        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
+        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
+        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
+        return products;
+    }
+
+    public List<Product> getSalesPerCustomerOccupation(String occupation, Location location) {
+        LinkedList<Product> products = new LinkedList<Product>();
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
+        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
+        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
+        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
+        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
+        return products;
     }
 }
