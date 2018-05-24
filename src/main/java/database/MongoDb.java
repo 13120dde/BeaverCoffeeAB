@@ -103,7 +103,7 @@ public class MongoDb
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
         Document doc = new Document("name", employee.getName())
                 .append("ssn", employee.getIdNumber())
-                .append("position", employee.getLocation().name())
+                .append("position", employee.getPosition().name())
                 .append("start_date", employee.getStartDate())
                 .append("end_date", employee.getEndDate())
                 .append("location", employee.getLocation().name())
@@ -295,6 +295,39 @@ public class MongoDb
                 String location = d.getString("location");
 
                 Employee e = new Employee(name, idNumber, Enum.valueOf(Location.class, location), serviceGrade, startDate, endDate,
+                        Enum.valueOf(EmployePosition.class, position));
+
+                employeeList.add(e);
+            }
+        } finally
+        {
+            cursor.close();
+        }
+        return employeeList;
+    }
+
+    public List getEmployeesByDateAndLocation(Date from, Date to, Location location)
+    {
+        MongoCollection<Document> collection = mongoDb.getCollection("employee");
+        MongoCursor<Document> cursor = collection.find(new Document("start_date", new Document("$gte", from)
+                .append("$lt", to)).append("location", location.name())).iterator();
+
+        List<Employee> employeeList = new ArrayList<Employee>();
+        try
+        {
+            while (cursor.hasNext())
+            {
+
+                Document d = cursor.next();
+                String name = d.getString("name");
+                String idNumber = d.getString("ssn");
+                String position = d.getString("position");
+                int serviceGrade = d.getInteger("service_grade");
+                Date startDate = d.getDate("start_date");
+                Date endDate = d.getDate("end_date");
+                String loc = d.getString("location");
+
+                Employee e = new Employee(name, idNumber, Enum.valueOf(Location.class, loc), serviceGrade, startDate, endDate,
                         Enum.valueOf(EmployePosition.class, position));
 
                 employeeList.add(e);

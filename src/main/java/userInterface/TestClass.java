@@ -46,11 +46,15 @@ public class TestClass
 
             Date from = new GregorianCalendar(2017, 1,1).getTime();
             Date to = new GregorianCalendar(2019, 1, 1).getTime();
+//            Employee e = new Employee();
+//            e.setEndDate(to);
+//            e.setPosition(EmployePosition.MANAGER);
+//            db.addEmployee(e);
 //
-            List <Customer> l = db.getCustomersByDateandLocation(from, to, Location.ENGLAND);
-            Customer i = l.get(0);
+            List <Employee> l = db.getEmployeesByDateAndLocation(from, to, Location.SWEDEN);
+            Employee i = l.get(0);
             System.out.println(i.getName());
-            System.out.println(i.getOccupation());
+            System.out.println(i.getPosition().name());
 
 //            Customer c = db.getCustomerByName("Bongokungen");
 //            System.out.println(c.getName());
