@@ -1,10 +1,12 @@
 package domainEntities;
 
+import org.bson.types.ObjectId;
+
 import java.util.Date;
 import java.util.List;
 
 public class Order {
-    private int orderId, employeeId;
+    private ObjectId orderId, employeeId;
     private Date orderDate;
     private Location location;
     private double sum;
@@ -12,10 +14,9 @@ public class Order {
     private boolean employeeDiscount;
     private List <Product> products;
 
-    public Order(int orderId, String customerBarcode, int employeeId, Date orderDate,
+    public Order(String customerBarcode, ObjectId employeeId, Date orderDate,
                     Location location, List <Product> products) {
 
-        this.orderId = orderId;
         this.customerBarcode= customerBarcode;
         this.employeeId = employeeId;
         this.orderDate = orderDate;
@@ -39,20 +40,20 @@ public class Order {
         this.customerBarcode = customerBarcode;
     }
 
-    public int getOrderId() {
+    public ObjectId getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(ObjectId orderId) {
         this.orderId = orderId;
     }
 
 
-    public int getEmployeeId() {
+    public ObjectId getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(ObjectId employeeId) {
         this.employeeId = employeeId;
     }
 

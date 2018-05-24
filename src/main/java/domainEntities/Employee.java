@@ -1,9 +1,8 @@
 package domainEntities;
 
 import engine.Common;
+import org.bson.types.ObjectId;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,34 +11,13 @@ import java.util.Random;
 public class Employee {
 
     private String name, idNumber, password;
-    private int serviceGrade, id;
+    private int serviceGrade;
+    private ObjectId id;
     private Date startDate, endDate;
     private List<Comment> comments;
     EmployePosition position;
     Location location;
 
-    public Employee(){
-        name = "Dummmy";
-        idNumber = "840309-****";
-        location=Location.SWEDEN;
-        serviceGrade = 75;
-        position = EmployePosition.CORPORATE_SALES;
-        startDate = new Date();
-        comments = new LinkedList<Comment>();
-        id = new Random().nextInt(1000);
-
-        Comment c = new Comment();
-        c.setEmployerId(0);
-        c.setDate(new Date());
-        c.setComment("Lazy bum, always late!");
-        addComment(c);
-        c = new Comment();
-        c.setEmployerId(1);
-        c.setDate(new Date());
-        c.setComment(" some comment here");
-        addComment(c);
-
-    }
 
     public Employee(String name, String idNumber, Location location, int serviceGrade, Date startDate, Date endDate, EmployePosition position){
         this.name = name;
@@ -72,11 +50,11 @@ public class Employee {
         this.comments = comments;
     }
 
-    public int getId() {
+    public ObjectId getObjectId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setObjectId(ObjectId id) {
         this.id = id;
     }
 

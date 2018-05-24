@@ -9,6 +9,7 @@ import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
 import java.net.UnknownHostException;
 import java.util.*;
@@ -50,10 +51,12 @@ public class MongoDb
                     location,
                     employee.getInteger("service_grade"),
                     employee.getDate("start_date"),
-                    employee.getDate("start_date"),
+                    employee.getDate("end_date"),
                     position
             );
             String password = employee.getString("password");
+            ObjectId id = employee.getObjectId("_id");
+            employeeToReturn.setObjectId(id);
             employeeToReturn.setPassword(password);
         }
         return employeeToReturn;
@@ -111,8 +114,6 @@ public class MongoDb
                 .append("password", employee.getPassword())
                 .append("comments", "");
         collection.insertOne(doc);
-
-
         return true;
     }
 
@@ -169,11 +170,11 @@ public class MongoDb
     }
 
     //TODO int som parameter för antar drycker köpta
-    public boolean increasePurchases(String barcode)
+    public boolean increasePurchases(String barcode, int counter)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("customer");
         Bson filter = new Document("barcode", barcode);
-        Bson newValue = new Document("counter", 1);
+        Bson newValue = new Document("counter", counter);
         Bson updateOperationDocument = new Document("$inc", newValue);
         collection.updateOne(filter, updateOperationDocument);
 

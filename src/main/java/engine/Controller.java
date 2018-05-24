@@ -104,6 +104,7 @@ public class Controller {
     }
 
 
+    //DONE
     public boolean login(String userName, String password) {
 
        Employee employee = database.login(userName);
@@ -112,6 +113,7 @@ public class Controller {
        }else{
            if(password.equals(employee.getPassword())){
                this.employee=employee;
+
                LocalisationStrings.setLocation(this.employee.getLocation());
                Common.setCurrentLocation(this.employee.getLocation());
                return true;
@@ -120,10 +122,12 @@ public class Controller {
        }
     }
 
+    //DONE
     public EmployePosition getCurrentUserPosition() {
         return employee.getPosition();
     }
 
+    //DONE
     public void logout() {
         employee=null;
     }
@@ -142,9 +146,27 @@ public class Controller {
      * @param barcode : String
      */
     public boolean registerOrder(List<Product> productsInOrder, String barcode) {
-
         //TODO check class viariable employeeDiscount and this variable to order aswell, want to show in orderslistings
 
+        Order order = new Order(barcode,employee.getObjectId(),new Date(),Common.getCurrentLocation(),productsInOrder);
+        int count =0;
+        double sum=0;
+        for(Product p : productsInOrder){
+            if(p.isEligibleForDiscount())
+                count++;
+            sum+=p.getPrice();
+        }
+        order.setSum(sum);
+        if(!barcode.isEmpty()){
+            database.increasePurchases(barcode,count);
+
+            Customer customer = null; //database.getCustomerByBarcode(barcode);
+            if(customer!=null){
+                int amountOfPurchases = customer.getTotalPurchases();
+            }
+
+        }
+        database.addOrder(order);
         return true;
     }
 
@@ -160,7 +182,7 @@ public class Controller {
     }
 
     public Employee getEmployeeByName(String employeeName) {
-        return new Employee();
+        return null;
     }
 
     public boolean registerNewEmployee(String name, String id, int servieGrade, String startDate, String endDate, EmployePosition position) {
