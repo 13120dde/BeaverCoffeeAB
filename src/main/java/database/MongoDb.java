@@ -197,6 +197,31 @@ public class MongoDb
         return true;
     }
 
+    public Customer getCustomerByBarcode(String barcode)
+    {
+        MongoCollection<Document> collection = mongoDb.getCollection("customer");
+        Document myDoc = collection.find(eq("barcode", barcode)).first();
+
+        String name = myDoc.getString("name");
+        String occupation = myDoc.getString("occupation");
+        String barcode2 = myDoc.getString("barcode");
+        String idNumber = myDoc.getString("ssn");
+        Date registered = myDoc.getDate("date");
+
+        Object address = myDoc.get("address");
+        Document addressDoc = (Document) address;
+        String city = addressDoc.getString("street");
+        String location = addressDoc.getString("location");
+        String street = addressDoc.getString("street");
+        String zip = addressDoc.getString("zip");
+
+        Location l = Enum.valueOf(Location.class, location);
+        Address ad = new Address(street, zip, city, l);
+        Customer c = new Customer(name, occupation, barcode2, idNumber, ad, registered);
+
+        return c;
+    }
+
     public List getCustomersByDate(Date from, Date to)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("customer");
