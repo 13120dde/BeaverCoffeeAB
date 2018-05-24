@@ -177,14 +177,6 @@ public class MongoDb {
         MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
                 .append("$lt", to))).iterator();
 
-
-
-        if (cursor.hasNext())
-            System.out.println("Träff");
-
-        else
-            System.out.println("NAJ");
-
         List <Customer> customerList = new ArrayList<Customer>();
         try {
             while (cursor.hasNext()) {
@@ -203,35 +195,46 @@ public class MongoDb {
                 String street = addressDoc.getString("street");
                 String zip = addressDoc.getString("zip");
 
-//                List a = new ArrayList();
-//
-//                Product p = new Product("Kaffe", "Coffee", 10, 2, 3,
-//                        "l", 2);
-//
-//                Product p2 = new Product("Sko", "Shoe", 10, 2, 3,
-//                        "kg", 6);
-//
-//                a.add(p);
-//                a.add(p2);
-//
-//                Order o = new Order(12, "12345", 432, new Date(), Location.SWEDEN, a);
-//
-//                List <Order> l2 = new ArrayList();
-//                l2.add(o);
-
                 Location l = Enum.valueOf(Location.class, location);
                 Address ad = new Address(street, zip, city,l );
                 Customer c = new Customer(name, occupation, barcode,idNumber, ad, registered  );
                 customerList.add(c);
-
-//                Customer c = new Customer()
-
-//                System.out.println(cursor.next().toJson());
             }
         } finally {
             cursor.close();
         }
         return customerList;
+    }
+
+    public List getEmployeesByDate(Date from, Date to)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("employee");
+        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
+                .append("$lt", to))).iterator();
+
+        List <Employee> employeeList = new ArrayList<Employee>();
+        try {
+            while (cursor.hasNext()) {
+
+                Document d = cursor.next();
+                String name = d.getString("name");
+                String idNumber = d.getString("ssn");
+                String position = d.getString("position");
+                int serviceGrade = d.getInteger("service_grade");
+                Date startDate = d.getDate("start_date");
+                Date endDate = d.getDate("end_date");
+                String location = d.getString("location");
+
+                Location l = Enum.valueOf(Location.class, location);
+                Employee e = new Employee(name, idNumber, Enum.valueOf(Location.class, location),serviceGrade, startDate, endDate,
+                                            Enum.valueOf(EmployePosition.class,position )  );
+
+                employeeList.add(e);
+            }
+        } finally {
+            cursor.close();
+        }
+        return employeeList;
     }
 
     //SSN hårdkodat
