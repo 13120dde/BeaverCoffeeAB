@@ -239,7 +239,7 @@ public class MongoDb
     {
         MongoCollection<Document> collection = mongoDb.getCollection("customer");
         MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
-                .append("$lt", to)).append("location", location.name())).iterator();
+                .append("$lt", to)).append("address.location", location.name())).iterator();
 
         List<Customer> customerList = new ArrayList<Customer>();
         try
