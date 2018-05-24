@@ -302,7 +302,7 @@ public class MongoDb
     public List getEmployeesByDate(Date from, Date to)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
-        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
+        MongoCursor<Document> cursor = collection.find(new Document("start_date", new Document("$gte", from)
                 .append("$lt", to))).iterator();
 
         List<Employee> employeeList = new ArrayList<Employee>();
@@ -310,6 +310,7 @@ public class MongoDb
         {
             while (cursor.hasNext())
             {
+                System.out.println("Found one!");
 
                 Document d = cursor.next();
                 String name = d.getString("name");
@@ -498,35 +499,35 @@ public class MongoDb
         return orderList;
     }
 
-//    public List getSalesOverTimePeriod(Date from, Date to, Location location)
-//    {
-//        MongoCollection<Document> collection = mongoDb.getCollection("order");
-//        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
-//                .append("$lt", to)).append("location", location.name())).iterator();
-//
-//        List <Product> productList = new ArrayList<Product>();
-//
-//        while (cursor.hasNext())
-//        {
-//            Document d = cursor.next();
-//
-//            List<Document> prods = (List<Document>) d.get("products");
-//            Product p;
-//
-//            for (Document prod : prods)
-//            {
-//                String nameSwe = prod.getString("nameSwe");
-//                String nameEng = prod.getString("nameEng");
-//                double priceSEK = prod.getDouble("priceSEK");
-//                double priceGBP = prod.getDouble("priceGBP");
-//                double priceUSD = prod.getDouble("priceUSD");
-//                String unit = prod.getString("unitType");
-//                int volume = prod.getInteger("volume");
-//
-//                p = new Product(nameSwe,nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
-//                productList.add(p);
-//            }
-//        }
-//        return productList;
-//    }
+    public List getSalesOverTimePeriod(Date from, Date to, Location location)
+    {
+        MongoCollection<Document> collection = mongoDb.getCollection("order");
+        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
+                .append("$lt", to)).append("location", location.name())).iterator();
+
+        List <Product> productList = new ArrayList<Product>();
+
+        while (cursor.hasNext())
+        {
+            Document d = cursor.next();
+
+            List<Document> prods = (List<Document>) d.get("products");
+            Product p;
+
+            for (Document prod : prods)
+            {
+                String nameSwe = prod.getString("nameSwe");
+                String nameEng = prod.getString("nameEng");
+                double priceSEK = prod.getDouble("priceSEK");
+                double priceGBP = prod.getDouble("priceGBP");
+                double priceUSD = prod.getDouble("priceUSD");
+                String unit = prod.getString("unitType");
+                int volume = prod.getInteger("volume");
+
+                p = new Product(nameSwe,nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
+                productList.add(p);
+            }
+        }
+        return productList;
+    }
 }

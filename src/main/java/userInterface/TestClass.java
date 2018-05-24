@@ -52,21 +52,25 @@ public class TestClass
 //            e.setPosition(EmployePosition.MANAGER);
 //            db.addEmployee(e);
 //
+
+//            List <Employee> list = db.getEmployeesByDate(from, to);
+//            System.out.println(list.get(0).getName());
+
 //            List <Employee> l = db.getEmployeesByDateAndLocation(from, to, Location.SWEDEN);
 //            Employee i = l.get(0);
 //            System.out.println(i.getName());
 //            System.out.println(i.getPosition().name());
-            ObjectId id = new ObjectId("5b06d5b142e7361bb4e0af3e");
-            List <Order> list = db.getOrdersMadeByEmployee(id, from, to);
-            Order ett = list.get(0);
-            System.out.println(ett.toString());
-            List <Product> e1 = ett.getProducts();
-            Product p = e1.get(0);
-            Product p1 = e1.get(1);
-            System.out.println(p.getNameSwe());
-            System.out.println(p1.getNameSwe());
-            System.out.println(p.getPriceUSD());
-            System.out.println(p1.getPriceUSD());
+//            ObjectId id = new ObjectId("5b06d5b142e7361bb4e0af3e");
+//            List <Order> list = db.getOrdersMadeByEmployee(id, from, to);
+//            Order ett = list.get(0);
+//            System.out.println(ett.toString());
+//            List <Product> e1 = ett.getProducts();
+//            Product p = e1.get(0);
+//            Product p1 = e1.get(1);
+//            System.out.println(p.getNameSwe());
+//            System.out.println(p1.getNameSwe());
+//            System.out.println(p.getPriceUSD());
+//            System.out.println(p1.getPriceUSD());
 
 //            List <Product> list = db.getSalesOverTimePeriod(from, to, Location.SWEDEN);
 //
