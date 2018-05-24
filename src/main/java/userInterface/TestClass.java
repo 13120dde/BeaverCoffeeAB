@@ -68,6 +68,10 @@ public class TestClass
             System.out.println(p.getPriceUSD());
             System.out.println(p1.getPriceUSD());
 
+//            List <Product> list = db.getSalesOverTimePeriod(from, to, Location.SWEDEN);
+//
+//            for (Product p: list)
+//                System.out.println(p.getNameSwe());
 
 //            Customer c = db.getCustomerByName("Bongokungen");
 //            System.out.println(c.getName());

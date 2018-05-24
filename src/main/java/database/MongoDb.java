@@ -485,7 +485,9 @@ public class MongoDb
                 }
 
                 Order o = new Order(barcode, employeeId2, date, location, productList);
-                o.setOrderId(id);
+                //String customerBarcode, ObjectId employeeId, Date orderDate,
+                //                    Location location, List <Product> product
+//                o.setOrderId(id);
 
                 orderList.add(o);
             }
@@ -495,4 +497,36 @@ public class MongoDb
         }
         return orderList;
     }
+
+//    public List getSalesOverTimePeriod(Date from, Date to, Location location)
+//    {
+//        MongoCollection<Document> collection = mongoDb.getCollection("order");
+//        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
+//                .append("$lt", to)).append("location", location.name())).iterator();
+//
+//        List <Product> productList = new ArrayList<Product>();
+//
+//        while (cursor.hasNext())
+//        {
+//            Document d = cursor.next();
+//
+//            List<Document> prods = (List<Document>) d.get("products");
+//            Product p;
+//
+//            for (Document prod : prods)
+//            {
+//                String nameSwe = prod.getString("nameSwe");
+//                String nameEng = prod.getString("nameEng");
+//                double priceSEK = prod.getDouble("priceSEK");
+//                double priceGBP = prod.getDouble("priceGBP");
+//                double priceUSD = prod.getDouble("priceUSD");
+//                String unit = prod.getString("unitType");
+//                int volume = prod.getInteger("volume");
+//
+//                p = new Product(nameSwe,nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
+//                productList.add(p);
+//            }
+//        }
+//        return productList;
+//    }
 }
