@@ -7,6 +7,10 @@ public class LocalisationStrings {
 
     private static Location location = Common.getCurrentLocation();
 
+    public static void setLocation(Location location){
+        LocalisationStrings.location = location;
+    }
+
     public static String login() {
         String toReturn="";
         switch (location){

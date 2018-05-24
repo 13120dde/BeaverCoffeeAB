@@ -70,7 +70,6 @@ public class Common {
         return dateFormatted;
     }
     public static Date formatDate(String date) {
-        Date dateFormatted = new Date();
         int year = Integer.parseInt(date.substring(4));
         int day = Integer.parseInt(date.substring(0,1));
         int month = Integer.parseInt(date.substring(2,3))-1;
