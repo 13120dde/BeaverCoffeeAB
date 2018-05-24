@@ -4,7 +4,6 @@ import domainEntities.*;
 import engine.Common;
 import engine.Controller;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class BeaverCLI {
@@ -252,9 +251,9 @@ public class BeaverCLI {
                 break;
             case 1:
                 System.out.println(LocalisationStrings.inputStartDate());
-                String dateFrom = sc.nextLine();
+                Date dateFrom = Common.formatDate(sc.nextLine());
                 System.out.println(LocalisationStrings.inputEndDate());
-                String dateTo = sc.nextLine();
+                Date dateTo= Common.formatDate(sc.nextLine());
                 Location locationToList = Common.getCurrentLocation();
                 EmployePosition position = controller.getCurrentUserPosition();
                 List<Customer> customers = null;
@@ -368,7 +367,7 @@ public class BeaverCLI {
             case 3:
                 System.out.println(LocalisationStrings.inputStartDate()+": ");
                 String startDate = sc.nextLine();
-                customer.setRegisteredDate(startDate);
+                customer.setRegisteredDate(Common.formatDate(startDate));
                 customerUpdated = controller.updateCustomer(customer);
                 if(customerUpdated==null){
                     System.out.println(LocalisationStrings.someThingWrong());
@@ -529,9 +528,10 @@ public class BeaverCLI {
                 break;
             case 1:
                 System.out.println(LocalisationStrings.inputStartDate());
-                String dateFrom = sc.nextLine();
+                Date dateFrom = Common.formatDate(sc.nextLine());
+
                 System.out.println(LocalisationStrings.inputEndDate());
-                String dateTo = sc.nextLine();
+                Date dateTo = Common.formatDate(sc.nextLine());
 
                 Location locationToList = Common.getCurrentLocation();
                 EmployePosition position = controller.getCurrentUserPosition();
@@ -591,9 +591,9 @@ public class BeaverCLI {
         }
         System.out.println(LocalisationStrings.inputStartDate()+": ");
         sc = new Scanner(System.in);
-        String startDate = sc.nextLine();
+        Date startDate = Common.formatDate(sc.nextLine());
         System.out.println(LocalisationStrings.inputEndDate()+": ");
-        String endDate = sc.nextLine();
+        Date endDate = Common.formatDate(sc.nextLine());
 
         List<String> choices = new LinkedList<String>();
         choices.add("1 - "+LocalisationStrings.positionEmployee());
@@ -847,6 +847,9 @@ public class BeaverCLI {
                 boolean registerOk =  controller.registerNewCustomer(name,custId,occupation,address);
                 if(!registerOk)
                     System.out.println(LocalisationStrings.someThingWrong());
+                else {
+                    System.out.println("Ok");
+                }
                 showMainMenu();
                 break;
             case 2:
@@ -1051,7 +1054,18 @@ public class BeaverCLI {
                 break;
             case 18:
                 if(!order.isEmpty()){
-                    checkIfRegisteredUserAndProceedWithOrder();
+                    int registerStatus = checkIfRegisteredUserAndProceedWithOrder();
+                    if(registerStatus==-3)
+                        System.out.println(LocalisationStrings.someThingWrong());
+                    else if(registerStatus==-2 || registerStatus==-1)
+                        System.out.println("OK");
+                    else if (registerStatus>=0 || registerStatus<order.size()){
+                        System.out.println("YOUR 10th beverage is free!");
+                        order.get(registerStatus).setPriceUSD(0);
+                        order.get(registerStatus).setPriceGBP(0);
+                        order.get(registerStatus).setPriceSEK(0);
+                        TableCreator.showCurrentOrderInTable(order,controller.calculateOrderSum(order));
+                    }
                     order.clear();
                 }else{
                     System.out.println(LocalisationStrings.noProductsSelected());
@@ -1106,7 +1120,7 @@ public class BeaverCLI {
         return flavour;
     }
 
-    private void checkIfRegisteredUserAndProceedWithOrder() {
+    private int checkIfRegisteredUserAndProceedWithOrder() {
         clearScreen();
         String barcode="";
         if(!controller.getEmployeeDiscount()){
@@ -1114,11 +1128,8 @@ public class BeaverCLI {
             Scanner sc = new Scanner(System.in);
             barcode = sc.nextLine();
         }
-        boolean registerOk = controller.registerOrder(order,barcode);
-        if(!registerOk)
-            System.out.println(LocalisationStrings.someThingWrong());
-        else
-            System.out.println("OK");
+        int registerStatus = controller.registerOrder(order,barcode);
+        return registerStatus;
     }
 
     private void printHeader(String header) {

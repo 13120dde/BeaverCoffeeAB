@@ -32,7 +32,7 @@ public class TableCreator {
 
     }
 
-    protected static void listEmployees(List<Employee> employees, Location locationToList, String dateFrom, String dateTo) {
+    protected static void listEmployees(List<Employee> employees, Location locationToList, Date dateFrom, Date dateTo) {
         String leftAlignFormat = "| %-20s | %-20s | %-20s | %-15s | %-15s | %-13s |%n";
         System.out.println("Listing all employees for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+locationToList+"\n");
 
@@ -93,7 +93,7 @@ public class TableCreator {
 
     }
 
-    protected static void listCustomers(List<Customer> customers, Location locationToList, String dateFrom, String dateTo) {
+    protected static void listCustomers(List<Customer> customers, Location locationToList, Date dateFrom, Date dateTo) {
         System.out.println("Listing all customers for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+locationToList  +"\n");
 
         String leftAlignFormat = "| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-10s |%n";

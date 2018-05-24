@@ -10,7 +10,7 @@ public class Controller {
 
     private MongoDb database;
     private Employee employee;
-    private boolean employeeDiscount = false, fillDBWithProducts = false;
+    private boolean employeeDiscount = false, fillDBWithProducts = true;
 
 
     public Controller(MongoDb database) {
@@ -45,7 +45,7 @@ public class Controller {
                 "19840309****",
                 Location.ENGLAND,
                 100,
-                new Date(),
+                Common.getCurrentDate(),
                 endDate,
                 EmployePosition.EMPLOYEE);
 
@@ -53,14 +53,14 @@ public class Controller {
                 "19840309****",
                 Location.ENGLAND,
                 100,
-                new Date(),
+                Common.getCurrentDate(),
                 endDate,
                 EmployePosition.MANAGER);
         Employee corpEngland = new Employee("corpEng",
                 "19840309****",
                 Location.ENGLAND,
                 100,
-                new Date(),
+                Common.getCurrentDate(),
                 endDate,
                 EmployePosition.MANAGER);
 
@@ -68,7 +68,7 @@ public class Controller {
                 "19840309****",
                 Location.SWEDEN,
                 100,
-                new Date(),
+                Common.getCurrentDate(),
                 endDate,
 
                 EmployePosition.EMPLOYEE);
@@ -77,7 +77,7 @@ public class Controller {
                 "19840309****",
                 Location.SWEDEN,
                 100,
-                new Date(),
+                Common.getCurrentDate(),
                 endDate,
 
                 EmployePosition.MANAGER);
@@ -85,7 +85,7 @@ public class Controller {
                 "19840309****",
                 Location.SWEDEN,
                 100,
-                new Date(),
+                Common.getCurrentDate(),
                 endDate,
 
                 EmployePosition.MANAGER);
@@ -141,55 +141,103 @@ public class Controller {
     }
 
     /**
-     *
-     * @param productsInOrder :
+     *  @param productsInOrder :
      * @param barcode : String
      */
-    public boolean registerOrder(List<Product> productsInOrder, String barcode) {
+    public int registerOrder(List<Product> productsInOrder, String barcode) {
         //TODO check class viariable employeeDiscount and this variable to order aswell, want to show in orderslistings
 
-        Order order = new Order(barcode,employee.getObjectId(),new Date(),Common.getCurrentLocation(),productsInOrder);
-        int count =0;
-        double sum=0;
-        for(Product p : productsInOrder){
-            if(p.isEligibleForDiscount())
-                count++;
-            sum+=p.getPrice();
-        }
-        order.setSum(sum);
-        if(!barcode.isEmpty()){
-            database.increasePurchases(barcode,count);
-
-            Customer customer = null; //database.getCustomerByBarcode(barcode);
-            if(customer!=null){
-                int amountOfPurchases = customer.getTotalPurchases();
+        //not a customer
+        if(barcode.isEmpty()){
+            Order order = new Order(barcode,employee.getObjectId(),Common.getCurrentDate(),Common.getCurrentLocation(),productsInOrder);
+            double sum=0;
+            for(Product p : productsInOrder){
+                sum+=p.getPrice();
             }
+            if(employeeDiscount)
+                sum*=0.9;
+            order.setSum(sum);
+            database.addOrder(order);
+            return -2;
+
+            //Customer check discount
+        }else{
+           Customer customer = database.getCustomerByBarcode(barcode);
+           int purchases, indexToDiscountedProduct=-1;
+           if(customer!=null){
+               purchases=customer.getTotalPurchases();
+               if(purchases%10==0){
+                   //get first eligible product and discount
+               }else{
+                   int rest = purchases%10;
+                   for(int i = 0;i<productsInOrder.size();i++){
+                       if(productsInOrder.get(i).isEligibleForDiscount()){
+                           rest++;
+                           if(rest%10==0){
+                               indexToDiscountedProduct=i;
+                               break;
+
+                           }
+                       }
+                   }
+                   if(indexToDiscountedProduct>0 && indexToDiscountedProduct<productsInOrder.size()){
+                       productsInOrder.get(indexToDiscountedProduct).setPriceGBP(0);
+                       productsInOrder.get(indexToDiscountedProduct).setPriceSEK(0);
+                       productsInOrder.get(indexToDiscountedProduct).setPriceUSD(0);
+                   }
+                   Order order = new Order(barcode,employee.getObjectId(),Common.getCurrentDate(),Common.getCurrentLocation(),productsInOrder);
+                   double sum=0;
+                   for(Product p : productsInOrder){
+                       sum+=p.getPrice();
+                   }
+                   if(employeeDiscount)
+                       sum*=0.9;
+                   order.setSum(sum);
+                   database.addOrder(order);
+                   return indexToDiscountedProduct;
+               }
+           }
+
 
         }
-        database.addOrder(order);
-        return true;
+        return -3;
     }
 
     public boolean registerNewCustomer(String name, String id, String occupation, String address) {
+        int barcodeSeed = new Random().nextInt(1000)+1;
+        String[] initials = name.split(" ");
+        String prefixBarcode ="";
+        for(int i = 0;i<initials.length;i++){
+            prefixBarcode+=initials[i].substring(0,1);
+        }
+        String barcode=prefixBarcode+Integer.toString(barcodeSeed);
+        String[] addressSplit = address.split(",");
+        Address address1 = new Address(addressSplit[0],addressSplit[1],addressSplit[2],Common.getCurrentLocation());
+        Customer customer = new Customer(name,
+                occupation,
+                barcode,
+                id,
+                address1,
+                Common.getCurrentDate());
+        database.addCustomer(customer);
         return true;
     }
 
-    public List<Employee> getEmployeesByDate(String dateFrom, String dateTo) {
-        Date d1 = Common.formatDate(dateFrom);
-        List<Employee> employees = new LinkedList<Employee>();
-
-        return employees;
+    public List<Employee> getEmployeesByDate(Date dateFrom, Date dateTo) {
+        return database.getEmployeesByDate(dateFrom,dateTo);
     }
 
     public Employee getEmployeeByName(String employeeName) {
-        return null;
+        return database.getEmployeeByName(employeeName);
     }
 
-    public boolean registerNewEmployee(String name, String id, int servieGrade, String startDate, String endDate, EmployePosition position) {
-        return false;
+    public boolean registerNewEmployee(String name, String id, int servieGrade, Date startDate, Date endDate, EmployePosition position) {
+        Employee employee = new Employee(name,id,Common.getCurrentLocation(),servieGrade,startDate,endDate,position);
+        return database.addEmployee(employee);
     }
 
     public Employee updateEmployee(Employee employee) {
+        boolean ok = database.updateEmployee(employee);
         return employee;
     }
 
@@ -222,29 +270,26 @@ public class Controller {
         employeeDiscount=b;
     }
 
-    public List<Customer> getCustomersByDate(String dateFrom, String dateTo) {
-        List<Customer> customers = new LinkedList<Customer>();
-        customers.add(new Customer());
-        customers.add(new Customer());
-        customers.add(new Customer());
-        return customers;
+    public List<Customer>getCustomersByDate(Date dateFrom, Date dateTo) {
+        return database.getCustomersByDate(dateFrom,dateTo);
     }
 
     public Customer getCustomerByName(String customerName) {
-        return new Customer();
+        return database.getCustomerByName(customerName);
     }
 
     public Customer updateCustomer(Customer customer) {
+        boolean ok = database.updateCustomer(customer);
         return customer;
     }
 
-    public List<Employee> getEmployeesByDateAndLocation(String dateFrom, String dateTo, Location location) {
+    public List<Employee> getEmployeesByDateAndLocation(Date dateFrom, Date dateTo, Location location) {
         List<Employee> employees = new LinkedList<Employee>();
 
         return employees;
     }
 
-    public List<Customer> getCustomersByDateAndLocation(String dateFrom, String dateTo, Location locationToList) {
+    public List<Customer> getCustomersByDateAndLocation(Date dateFrom, Date dateTo, Location locationToList) {
         List<Customer> customers = new LinkedList<Customer>();
         customers.add(new Customer());
         customers.add(new Customer());

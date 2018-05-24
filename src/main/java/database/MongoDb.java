@@ -129,7 +129,6 @@ public class MongoDb
                 .append("products", order.getProducts());
 
         collection.insertOne(doc);
-        increasePurchases(order.getCustomerBarcode());
         return true;
     }
 
@@ -390,6 +389,8 @@ public class MongoDb
     {
         MongoCollection<Document> collection = mongoDb.getCollection("customer");
         Document myDoc = collection.find(eq("name", customerName)).first();
+        if(myDoc==null)
+            return null;
 
         String name = myDoc.getString("name");
         String occupation = myDoc.getString("occupation");
@@ -427,7 +428,7 @@ public class MongoDb
 
         Employee e = new Employee(name, idNumber, Enum.valueOf(Location.class, location), serviceGrade, startDate, endDate,
                 Enum.valueOf(EmployePosition.class, position));
-
+        e.setObjectId(myDoc.getObjectId("_id"));
         return e;
     }
 

@@ -5,6 +5,7 @@ import userInterface.LocalisationStrings;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -71,10 +72,16 @@ public class Common {
     }
     public static Date formatDate(String date) {
         int year = Integer.parseInt(date.substring(4));
-        int day = Integer.parseInt(date.substring(0,1));
-        int month = Integer.parseInt(date.substring(2,3))-1;
+        int day = Integer.parseInt(date.substring(0,2));
+        int month = Integer.parseInt(date.substring(2,4))-1;
 
-        return new GregorianCalendar(year,month,day).getTime();
+        Date date1 =  new GregorianCalendar(year,month,day).getTime();
+        System.out.println(day+"-"+month+"-"+year);
+        return date1;
+    }
+
+    public static Date getCurrentDate(){
+        return new GregorianCalendar().getTime();
     }
 
     public static SimpleDateFormat getSimpleDateFormat() {
@@ -95,5 +102,10 @@ public class Common {
                 break;
         }
         return currency;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getCurrentDate());
+        System.out.println(formatDate("24052018"));
     }
 }

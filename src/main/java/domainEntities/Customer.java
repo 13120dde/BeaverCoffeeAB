@@ -73,14 +73,12 @@ public class Customer {
         this.address = address;
     }
 
-    public String getRegisteredDate() {
-        SimpleDateFormat sdf = Common.getSimpleDateFormat();
-        String date = sdf.format(registeredDate);
-        return date;
+    public Date getRegisteredDate() {
+        return registeredDate;
     }
 
-    public void setRegisteredDate(String registeredDate) {
-        this.registeredDate = Common.formatDate(registeredDate);
+    public void setRegisteredDate(Date registeredDate) {
+        this.registeredDate = registeredDate;
     }
 
 
