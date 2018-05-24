@@ -34,9 +34,29 @@ public class MongoDb
 
     }
 
-    public Employee login(String userName, String password)
+    public Employee login(String userName)
     {
-        return null;
+        MongoCollection<Document> collection = mongoDb.getCollection("employee");
+        Document employee = collection.find(eq("name", userName)).first();
+        Employee employeeToReturn = null;
+        if (employee != null)
+        {
+            String loc = employee.getString("location");
+            Location location = Enum.valueOf(Location.class, loc);
+            String pos = employee.getString("position");
+            EmployePosition position = Enum.valueOf(EmployePosition.class, pos);
+            employeeToReturn = new Employee(userName,
+                    employee.getString("ssn"),
+                    location,
+                    employee.getInteger("service_grade"),
+                    employee.getDate("start_date"),
+                    employee.getDate("start_date"),
+                    position
+            );
+            String password = employee.getString("password");
+            employeeToReturn.setPassword(password);
+        }
+        return employeeToReturn;
     }
 
     public boolean addProduct(Product product)
