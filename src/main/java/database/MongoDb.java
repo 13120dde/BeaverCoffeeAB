@@ -225,9 +225,8 @@ public class MongoDb {
                 Date endDate = d.getDate("end_date");
                 String location = d.getString("location");
 
-                Location l = Enum.valueOf(Location.class, location);
                 Employee e = new Employee(name, idNumber, Enum.valueOf(Location.class, location),serviceGrade, startDate, endDate,
-                                            Enum.valueOf(EmployePosition.class,position )  );
+                                            Enum.valueOf(EmployePosition.class, position )  );
 
                 employeeList.add(e);
             }
