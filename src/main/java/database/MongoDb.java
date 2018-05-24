@@ -254,6 +254,31 @@ public class MongoDb {
         return true;
     }
 
+    public Customer getCustomerByName(String customerName)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("customer");
+        Document myDoc = collection.find(eq("name", customerName)).first();
+
+        String name = myDoc.getString("name");
+        String occupation = myDoc.getString("occupation");
+        String barcode = myDoc.getString("barcode");
+        String idNumber = myDoc.getString("ssn");
+        Date registered = myDoc.getDate("date");
+
+        Object address = myDoc.get("address");
+        Document addressDoc = (Document)address;
+        String city = addressDoc.getString("street");
+        String location = addressDoc.getString("location");
+        String street = addressDoc.getString("street");
+        String zip = addressDoc.getString("zip");
+
+        Location l = Enum.valueOf(Location.class, location);
+        Address ad = new Address(street, zip, city,l );
+        Customer c = new Customer(name, occupation, barcode,idNumber, ad, registered  );
+
+        return c;
+    }
+
     public List<Flavour> getAvailableFlavours() {
         MongoCollection<Document> collection = mongoDb.getCollection("flavour");
         List<Document> documents = collection.find().into(new LinkedList<Document>());

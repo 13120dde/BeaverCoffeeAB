@@ -44,14 +44,18 @@ public class TestClass
 //            db.addOrder(o);
 
 
-            Date from = new GregorianCalendar(2017, 1,1).getTime();
-            Date to = new GregorianCalendar(2019, 1, 1).getTime();
+//            Date from = new GregorianCalendar(2017, 1,1).getTime();
+//            Date to = new GregorianCalendar(2019, 1, 1).getTime();
+//
+//            List <Customer> l = db.getCustomersByDate(from, to);
+//            Customer i = l.get(0);
+//            System.out.println(i.getName());
+//            System.out.println(i.getOccupation());
 
-            List <Customer> l = db.getCustomersByDate(from, to);
-            Customer i = l.get(0);
-            System.out.println(i.getName());
-            System.out.println(i.getOccupation());
-
+            Customer c = db.getCustomerByName("Bongokungen");
+            System.out.println(c.getName());
+            System.out.println(c.getOccupation());
+            System.out.println(c.getIdNumber());
 
         } catch (UnknownHostException e)
         {
