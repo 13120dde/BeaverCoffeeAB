@@ -12,7 +12,7 @@ public class Controller {
 
     private MongoDb database;
     private Employee employee;
-    private boolean employeeDiscount = false, fillDBWithProducts = true;
+    private boolean employeeDiscount = false, fillDBWithProducts = false;
 
     public Controller(MongoDb database) {
         this.database=database;
@@ -76,7 +76,7 @@ public class Controller {
         return true;
     }
 
-    public boolean registerNewCustomer(String name, String custId, String occupation, String address) {
+    public boolean registerNewCustomer(String name, String id, String occupation, String address) {
         return true;
     }
 

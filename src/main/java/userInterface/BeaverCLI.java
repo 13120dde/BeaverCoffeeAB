@@ -1074,6 +1074,7 @@ public class BeaverCLI {
         for(int i = 0; i<flavours.size();i++){
             choices.add(i+1+" - "+flavours.get(i).getName());
         }
+        choices.add(choices.size()+1+" - "+LocalisationStrings.cancel());
 
         printChoices(choices);
         int choice = getInput(choices.size());
@@ -1098,7 +1099,7 @@ public class BeaverCLI {
                 break;
 
             case 4:
-                flavour = flavours.get(choice-1);
+                flavour = null;
                 break;
 
         }

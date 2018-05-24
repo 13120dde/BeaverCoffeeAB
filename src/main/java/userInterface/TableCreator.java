@@ -71,8 +71,13 @@ public class TableCreator {
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             String flavour="";
-            if(product.isFlavorEnabled())
-                flavour = product.getFlavour().getName();
+            if(product.isFlavorEnabled()){
+                Flavour f = product.getFlavour();
+                if(f!=null)
+                    flavour = f.getName();
+                else
+                    flavour="";
+            }
             System.out.format(leftAlignFormat,
                     Integer.toString(i+1),
                     product.getProductName(),
