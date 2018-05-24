@@ -141,7 +141,7 @@ public class MongoDb {
 
         return true;
     }
-
+    //TODO int som parameter för antar drycker köpta
     public boolean increasePurchases(String barcode)
     {
         MongoCollection <Document> collection = mongoDb.getCollection("customer");
