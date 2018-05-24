@@ -19,21 +19,70 @@ public class Controller {
 
         //Just for filling db with products for the very first time
         if(fillDBWithProducts){
-            List<Product> products = BeaverProducts.getDomainProducts();
-            for(Product p : products){
-                boolean ok = database.addProduct(p);
-                if(!ok)
-                    System.err.println("Failed to add product to db");
-            }
-            List<Flavour> flavours = BeaverProducts.getDomainFlavours();
-            for(Flavour f: flavours){
-                boolean ok = database.addFlavour(f);
-                if(!ok)
-                    System.err.println("Failed to add flavour to db");
-            }
-
+            fillDbWithInitialVals();
         }
         Common.setCurrentLocation(Location.ENGLAND);
+    }
+
+    private void fillDbWithInitialVals() {
+        List<Product> products = BeaverProducts.getDomainProducts();
+        for(Product p : products){
+            boolean ok = database.addProduct(p);
+            if(!ok)
+                System.err.println("Failed to add product to db");
+        }
+        List<Flavour> flavours = BeaverProducts.getDomainFlavours();
+        for(Flavour f: flavours){
+            boolean ok = database.addFlavour(f);
+            if(!ok)
+                System.err.println("Failed to add flavour to db");
+        }
+        Employee employeeEngland = new Employee("employeeEng",
+                "19840309****",
+                Location.ENGLAND,
+                100,
+                new Date(),
+                EmployePosition.EMPLOYEE);
+
+        Employee managerEngland = new Employee("managerEng",
+                "19840309****",
+                Location.ENGLAND,
+                100,
+                new Date(),
+                EmployePosition.MANAGER);
+        Employee corpEngland = new Employee("corpEng",
+                "19840309****",
+                Location.ENGLAND,
+                100,
+                new Date(),
+                EmployePosition.MANAGER);
+
+        Employee employeeSwe = new Employee("employeeSwe",
+                "19840309****",
+                Location.SWEDEN,
+                100,
+                new Date(),
+                EmployePosition.EMPLOYEE);
+
+        Employee managerSwe = new Employee("managerSwe",
+                "19840309****",
+                Location.SWEDEN,
+                100,
+                new Date(),
+                EmployePosition.MANAGER);
+        Employee corpSwe = new Employee("corpSwe",
+                "19840309****",
+                Location.SWEDEN,
+                100,
+                new Date(),
+                EmployePosition.MANAGER);
+
+        database.addEmployee(employeeEngland);
+        database.addEmployee(managerEngland);
+        database.addEmployee(corpEngland);
+        database.addEmployee(employeeSwe);
+        database.addEmployee(managerSwe);
+        database.addEmployee(corpSwe);
     }
 
     public boolean getEmployeeDiscount() {
