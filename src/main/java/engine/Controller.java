@@ -2,6 +2,7 @@ package engine;
 
 import database.MongoDb;
 import domainEntities.*;
+import userInterface.LocalisationStrings;
 
 import java.util.*;
 
@@ -9,7 +10,7 @@ public class Controller {
 
     private MongoDb database;
     private Employee employee;
-    private boolean employeeDiscount = false, fillDBWithProducts = true;
+    private boolean employeeDiscount = false, fillDBWithProducts = false;
 
 
     public Controller(MongoDb database) {
@@ -111,6 +112,7 @@ public class Controller {
        }else{
            if(password.equals(employee.getPassword())){
                this.employee=employee;
+               LocalisationStrings.setLocation(this.employee.getLocation());
                Common.setCurrentLocation(this.employee.getLocation());
                return true;
            }
@@ -151,6 +153,7 @@ public class Controller {
     }
 
     public List<Employee> getEmployeesByDate(String dateFrom, String dateTo) {
+        Date d1 = Common.formatDate(dateFrom);
         List<Employee> employees = new LinkedList<Employee>();
 
         return employees;
