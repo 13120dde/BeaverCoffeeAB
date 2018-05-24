@@ -3,16 +3,14 @@ package engine;
 import database.MongoDb;
 import domainEntities.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Controller {
 
     private MongoDb database;
     private Employee employee;
-    private boolean employeeDiscount = false, fillDBWithProducts = false;
+    private boolean employeeDiscount = false, fillDBWithProducts = true;
+
 
     public Controller(MongoDb database) {
         this.database=database;
@@ -24,6 +22,7 @@ public class Controller {
         Common.setCurrentLocation(Location.ENGLAND);
     }
 
+    //DONE
     private void fillDbWithInitialVals() {
         List<Product> products = BeaverProducts.getDomainProducts();
         for(Product p : products){
@@ -37,11 +36,16 @@ public class Controller {
             if(!ok)
                 System.err.println("Failed to add flavour to db");
         }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR,1);
+        Date endDate = calendar.getTime();
         Employee employeeEngland = new Employee("employeeEng",
                 "19840309****",
                 Location.ENGLAND,
                 100,
                 new Date(),
+                endDate,
                 EmployePosition.EMPLOYEE);
 
         Employee managerEngland = new Employee("managerEng",
@@ -49,12 +53,14 @@ public class Controller {
                 Location.ENGLAND,
                 100,
                 new Date(),
+                endDate,
                 EmployePosition.MANAGER);
         Employee corpEngland = new Employee("corpEng",
                 "19840309****",
                 Location.ENGLAND,
                 100,
                 new Date(),
+                endDate,
                 EmployePosition.MANAGER);
 
         Employee employeeSwe = new Employee("employeeSwe",
@@ -62,6 +68,8 @@ public class Controller {
                 Location.SWEDEN,
                 100,
                 new Date(),
+                endDate,
+
                 EmployePosition.EMPLOYEE);
 
         Employee managerSwe = new Employee("managerSwe",
@@ -69,12 +77,16 @@ public class Controller {
                 Location.SWEDEN,
                 100,
                 new Date(),
+                endDate,
+
                 EmployePosition.MANAGER);
         Employee corpSwe = new Employee("corpSwe",
                 "19840309****",
                 Location.SWEDEN,
                 100,
                 new Date(),
+                endDate,
+
                 EmployePosition.MANAGER);
 
         database.addEmployee(employeeEngland);
@@ -85,16 +97,25 @@ public class Controller {
         database.addEmployee(corpSwe);
     }
 
+    //DONE
     public boolean getEmployeeDiscount() {
         return employeeDiscount;
     }
 
+
     public boolean login(String userName, String password) {
-       employee = new Employee();
-        // employee = database.login(employeeName,password);
-        /*if(employee==null)
-            return false;
-        */return true;
+
+       Employee employee = database.login(userName);
+       if(employee==null){
+           return false;
+       }else{
+           if(password.equals(employee.getPassword())){
+               this.employee=employee;
+               Common.setCurrentLocation(this.employee.getLocation());
+               return true;
+           }
+           return false;
+       }
     }
 
     public EmployePosition getCurrentUserPosition() {
@@ -132,12 +153,6 @@ public class Controller {
     public List<Employee> getEmployeesByDate(String dateFrom, String dateTo) {
         List<Employee> employees = new LinkedList<Employee>();
 
-        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),90,new Date(),EmployePosition.CORPORATE_SALES));
-        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),100,new Date(),EmployePosition.EMPLOYEE));
-        employees.add(new Employee());
-        employees.add(new Employee());
-        employees.add(new Employee());
-        employees.add(new Employee());
         return employees;
     }
 
@@ -201,12 +216,6 @@ public class Controller {
     public List<Employee> getEmployeesByDateAndLocation(String dateFrom, String dateTo, Location location) {
         List<Employee> employees = new LinkedList<Employee>();
 
-        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),90,new Date(),EmployePosition.CORPORATE_SALES));
-        employees.add(new Employee("Patrik Lind","840309****",Common.getCurrentLocation(),100,new Date(),EmployePosition.EMPLOYEE));
-        employees.add(new Employee());
-        employees.add(new Employee());
-        employees.add(new Employee());
-        employees.add(new Employee());
         return employees;
     }
 
