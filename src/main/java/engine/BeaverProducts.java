@@ -78,6 +78,9 @@ public class BeaverProducts {
         products.get(0).setEligibleForDiscount(false);
         products.get(1).setEligibleForDiscount(false);
         products.get(2).setEligibleForDiscount(false);
+        products.get(0).setFlavorEnabled(false);
+        products.get(1).setFlavorEnabled(false);
+        products.get(2).setFlavorEnabled(false);
 
 
         return products;

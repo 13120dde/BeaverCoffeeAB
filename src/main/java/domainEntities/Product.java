@@ -10,7 +10,7 @@ public class Product
     private double priceSEK, priceGBP, priceUSD;
     private int volume;
     private Flavour flavour;
-    private boolean eligibleForDiscount;
+    private boolean eligibleForDiscount, flavorEnabled;
 
     public Product(String nameSwe, String nameEng, double priceSEK, double priceGBP, double priceUSD,
                    String unitType, int volume)
@@ -24,8 +24,17 @@ public class Product
         this.volume = volume;
         flavour = null;
         eligibleForDiscount = true;
+        flavorEnabled = true;
+
     }
 
+    public boolean isFlavorEnabled() {
+        return flavorEnabled;
+    }
+
+    public void setFlavorEnabled(boolean flavorEnabled) {
+        this.flavorEnabled = flavorEnabled;
+    }
 
     public boolean isEligibleForDiscount() {
         return eligibleForDiscount;

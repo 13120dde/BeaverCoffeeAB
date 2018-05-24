@@ -12,13 +12,21 @@ public class Controller {
 
     private MongoDb database;
     private Employee employee;
-    private boolean employeeDiscount = false;
+    private boolean employeeDiscount = false, fillDBWithProducts = false;
 
     public Controller(MongoDb database) {
         this.database=database;
-        //TODO set location after user logged in, based on users location
-        Common.setCurrentLocation(Location.ENGLAND);
+        if(fillDBWithProducts){
+            List<Product> products = BeaverProducts.getDomainProducts();
+            for(Product p : products){
+                boolean ok = database.addProduct(p);
+                if(!ok)
+                    System.err.println("Failed to add product to db");
+            }
 
+        }
+        //TODO set location after user logged in, based on users location
+        Common.setCurrentLocation(Location.SWEDEN);
     }
 
     public boolean getEmployeeDiscount() {
@@ -42,15 +50,7 @@ public class Controller {
     }
 
     public LinkedList<Product> getAvailableProducts() {
-        LinkedList<Product> products = new LinkedList<Product>();
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-      //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
-       // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
-        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
-        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
-        return products;
+        return database.getAvailableProducts();
     }
 
     /**

@@ -1,27 +1,19 @@
 package database;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.Mongo;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
+import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
 import domainEntities.*;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
-import org.bson.types.ObjectId;
+
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static com.mongodb.client.model.Filters.eq;
-import static com.sun.org.apache.xml.internal.security.keys.keyresolver.KeyResolver.iterator;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -48,15 +40,38 @@ public class MongoDb {
     {
         MongoCollection <Document> collection = mongoDb.getCollection("product");
         Document doc = new Document("name_swe", product.getNameSwe())
+                .append("name_eng", product.getNameEng())
                 .append("price_sek", product.getPriceSEK())
                 .append("price_gbp", product.getPriceGBP())
                 .append("price_usd", product.getPriceUSD())
                 .append("price_gbp", product.getPriceGBP())
                 .append("unit", product.getUnitType())
-                .append("volume", product.getVolume());
+                .append("volume", product.getVolume())
+                .append("eligible_discount",product.isEligibleForDiscount())
+                .append("flavour_enabled", product.isFlavorEnabled());
         collection.insertOne(doc);
 
         return true;
+    }
+
+    public LinkedList<Product> getAvailableProducts(){
+        MongoCollection<Document> collection = mongoDb.getCollection("product");
+        List<Document> documents = collection.find().into(new LinkedList<Document>());
+        List<Product> availableProducts = new LinkedList<Product>();
+        for(Document document : documents){
+            Product product = new Product(document.getString("name_swe"),
+                    document.getString("name_eng"),
+                    document.getDouble("price_sek"),
+                    document.getDouble("price_gbp"),
+                    document.getDouble("price_usd"),
+                    document.getString("unit"),
+                    document.getInteger("volume"));
+            product.setEligibleForDiscount(document.getBoolean("eligible_discount"));
+            product.setFlavorEnabled(document.getBoolean("flavour_enabled"));
+            availableProducts.add(product);
+        }
+        System.out.println();
+        return (LinkedList<Product>) availableProducts;
     }
 
     public boolean addEmployee(Employee employee)

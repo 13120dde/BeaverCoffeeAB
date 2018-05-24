@@ -11,11 +11,11 @@ public class TableCreator {
 
 
     protected static void showProductsTable(List<Product> products) {
-        String leftAlignFormat = "| %-5s | %-20s | %-6s | %-6s | %-6s | %-8s |%n";
+        String leftAlignFormat = "| %-5s | %-30s | %-6s | %-6s | %-6s | %-8s |%n";
 
-        System.out.format("+-------+----------------------+--------+--------+--------+----------+%n");
-        System.out.format("|  ID   |        PRODUCT       | VOLUME |  UNIT  |  PRICE | CURRENCY |%n");
-        System.out.format("+-------+----------------------+--------+--------+--------+----------+%n");
+        System.out.format("+-------+--------------------------------+--------+--------+--------+----------+%n");
+        System.out.format("|  ID   |             PRODUCT            | VOLUME |  UNIT  |  PRICE | CURRENCY |%n");
+        System.out.format("+-------+--------------------------------+--------+--------+--------+----------+%n");
        // System.out.format(leftAlignFormat,"ID","PRODUCT","FLAVOUR","VOLUME","UNIT","PRICE","CURRENCY" );
 
         for (int i = 0; i < products.size(); i++) {
@@ -28,7 +28,7 @@ public class TableCreator {
                     Double.toString(product.getPrice()),
                     Common.getLocalCurrency());
         }
-        System.out.format("+-------+----------------------+--------+--------+--------+----------+%n");
+        System.out.format("+-------+--------------------------------+--------+--------+--------+----------+%n");
 
     }
 
@@ -60,25 +60,30 @@ public class TableCreator {
     }
 
     protected static void showCurrentOrderInTable(List<Product> products, double sum) {
-        String leftAlignFormat = "| %-5s | %-20s | %-20s | %-6s | %-6s | %-6s | %-8s |%n";
+        String leftAlignFormat = "| %-5s | %-30s | %-20s | %-6s | %-6s | %-6s | %-8s |%n";
 
-        System.out.format("+-------+----------------------+----------------------+--------+--------+--------+----------+%n");
-        System.out.format("|  ID   |        PRODUCT       |       FLAVOUR        | VOLUME |  UNIT  |  PRICE | CURRENCY |%n");
-        System.out.format("+-------+----------------------+----------------------+--------+--------+--------+----------+%n");
+        System.out.format("+-------+--------------------------------+----------------------+--------+--------+--------+----------+%n");
+        System.out.format("|  ID   |             PRODUCT            |       FLAVOUR        | VOLUME |  UNIT  |  PRICE | CURRENCY |%n");
+        System.out.format("+-------+--------------------------------+----------------------+--------+--------+--------+----------+%n");
         // System.out.format(leftAlignFormat,"ID","PRODUCT","FLAVOUR","VOLUME","UNIT","PRICE","CURRENCY" );
+
 
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
+            String flavour="";
+            if(product.isFlavorEnabled())
+                flavour = product.getFlavour().getName();
             System.out.format(leftAlignFormat,
                     Integer.toString(i+1),
                     product.getProductName(),
-                    product.getFlavour().getName(),
+                    flavour,
                     Integer.toString(product.getVolume()),
                     product.getUnitType(),
                     Double.toString(product.getPrice()),
                     Common.getLocalCurrency());
         }
-        System.out.format("+-------+----------------------+----------------------+--------+--------+--------+----------+%n");
+        System.out.format("+-------+--------------------------------+----------------------+--------+--------+--------+----------+%n");
+
         System.out.println("\n"+LocalisationStrings.sum()+": "+sum+" "+Common.getLocalCurrency());
 
     }
