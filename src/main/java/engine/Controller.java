@@ -10,7 +10,7 @@ public class Controller {
 
     private MongoDb database;
     private Employee employee;
-    private boolean employeeDiscount = false, fillDBWithProducts = true;
+    private boolean employeeDiscount = false, fillDBWithProducts = false;
 
 
     public Controller(MongoDb database) {
