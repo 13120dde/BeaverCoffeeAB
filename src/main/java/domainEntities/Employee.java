@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Employee {
 
-    private String name, idNumber;
+    private String name, idNumber, password;
     private int serviceGrade, id;
     private Date startDate, endDate;
     private List<Comment> comments;
@@ -48,8 +48,28 @@ public class Employee {
         this.serviceGrade=serviceGrade;
         this.startDate=startDate;
         this.position=position;
+        password ="admin";
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public int getId() {
         return id;
