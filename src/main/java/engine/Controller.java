@@ -12,10 +12,12 @@ public class Controller {
 
     private MongoDb database;
     private Employee employee;
-    private boolean employeeDiscount = false, fillDBWithProducts = false;
+    private boolean employeeDiscount = false, fillDBWithProducts = true;
 
     public Controller(MongoDb database) {
         this.database=database;
+
+        //Just for filling db with products for the very first time
         if(fillDBWithProducts){
             List<Product> products = BeaverProducts.getDomainProducts();
             for(Product p : products){
@@ -23,10 +25,15 @@ public class Controller {
                 if(!ok)
                     System.err.println("Failed to add product to db");
             }
+            List<Flavour> flavours = BeaverProducts.getDomainFlavours();
+            for(Flavour f: flavours){
+                boolean ok = database.addFlavour(f);
+                if(!ok)
+                    System.err.println("Failed to add flavour to db");
+            }
 
         }
-        //TODO set location after user logged in, based on users location
-        Common.setCurrentLocation(Location.SWEDEN);
+        Common.setCurrentLocation(Location.ENGLAND);
     }
 
     public boolean getEmployeeDiscount() {
@@ -49,6 +56,10 @@ public class Controller {
         employee=null;
     }
 
+    /**DONE
+     *
+     * @return
+     */
     public LinkedList<Product> getAvailableProducts() {
         return database.getAvailableProducts();
     }
@@ -66,7 +77,7 @@ public class Controller {
     }
 
     public boolean registerNewCustomer(String name, String custId, String occupation, String address) {
-        return false;
+        return true;
     }
 
     public List<Employee> getEmployeesByDate(String dateFrom, String dateTo) {
@@ -101,13 +112,7 @@ public class Controller {
     }
 
     public List<Flavour> getAvailableFlavours() {
-        List<Flavour> flavours = new LinkedList<Flavour>();
-        flavours.add(new Flavour("Plain","Enkel","cl",10)); //dont remove this, selected when user dont want any flavour
-        flavours.add(new Flavour("Vanilla","Vanilj","cl",10)); //dont remove this, selected when user dont want any flavour
-        flavours.add(new Flavour("Caramelle","Godis","cl",10)); //dont remove this, selected when user dont want any flavour
-        flavours.add(new Flavour());
-
-        return flavours;
+        return database.getAvailableFlavours();
     }
 
     public void swithEmployeeDiscount() {

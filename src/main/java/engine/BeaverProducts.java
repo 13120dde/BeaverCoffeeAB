@@ -1,5 +1,6 @@
 package engine;
 
+import domainEntities.Flavour;
 import domainEntities.Location;
 import domainEntities.Product;
 
@@ -53,20 +54,63 @@ public class BeaverProducts {
                 "cl", 10));
 
 
-        products.add(new Product("Kaffe Latte",
-                "Latte",
+        products.add(new Product("Latte - skummjölk",
+                "Latte - skim milk",
+                25 * priceSwe,
+                25 * priceUK,
+                25 * priceUS,
+                "cl", 33));
+
+        products.add(new Product("Latte - sojamjölk",
+                "Latte - soy milk",
+                25 * priceSwe,
+                25 * priceUK,
+                25 * priceUS,
+                "cl", 33));
+
+        products.add(new Product("Latte - mjölk",
+                "Latte - milk",
+                25 * priceSwe,
+                25 * priceUK,
+                25 * priceUS,
+                "cl", 33));
+
+        products.add(new Product("Latte - 2% mjölk",
+                "Latte - 2% milk",
                 25 * priceSwe,
                 25 * priceUK,
                 25 * priceUS,
                 "cl", 33));
 
 
-        products.add(new Product("Cappucino",
-                "Cappucino",
+        products.add(new Product("Cappucino - skummjölk",
+                "Cappucino - skim milk",
                 25 * priceSwe,
                 25 * priceUK,
                 25 * priceUS,
                 "cl", 33));
+
+        products.add(new Product("Cappucino - sojamjölk",
+                "Cappucino - soy milk",
+                25 * priceSwe,
+                25 * priceUK,
+                25 * priceUS,
+                "cl", 33));
+
+        products.add(new Product("Cappucino - mjölk",
+                "Cappucino - milk",
+                25 * priceSwe,
+                25 * priceUK,
+                25 * priceUS,
+                "cl", 33));
+
+        products.add(new Product("Cappucino - 2% milk",
+                "Cappucino - 2% milk",
+                25 * priceSwe,
+                25 * priceUK,
+                25 * priceUS,
+                "cl", 33));
+
 
         products.add(new Product("Varm Choklad",
                 "Hot Chocolate",
@@ -74,6 +118,14 @@ public class BeaverProducts {
                 29 * priceUK,
                 29 * priceUS,
                 "cl", 40));
+
+        products.add(new Product("Varm Choklad med Vispgrädde",
+                "Hot Chocolate - Whipped Cream",
+                29 * priceSwe,
+                29 * priceUK,
+                29 * priceUS,
+                "cl", 40));
+
 
         products.get(0).setEligibleForDiscount(false);
         products.get(1).setEligibleForDiscount(false);
@@ -84,6 +136,14 @@ public class BeaverProducts {
 
 
         return products;
+    }
+
+    protected static LinkedList<Flavour> getDomainFlavours(){
+        LinkedList<Flavour> flavours = new LinkedList<Flavour>();
+        flavours.add(new Flavour("Vanilj","Vanilla","cl",10));
+        flavours.add(new Flavour("Karamell","Caramel","cl",10));
+        flavours.add(new Flavour("Irländsk Kräm","Irish Cream","cl",10));
+        return flavours;
     }
 
     private static double getLocationPriceMultiplier(Location location) {

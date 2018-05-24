@@ -966,10 +966,73 @@ public class BeaverCLI {
                 newOrderMenu();
                 break;
             case 9:
-                controller.swithEmployeeDiscount();
+                product = products.get(choice-1);
+                if(product.isFlavorEnabled()){
+                    flavour = selectFlavour();
+                    product.setFlavour(flavour);
+                }
+                order.add(product);
                 newOrderMenu();
                 break;
             case 10:
+                product = products.get(choice-1);
+                if(product.isFlavorEnabled()){
+                    flavour = selectFlavour();
+                    product.setFlavour(flavour);
+                }
+                order.add(product);
+                newOrderMenu();
+                break;
+            case 11:
+                product = products.get(choice-1);
+                if(product.isFlavorEnabled()){
+                    flavour = selectFlavour();
+                    product.setFlavour(flavour);
+                }
+                order.add(product);
+                newOrderMenu();
+                break;
+            case 12:
+                product = products.get(choice-1);
+                if(product.isFlavorEnabled()){
+                    flavour = selectFlavour();
+                    product.setFlavour(flavour);
+                }
+                order.add(product);
+                newOrderMenu();
+                break;
+            case 13:
+                product = products.get(choice-1);
+                if(product.isFlavorEnabled()){
+                    flavour = selectFlavour();
+                    product.setFlavour(flavour);
+                }
+                order.add(product);
+                newOrderMenu();
+                break;
+            case 14:
+                product = products.get(choice-1);
+                if(product.isFlavorEnabled()){
+                    flavour = selectFlavour();
+                    product.setFlavour(flavour);
+                }
+                order.add(product);
+                newOrderMenu();
+                break;
+            case 15:
+                product = products.get(choice-1);
+                if(product.isFlavorEnabled()){
+                    flavour = selectFlavour();
+                    product.setFlavour(flavour);
+                }
+                order.add(product);
+                newOrderMenu();
+                break;
+            case 16:
+                controller.swithEmployeeDiscount();
+                newOrderMenu();
+                break;
+            case 17:
                 System.out.println(LocalisationStrings.remove()+" id: ");
                 int choiceRemoveProduct;
                 Scanner sc = new Scanner(System.in);
@@ -986,7 +1049,7 @@ public class BeaverCLI {
                     newOrderMenu();
                 }
                 break;
-            case 11:
+            case 18:
                 if(!order.isEmpty()){
                     checkIfRegisteredUserAndProceedWithOrder();
                     order.clear();
@@ -995,7 +1058,7 @@ public class BeaverCLI {
                 }
                 showMainMenu();
                 break;
-            case 12:
+            case 19:
                 order.clear();
                 showMainMenu();
                 break;

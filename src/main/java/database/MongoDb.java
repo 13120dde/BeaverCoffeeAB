@@ -44,7 +44,6 @@ public class MongoDb {
                 .append("price_sek", product.getPriceSEK())
                 .append("price_gbp", product.getPriceGBP())
                 .append("price_usd", product.getPriceUSD())
-                .append("price_gbp", product.getPriceGBP())
                 .append("unit", product.getUnitType())
                 .append("volume", product.getVolume())
                 .append("eligible_discount",product.isEligibleForDiscount())
@@ -243,5 +242,29 @@ public class MongoDb {
     }
 
 
+    public boolean addFlavour(Flavour f) {
+        MongoCollection <Document> collection = mongoDb.getCollection("flavour");
+        Document doc = new Document("name_swe", f.getNameSwe())
+                .append("name_eng", f.getNameEng())
+                .append("unit", f.getUnit())
+                .append("volume", f.getVolume());
+        collection.insertOne(doc);
 
+        return true;
+    }
+
+    public List<Flavour> getAvailableFlavours() {
+        MongoCollection<Document> collection = mongoDb.getCollection("flavour");
+        List<Document> documents = collection.find().into(new LinkedList<Document>());
+        List<Flavour> availableFlavours = new LinkedList<Flavour>();
+        for(Document document : documents){
+            Flavour flavour = new Flavour(document.getString("name_swe"),
+                    document.getString("name_eng"),
+                    document.getString("unit"),
+                    document.getInteger("volume"));
+            availableFlavours.add(flavour);
+        }
+        System.out.println();
+        return (LinkedList<Flavour>) availableFlavours;
+    }
 }
