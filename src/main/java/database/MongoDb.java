@@ -301,7 +301,7 @@ public class MongoDb
     public List getEmployeesByDate(Date from, Date to)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
-        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
+        MongoCursor<Document> cursor = collection.find(new Document("start_date", new Document("$gte", from)
                 .append("$lt", to))).iterator();
 
         List<Employee> employeeList = new ArrayList<Employee>();
@@ -309,6 +309,7 @@ public class MongoDb
         {
             while (cursor.hasNext())
             {
+                System.out.println("Found one!");
 
                 Document d = cursor.next();
                 String name = d.getString("name");
@@ -447,5 +448,87 @@ public class MongoDb
         }
         System.out.println();
         return (LinkedList<Flavour>) availableFlavours;
+    }
+
+    public List getOrdersMadeByEmployee(ObjectId employeeId, Date from, Date to)
+    {
+        MongoCollection<Document> collection = mongoDb.getCollection("order");
+        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
+                .append("$lt", to)).append("employee_id", employeeId)).iterator();
+
+        List<Order> orderList = new ArrayList<Order>();
+        try
+        {
+            while (cursor.hasNext())
+            {
+                Document d = cursor.next();
+                ObjectId id = d.getObjectId("_id");
+                ObjectId employeeId2 = d.getObjectId("employee_id");
+                String barcode = d.getString("barcode");
+                Date date = d.getDate("date");
+                Location location = Enum.valueOf(Location.class, d.getString("location"));
+
+                List<Document> prods = (List<Document>) d.get("products");
+                Product p;
+                List <Product> productList = new ArrayList<Product>();
+
+                for (Document prod : prods)
+                {
+                    String nameSwe = prod.getString("nameSwe");
+                    String nameEng = prod.getString("nameEng");
+                    double priceSEK = prod.getDouble("priceSEK");
+                    double priceGBP = prod.getDouble("priceGBP");
+                    double priceUSD = prod.getDouble("priceUSD");
+                    String unit = prod.getString("unitType");
+                    int volume = prod.getInteger("volume");
+
+                    p = new Product(nameSwe,nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
+                    productList.add(p);
+                }
+
+                Order o = new Order(barcode, employeeId2, date, location, productList);
+                //String customerBarcode, ObjectId employeeId, Date orderDate,
+                //                    Location location, List <Product> product
+//                o.setOrderId(id);
+
+                orderList.add(o);
+            }
+        } finally
+        {
+            cursor.close();
+        }
+        return orderList;
+    }
+
+    public List getSalesOverTimePeriod(Date from, Date to, Location location)
+    {
+        MongoCollection<Document> collection = mongoDb.getCollection("order");
+        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
+                .append("$lt", to)).append("location", location.name())).iterator();
+
+        List <Product> productList = new ArrayList<Product>();
+
+        while (cursor.hasNext())
+        {
+            Document d = cursor.next();
+
+            List<Document> prods = (List<Document>) d.get("products");
+            Product p;
+
+            for (Document prod : prods)
+            {
+                String nameSwe = prod.getString("nameSwe");
+                String nameEng = prod.getString("nameEng");
+                double priceSEK = prod.getDouble("priceSEK");
+                double priceGBP = prod.getDouble("priceGBP");
+                double priceUSD = prod.getDouble("priceUSD");
+                String unit = prod.getString("unitType");
+                int volume = prod.getInteger("volume");
+
+                p = new Product(nameSwe,nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
+                productList.add(p);
+            }
+        }
+        return productList;
     }
 }
