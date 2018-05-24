@@ -41,13 +41,14 @@ public class Employee {
 
     }
 
-    public Employee(String name, String idNumber, Location location, int serviceGrade, Date startDate, EmployePosition position){
+    public Employee(String name, String idNumber, Location location, int serviceGrade, Date startDate, Date endDate, EmployePosition position){
         this.name = name;
         this.idNumber=idNumber;
         this.location=location;
         this.serviceGrade=serviceGrade;
         this.startDate=startDate;
         this.position=position;
+        this.endDate=endDate;
         password ="admin";
     }
 
@@ -111,10 +112,8 @@ public class Employee {
         this.serviceGrade = serviceGrade;
     }
 
-    public String getStartDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String date = sdf.format(startDate);
-        return date;
+    public Date getStartDate() {
+        return startDate;
     }
 
 
@@ -122,12 +121,8 @@ public class Employee {
         this.startDate = Common.formatDate(startDate);
     }
 
-    public String getEndDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String date ="";
-        if (endDate!=null)
-          date = sdf.format(endDate);
-        return date;
+    public Date getEndDate() {
+        return endDate;
     }
     public void setEndDate(String endDate) {
         this.endDate= Common.formatDate(endDate);
