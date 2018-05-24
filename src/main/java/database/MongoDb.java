@@ -215,6 +215,44 @@ public class MongoDb
         return customerList;
     }
 
+    public List getCustomersByDateandLocation(Date from, Date to, Location location)
+    {
+        MongoCollection<Document> collection = mongoDb.getCollection("customer");
+        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
+                .append("$lt", to)).append("location", location.name())).iterator();
+
+        List<Customer> customerList = new ArrayList<Customer>();
+        try
+        {
+            while (cursor.hasNext())
+            {
+
+                Document d = cursor.next();
+                String name = d.getString("name");
+                String occupation = d.getString("occupation");
+                String barcode = d.getString("barcode");
+                String idNumber = d.getString("ssn");
+                Date registered = d.getDate("date");
+
+                Object address = d.get("address");
+                Document addressDoc = (Document) address;
+                String city = addressDoc.getString("street");
+                String loc = addressDoc.getString("location");
+                String street = addressDoc.getString("street");
+                String zip = addressDoc.getString("zip");
+
+                Location l = Enum.valueOf(Location.class, loc);
+                Address ad = new Address(street, zip, city, l);
+                Customer c = new Customer(name, occupation, barcode, idNumber, ad, registered);
+                customerList.add(c);
+            }
+        } finally
+        {
+            cursor.close();
+        }
+        return customerList;
+    }
+
     public List getEmployeesByDate(Date from, Date to)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
