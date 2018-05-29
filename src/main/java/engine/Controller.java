@@ -348,19 +348,7 @@ public class Controller {
     }
 
     public List<Order> getOrdersMadeByEmployee(Employee employee, String dateFrom, String dateTo, Location location) {
-        List<Order> orders = new LinkedList<Order>();
-//
-//        //fetch all orders made by employee on dates
-//        Order order = new Order(1345,"12345654",123,Common.formatDate(dateFrom),Common.getCurrentLocation());
-//        //for each order fetch all products in order
-//        //calculate sum for order, get orderdate, ecustomerbarcode
-//        List<Product> productsInOrder = getProductsInOrder(order);
-//        order.setSum(calculateOrderSum(productsInOrder));
-//        orders.add(order);
-//        orders.add(order);
-//        orders.add(order);
-//
-        return orders;
+        return database.getOrdersMadeByEmployee(employee.getObjectId(),Common.formatDate(dateFrom),Common.formatDate(dateTo));
     }
 
     private List<Product> getProductsInOrder(Order order) {
