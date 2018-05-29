@@ -209,6 +209,7 @@ public class MongoDb
         String barcode2 = myDoc.getString("barcode");
         String idNumber = myDoc.getString("ssn");
         Date registered = myDoc.getDate("date");
+        int counter = myDoc.getInteger("counter");
 
         Object address = myDoc.get("address");
         Document addressDoc = (Document) address;
@@ -217,9 +218,11 @@ public class MongoDb
         String street = addressDoc.getString("street");
         String zip = addressDoc.getString("zip");
 
+
         Location l = Enum.valueOf(Location.class, location);
         Address ad = new Address(street, zip, city, l);
         Customer c = new Customer(name, occupation, barcode2, idNumber, ad, registered);
+        c.setTotalPurchases(counter);
 
         return c;
     }
@@ -590,4 +593,14 @@ public class MongoDb
         }
         return productList;
     }
+
+    public LinkedList<Product> getSalesOnZipCode(String zip, Location location) {
+        return null;
+    }
+
+    public LinkedList<Product> getSalesOnOccupation(String occupation) {
+        return null;
+    }
+
+
 }

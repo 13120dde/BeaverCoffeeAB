@@ -11,7 +11,7 @@ public class Controller {
 
     private MongoDb database;
     private Employee employee;
-    private boolean employeeDiscount = false, fillDBWithProducts = true;
+    private boolean employeeDiscount = false, fillDBWithProducts = false;
 
 
     public Controller(MongoDb database) {
@@ -167,7 +167,7 @@ public class Controller {
            int purchases, indexToDiscountedProduct=-1;
            if(customer!=null){
                purchases=customer.getTotalPurchases();
-               if(purchases%10==0){
+               if(purchases !=0 && purchases%10==0){
                    //get first eligible product and discount
                }else{
                    int rest = purchases%10;
@@ -306,7 +306,7 @@ public class Controller {
 
     //TODO slå samman alla av samma produkter till en, listan som ska returneras ska innehålla UNIKA produkter, på volume ska antal försäljningar av den unika produkten summeras, på pris totalsumman av försäljningarna
     public HashMap<String, String> getSalesOverTimePeriod(String dateFrom, String dateTo, Location location) {
-        List<Product> products = database.getSalesOverTimePeriod(Common.formatDate(dateFrom), Common.formatDate(dateTo),location);
+        List<Product> products = database.getSalesOverTimePeriod(Common.formatDate(dateFrom), Common.formatDate(dateTo));
         HashMap<String,String> uniqueProducts = new HashMap<String, String>();
         for(Product p :products){
             if(!uniqueProducts.containsKey(p.getProductName())){
@@ -343,14 +343,8 @@ public class Controller {
     }
 
     public List<Product> getSalesPerCustomerZipCode(String zip, Location location) {
-        LinkedList<Product> products = new LinkedList<Product>();
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
-        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
-        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
-        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
+        LinkedList<Product> products = database.getSalesOnZipCode(zip,location);
+
         return products;
     }
 
