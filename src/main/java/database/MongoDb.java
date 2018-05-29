@@ -104,6 +104,7 @@ public class MongoDb
     public boolean addEmployee(Employee employee)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
+
         Document doc = new Document("name", employee.getName())
                 .append("ssn", employee.getIdNumber())
                 .append("position", employee.getPosition().name())
@@ -111,8 +112,7 @@ public class MongoDb
                 .append("end_date", employee.getEndDate())
                 .append("location", employee.getLocation().name())
                 .append("service_grade", employee.getServiceGrade())
-                .append("password", employee.getPassword())
-                .append("comments", "");
+                .append("password", employee.getPassword());
         collection.insertOne(doc);
         return true;
     }
@@ -367,12 +367,31 @@ public class MongoDb
         return employeeList;
     }
 
-    //SSN hårdkodat
     public boolean addComment(Comment comment)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
-        collection.updateOne(eq("ssn", "840309-****"), new Document("$push", new Document("comment", comment)));
+        collection.updateOne(eq("_id", comment.getEmployeeId()), new Document("$push", new Document("comments", comment)));
         return true;
+    }
+
+    public List <Comment> getComments(ObjectId employeeId)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("employee");
+        Document employeeDoc = collection.find(eq("_id", employeeId)).first();
+        List<Document> comments = (List<Document>) employeeDoc.get("comments");
+
+        List <Comment> commentList = new ArrayList<Comment>();
+
+        for (Document c : comments)
+        {
+            ObjectId authorId = c.getObjectId("authorId");
+            String comment = c.getString("comment");
+            Date date = c.getDate("date");
+            Comment com = new Comment(employeeId, authorId, date, comment);
+            commentList.add(com);
+        }
+
+        return commentList;
     }
 
 
@@ -508,11 +527,43 @@ public class MongoDb
         return orderList;
     }
 
-    public List getSalesOverTimePeriod(Date from, Date to, Location location)
+    public List getSalesOverTimePeriodwithLocation(Date from, Date to, Location location)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("order");
         MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
                 .append("$lt", to)).append("location", location.name())).iterator();
+
+        List <Product> productList = new ArrayList<Product>();
+
+        while (cursor.hasNext())
+        {
+            Document d = cursor.next();
+
+            List<Document> prods = (List<Document>) d.get("products");
+            Product p;
+
+            for (Document prod : prods)
+            {
+                String nameSwe = prod.getString("nameSwe");
+                String nameEng = prod.getString("nameEng");
+                double priceSEK = prod.getDouble("priceSEK");
+                double priceGBP = prod.getDouble("priceGBP");
+                double priceUSD = prod.getDouble("priceUSD");
+                String unit = prod.getString("unitType");
+                int volume = prod.getInteger("volume");
+
+                p = new Product(nameSwe,nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
+                productList.add(p);
+            }
+        }
+        return productList;
+    }
+
+    public List getSalesOverTimePeriod(Date from, Date to)
+    {
+        MongoCollection<Document> collection = mongoDb.getCollection("order");
+        MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
+                .append("$lt", to))).iterator();
 
         List <Product> productList = new ArrayList<Product>();
 

@@ -9,5 +9,8 @@
         <module name="BeaverCoffee" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="BeaverCoffee" target="6" />
+    </bytecodeTargetLevel>
   </component>
 </project>

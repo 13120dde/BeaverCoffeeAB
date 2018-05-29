@@ -818,7 +818,7 @@ public class BeaverCLI {
         String leftAlignFormat = "%-20s, %-20s: %-310s %n";
 
         for(Comment comment : comments){
-            System.out.format(leftAlignFormat,comment.getDate(),comment.getEmployerId(),comment.getComment());
+            System.out.format(leftAlignFormat,comment.getDate(),comment.getAuthorId(),comment.getComment());
         }
     }
 
