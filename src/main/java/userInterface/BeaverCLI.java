@@ -152,13 +152,14 @@ public class BeaverCLI {
                 if(position==EmployePosition.CORPORATE_SALES){
                     location = selectLocation();
                 }
-                products = controller.getSalesOverTimePeriod(dates[0],dates[1],location);
-                if(products==null || products.isEmpty()){
+
+                HashMap<String,String> prods = controller.getSalesOverTimePeriod(dates[0],dates[1],location);
+                if(prods==null || prods.isEmpty()){
                     System.out.println(LocalisationStrings.someThingWrong());
                     reportMenu();
                 }
-                sum = controller.calculateOrderSum(products);
-                TableCreator.listProductSales(products,location,dates[0],dates[1],sum);
+                sum = controller.calculateOrderSum(prods);
+                TableCreator.listProductSales(prods,location,dates[0],dates[1],sum);
                 reportMenu();
                 break;
             case 2:
@@ -180,7 +181,7 @@ public class BeaverCLI {
                     reportMenu();
                 }
                 sum = controller.calculateOrderSum(products);
-                TableCreator.listProductSales(products,location,dates[0],dates[1],sum);
+               // TableCreator.listProductSales(products,location,dates[0],dates[1],sum);
                 reportMenu();
                 break;
             case 3:

@@ -6,6 +6,7 @@ import engine.Common;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TableCreator {
 
@@ -118,26 +119,29 @@ public class TableCreator {
 
     }
 
-    protected static void listProductSales(List<Product> products, Location location, String dateFrom, String dateTo, double sum) {
-        System.out.println("Listing all sales for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+location  +"\n");
+    protected static void listProductSales(HashMap<String,String> products, Location location, String dateFrom, String dateTo, double sum) {
+        System.out.println("Listing all sales for dates: "+Common.formatDate(dateFrom)+" - "+Common.formatDate(dateTo)+"\nLocation: "+location  +"\n");
 
-        String leftAlignFormat = "| %-20s | %-20s | %-20s |%n";
+        String leftAlignFormat = "| %-30s | %-20s | %-20s |%n";
 
 
-        System.out.format("+----------------------+----------------------+----------------------+%n");
-        System.out.format("|        PRODUCT       |       UNITS SOLD     |      TOTAL VALUE     |%n");
-        System.out.format("+----------------------+----------------------+----------------------+%n");
+        System.out.format("+--------------------------------+----------------------+----------------------+%n");
+        System.out.format("|            PRODUCT             |       UNITS SOLD     |      TOTAL VALUE     |%n");
+        System.out.format("+--------------------------------+----------------------+----------------------+%n");
         // System.out.format(leftAlignFormat,"ID","PRODUCT","FLAVOUR","VOLUME","UNIT","PRICE","CURRENCY" );
 
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
+        for(Map.Entry<String,String> entry : products.entrySet()){
+            String[] vals = entry.getValue().split(",");
+            String prodName = entry.getKey();
             System.out.format(leftAlignFormat,
-                    product.getProductName(),
-                    Integer.toString(product.getVolume()),
-                    Double.toString(product.getPrice())
-            );
+                    prodName,
+                    vals[0],
+                    Integer.parseInt(vals[0])*Double.parseDouble(vals[1])
+                    );
         }
-        System.out.format("+----------------------+----------------------+----------------------+%n");
+
+        System.out.format("+--------------------------------+----------------------+----------------------+%n");
+
         System.out.println("\n"+LocalisationStrings.sum()+": "+sum+" "+Common.getLocalCurrency(location));
 
 

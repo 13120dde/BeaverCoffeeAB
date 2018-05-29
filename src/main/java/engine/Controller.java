@@ -10,7 +10,7 @@ public class Controller {
 
     private MongoDb database;
     private Employee employee;
-    private boolean employeeDiscount = false, fillDBWithProducts = false;
+    private boolean employeeDiscount = false, fillDBWithProducts = true;
 
 
     public Controller(MongoDb database) {
@@ -62,7 +62,7 @@ public class Controller {
                 100,
                 Common.getCurrentDate(),
                 endDate,
-                EmployePosition.MANAGER);
+                EmployePosition.CORPORATE_SALES);
 
         Employee employeeSwe = new Employee("employeeSwe",
                 "19840309****",
@@ -88,7 +88,7 @@ public class Controller {
                 Common.getCurrentDate(),
                 endDate,
 
-                EmployePosition.MANAGER);
+                EmployePosition.CORPORATE_SALES);
 
         database.addEmployee(employeeEngland);
         database.addEmployee(managerEngland);
@@ -298,16 +298,26 @@ public class Controller {
     }
 
     //TODO slå samman alla av samma produkter till en, listan som ska returneras ska innehålla UNIKA produkter, på volume ska antal försäljningar av den unika produkten summeras, på pris totalsumman av försäljningarna
-    public List<Product> getSalesOverTimePeriod(String dateFrom, String dateTo, Location location) {
-        LinkedList<Product> products = new LinkedList<Product>();
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
-        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
-        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
-        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
-        return products;
+    public HashMap<String, String> getSalesOverTimePeriod(String dateFrom, String dateTo, Location location) {
+        List<Product> products = database.getSalesOverTimePeriod(Common.formatDate(dateFrom), Common.formatDate(dateTo),location);
+        HashMap<String,String> uniqueProducts = new HashMap<String, String>();
+        for(Product p :products){
+            if(!uniqueProducts.containsKey(p.getProductName())){
+                uniqueProducts.put(p.getProductName(),1+","+p.getPrice());
+            }else{
+                    String vals= uniqueProducts.get(p.getProductName());
+                    if(vals==null)
+                        uniqueProducts.put(p.getProductName(),1+","+p.getPrice());
+                    else{
+                        String[] val = vals.split(",");
+                        Integer count = Integer.parseInt(val[0]);
+                        uniqueProducts.put(p.getProductName(),++count+","+p.getPrice());
+                    }
+            }
+        }
+
+        System.out.println();
+        return uniqueProducts;
     }
 
     //TODO samma som ovan, men nu ska man returnera bara den produkt som anges som inputparameter
@@ -379,5 +389,17 @@ public class Controller {
     public boolean updateQuantityForProduct(Product chosenProduct, int quantityNew)
     {
         return true;
+    }
+
+    public double calculateOrderSum(HashMap<String, String> prods) {
+            double sum=0;
+            for(Map.Entry<String ,String > entry : prods.entrySet()){
+                String[] vals = entry.getValue().split(",");
+                int count = Integer.parseInt(vals[0]);
+                double price = Double.parseDouble(vals[1]);
+
+                sum+=count*price;
+            }
+            return sum;
     }
 }
