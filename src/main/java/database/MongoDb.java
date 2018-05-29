@@ -367,12 +367,31 @@ public class MongoDb
         return employeeList;
     }
 
-    //SSN hårdkodat
     public boolean addComment(Comment comment)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
         collection.updateOne(eq("_id", comment.getEmployeeId()), new Document("$push", new Document("comments", comment)));
         return true;
+    }
+
+    public List <Comment> getComments(ObjectId employeeId)
+    {
+        MongoCollection <Document> collection = mongoDb.getCollection("employee");
+        Document employeeDoc = collection.find(eq("_id", employeeId)).first();
+        List<Document> comments = (List<Document>) employeeDoc.get("comments");
+
+        List <Comment> commentList = new ArrayList<Comment>();
+
+        for (Document c : comments)
+        {
+            ObjectId authorId = c.getObjectId("authorId");
+            String comment = c.getString("comment");
+            Date date = c.getDate("date");
+            Comment com = new Comment(employeeId, authorId, date, comment);
+            commentList.add(com);
+        }
+
+        return commentList;
     }
 
 

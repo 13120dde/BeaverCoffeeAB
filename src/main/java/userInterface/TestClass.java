@@ -63,8 +63,15 @@ public class TestClass
             ObjectId id1 = new ObjectId("5b0d3398795b9d3274382f1f");
             ObjectId id2 = new ObjectId("5b0d3398795b9d3274382f1f");
 //
-            Comment c = new Comment(id1, id2, from, "HA§§§§§§§§HA");
-            db.addComment(c);
+//            Comment c = new Comment(id1, id2, from, "HA§§§§§§§§HA");
+//            db.addComment(c);
+
+            List <Comment> comments = db.getComments(id1);
+
+            for (Comment c: comments)
+            {
+                System.out.println(c.getComment());
+            }
 
 //            Employee e = new Employee();
 //            e.setEndDate(to);
