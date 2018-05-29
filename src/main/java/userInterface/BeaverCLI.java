@@ -169,19 +169,20 @@ public class BeaverCLI {
                 }
                 List<Product> availableProducts = controller.getAvailableProducts();
                 TableCreator.showProductsTable(availableProducts);
+                System.out.println("Input product ID :");
                 int chosenProduct = getInput(availableProducts.size());
-                if(chosenProduct==-1){
+                if(chosenProduct==-1 || chosenProduct ==0){
                     System.out.println(LocalisationStrings.wrongChoice());
                     reportMenu();
                 }
-                Product product = availableProducts.get(chosenProduct);
-                products = controller.getSalesOverTimePeriodAndProduct(dates[0],dates[1],location,product);
-                if(products==null || products.isEmpty()){
+                Product product = availableProducts.get(chosenProduct-1);
+                prods = controller.getSalesOverTimePeriodAndProduct(dates[0],dates[1],location,product);
+                if(prods==null || prods.isEmpty()){
                     System.out.println(LocalisationStrings.someThingWrong());
                     reportMenu();
                 }
-                sum = controller.calculateOrderSum(products);
-               // TableCreator.listProductSales(products,location,dates[0],dates[1],sum);
+                sum = controller.calculateOrderSum(prods);
+                TableCreator.listProductSales(prods,location,dates[0],dates[1],sum);
                 reportMenu();
                 break;
             case 3:

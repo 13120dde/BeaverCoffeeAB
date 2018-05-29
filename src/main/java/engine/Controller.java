@@ -321,16 +321,18 @@ public class Controller {
     }
 
     //TODO samma som ovan, men nu ska man returnera bara den produkt som anges som inputparameter
-    public List<Product> getSalesOverTimePeriodAndProduct(String date, String date1, Location location, Product product) {
-        LinkedList<Product> products = new LinkedList<Product>();
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        products.add(new Product("Kaffe","Coffe",25.50,10.99,6.99,"l",5));
-        //  products.add(new Product(1,"Coffe","l","roasted",39.90, 50));
-        // products.add(new Product(2,"Tea","l","herbal",29.90, 50));
-        //products.add(new Product(3,"Latte","l","vanilla",49.90, 50));
-        //products.add(new Product(4,"Irish Cream","l","cognac",39.90, 50));
-        return products;
+    public HashMap<String,String> getSalesOverTimePeriodAndProduct(String dateFrom, String dateTo, Location location, Product product) {
+        HashMap<String, String> uniqueProducts = getSalesOverTimePeriod(dateFrom,dateTo,location);
+        HashMap<String,String> toReturn;
+        String chosenProduct = product.getProductName();
+        String val = uniqueProducts.get(chosenProduct);
+        if(val==null)
+            return null;
+        else{
+            toReturn = new HashMap<String, String>();
+            toReturn.put(chosenProduct,val);
+        }
+        return toReturn;
     }
 
     public List<Product> getSalesPerCustomerZipCode(String zip, Location location) {
