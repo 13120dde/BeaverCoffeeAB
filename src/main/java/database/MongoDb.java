@@ -112,8 +112,7 @@ public class MongoDb
                 .append("end_date", employee.getEndDate())
                 .append("location", employee.getLocation().name())
                 .append("service_grade", employee.getServiceGrade())
-                .append("password", employee.getPassword())
-                .append("comments", "{[]}");
+                .append("password", employee.getPassword());
         collection.insertOne(doc);
         return true;
     }

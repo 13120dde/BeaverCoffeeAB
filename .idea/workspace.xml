@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebd5e8a0-d0c7-4b24-a4e7-37856f5af1b9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/database/MongoDb.class" afterPath="$PROJECT_DIR$/target/classes/database/MongoDb.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/engine/Controller.class" afterPath="$PROJECT_DIR$/target/classes/engine/Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/userInterface/BeaverCLI.class" afterPath="$PROJECT_DIR$/target/classes/userInterface/BeaverCLI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BeaverCoffee.iml" afterPath="$PROJECT_DIR$/BeaverCoffee.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/database/MongoDb.java" afterPath="$PROJECT_DIR$/src/main/java/database/MongoDb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/domainEntities/Comment.java" afterPath="$PROJECT_DIR$/src/main/java/domainEntities/Comment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/engine/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/engine/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" afterPath="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/userInterface/TestClass.java" afterPath="$PROJECT_DIR$/src/main/java/userInterface/TestClass.java" />
     </list>
     <ignored path="BeaverCoffee.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,10 +51,11 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/engine/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="50" selection-end-column="42" />
+              <caret line="32" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="50" selection-end-column="42" />
               <folding>
                 <element signature="e#7582#7583#0" expanded="true" />
                 <element signature="e#7645#7646#0" expanded="true" />
+                <element signature="e#9046#9047#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -84,7 +71,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Driver.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Driver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Driver.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
@@ -94,12 +81,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MongoDb.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MongoDb.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/MongoDb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="366" column="5" selection-start-line="366" selection-start-column="5" selection-end-line="366" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="374">
+              <caret line="114" column="60" selection-start-line="114" selection-start-column="60" selection-end-line="114" selection-end-column="60" />
+              <folding>
+                <element signature="e#9827#9837#0" expanded="true" />
+                <element signature="e#11403#11413#0" expanded="true" />
+                <element signature="e#12901#12911#0" expanded="true" />
+                <element signature="e#14262#14272#0" expanded="true" />
+                <element signature="e#18124#18133#0" expanded="true" />
+                <element signature="e#18962#18969#0" expanded="true" />
+                <element signature="e#19695#19704#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -811,16 +806,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1527588998025</updated>
-      <workItem from="1527589000434" duration="3434000" />
+      <workItem from="1527589000434" duration="3610000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3434000" />
+    <option name="totallyTimeSpent" value="3610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -831,7 +826,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -892,10 +887,11 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/engine/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="50" selection-end-column="42" />
+          <caret line="32" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="50" selection-end-column="42" />
           <folding>
             <element signature="e#7582#7583#0" expanded="true" />
             <element signature="e#7645#7646#0" expanded="true" />
+            <element signature="e#9046#9047#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -908,19 +904,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/MongoDb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="366" column="5" selection-start-line="366" selection-start-column="5" selection-end-line="366" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Driver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/MongoDb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="114" column="60" selection-start-line="114" selection-start-column="60" selection-end-line="114" selection-end-column="60" />
+          <folding>
+            <element signature="e#9827#9837#0" expanded="true" />
+            <element signature="e#11403#11413#0" expanded="true" />
+            <element signature="e#12901#12911#0" expanded="true" />
+            <element signature="e#14262#14272#0" expanded="true" />
+            <element signature="e#18124#18133#0" expanded="true" />
+            <element signature="e#18962#18969#0" expanded="true" />
+            <element signature="e#19695#19704#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

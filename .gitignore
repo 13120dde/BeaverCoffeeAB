@@ -27,3 +27,4 @@ BeaverCoffee.iml
 target/classes/database/MongoDb.class
 target/classes/engine/Controller.class
 target/classes/userInterface/BeaverCLI.class
+.idea/workspace.xml
