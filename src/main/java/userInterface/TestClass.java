@@ -66,12 +66,12 @@ public class TestClass
 //            Comment c = new Comment(id1, id2, from, "HA§§§§§§§§HA");
 //            db.addComment(c);
 
-            List <Comment> comments = db.getComments(id1);
-
-            for (Comment c: comments)
-            {
-                System.out.println(c.getComment());
-            }
+//            List <Comment> comments = db.getComments(id1);
+//
+//            for (Comment c: comments)
+//            {
+//                System.out.println(c.getComment());
+//            }
 
 //            Employee e = new Employee();
 //            e.setEndDate(to);
@@ -107,6 +107,11 @@ public class TestClass
 //            System.out.println(c.getName());
 //            System.out.println(c.getOccupation());
 //            System.out.println(c.getIdNumber());
+
+            List <Product> list = db.getSalesOverTimePeriod(from, to);
+
+            for (Product p : list)
+                System.out.println(p.getNameEng());
 
         } catch (UnknownHostException e)
         {
