@@ -524,7 +524,7 @@ public class BeaverCLI {
         switch (choice){
             case 0:
             case -1:
-                customerMenu();
+                employeeMenu();
                 break;
             case 1:
                 System.out.println(LocalisationStrings.inputStartDate());

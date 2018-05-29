@@ -73,7 +73,7 @@ public class Common {
     public static Date formatDate(String date) {
         int year = Integer.parseInt(date.substring(4));
         int day = Integer.parseInt(date.substring(0,2));
-        int month = Integer.parseInt(date.substring(2,4))-1;
+        int month = Integer.parseInt(date.substring(2,4));
 
         Date date1 =  new GregorianCalendar(year,month,day).getTime();
         System.out.println(day+"-"+month+"-"+year);

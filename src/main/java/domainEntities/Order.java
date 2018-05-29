@@ -57,6 +57,8 @@ public class Order {
         this.employeeId = employeeId;
     }
 
+
+
     public Date getOrderDate() {
         return orderDate;
     }
@@ -97,4 +99,7 @@ public class Order {
         return employeeDiscount;
     }
 
+    public void setEmployeeDiscount(boolean employeeDiscount) {
+        this.employeeDiscount = employeeDiscount;
+    }
 }

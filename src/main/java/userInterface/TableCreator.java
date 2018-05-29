@@ -170,26 +170,26 @@ public class TableCreator {
     public static void listOrdersByEmployee(Employee employee, List<Order> ordersByEmployee,Location location) {
         System.out.println("Listing all orders for: "+employee.getName()+"\nLocation: "+location  +"\n");
 
-        String leftAlignFormat = "| %-20s | %-20s | %-20s | %-20s | %-20s |%n";
+        String leftAlignFormat = "| %-20s | %-30s | %-20s | %-20s | %-20s |%n";
 
 
-        System.out.format("+----------------------+----------------------+----------------------+----------------------+----------------------+%n");
-        System.out.format("|          ID          |       DATE           |    CUSTOMER BARCODE  |        SUM ("+Common.getLocalCurrency(location)+")     |   EMPLOYEE DISCOUNT  |%n");
-        System.out.format("+----------------------+----------------------+----------------------+----------------------+----------------------+%n");
+        System.out.format("+----------------------+--------------------------------+----------------------+----------------------+----------------------+%n");
+        System.out.format("|          ID          |            DATE                |    CUSTOMER BARCODE  |        SUM ("+Common.getLocalCurrency(location)+")     |   EMPLOYEE DISCOUNT  |%n");
+        System.out.format("+----------------------+--------------------------------+----------------------+----------------------+----------------------+%n");
 
         for (int i = 0; i < ordersByEmployee.size(); i++) {
             Order order = ordersByEmployee.get(i);
             String currency = Common.getLocalCurrency(order.getLocation());
             order.getEmployeeDiscount();
             System.out.format(leftAlignFormat,
-                    order.getOrderId(),
+                    i+1,
                     order.getOrderDate(),
                     order.getCustomerBarcode(),
                     order.getSum(),
                     order.getEmployeeDiscount()
             );
         }
-        System.out.format("+----------------------+----------------------+----------------------+----------------------+----------------------+%n");
+        System.out.format("+----------------------+--------------------------------+----------------------+----------------------+----------------------+%n");
 
     }
 

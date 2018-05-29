@@ -127,7 +127,9 @@ public class MongoDb
                 .append("employee_id", order.getEmployeeId())
                 .append("date", order.getOrderDate())
                 .append("location", order.getLocation().name())
-                .append("products", order.getProducts());
+                .append("products", order.getProducts())
+                .append("sum",order.getSum())
+                .append("employee_discount", order.getEmployeeDiscount());
 
         collection.insertOne(doc);
         return true;
@@ -419,6 +421,8 @@ public class MongoDb
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
         Document myDoc = collection.find(eq("name", employeeName)).first();
 
+        if(myDoc==null)
+            return null;
 
         String name = myDoc.getString("name");
         String idNumber = myDoc.getString("ssn");
@@ -468,6 +472,8 @@ public class MongoDb
                 String barcode = d.getString("barcode");
                 Date date = d.getDate("date");
                 Location location = Enum.valueOf(Location.class, d.getString("location"));
+                double sum = d.getDouble("sum");
+                boolean emploeyeeDiscount = d.getBoolean("employee_discount");
 
                 List<Document> prods = (List<Document>) d.get("products");
                 Product p;
@@ -488,6 +494,8 @@ public class MongoDb
                 }
 
                 Order o = new Order(barcode, employeeId2, date, location, productList);
+                o.setSum(sum);
+                o.setEmployeeDiscount(emploeyeeDiscount);
                 //String customerBarcode, ObjectId employeeId, Date orderDate,
                 //                    Location location, List <Product> product
 //                o.setOrderId(id);
