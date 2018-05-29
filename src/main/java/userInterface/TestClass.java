@@ -45,8 +45,27 @@ public class TestClass
 //            db.addOrder(o);
 
 
+
+
             Date from = new GregorianCalendar(2017, 1,1).getTime();
             Date to = new GregorianCalendar(2019, 1, 1).getTime();
+
+//            Employee employeeTest = new Employee("Test",
+//                    "19840309****",
+//                    Location.ENGLAND,
+//                    100,
+//                    Common.getCurrentDate(),
+//                    to,
+//                    EmployePosition.EMPLOYEE);
+//
+//            db.addEmployee(employeeTest);
+
+            ObjectId id1 = new ObjectId("5b0d3398795b9d3274382f1f");
+            ObjectId id2 = new ObjectId("5b0d3398795b9d3274382f1f");
+//
+            Comment c = new Comment(id1, id2, from, "HA§§§§§§§§HA");
+            db.addComment(c);
+
 //            Employee e = new Employee();
 //            e.setEndDate(to);
 //            e.setPosition(EmployePosition.MANAGER);

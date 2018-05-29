@@ -2,6 +2,7 @@ package engine;
 
 import database.MongoDb;
 import domainEntities.*;
+import org.bson.types.ObjectId;
 import userInterface.LocalisationStrings;
 
 import java.util.*;
@@ -242,9 +243,15 @@ public class Controller {
     }
 
     //TODO return -1 for error writing to db, 0 for too long comment (300charmax), 1 for ok
-    public int writeComment(Employee employee, String comment) {
+    public int writeComment(Employee employeeCommentedOn, String comment) {
         if(comment.length()>=300)
             return 0;
+
+        Date date = new Date();
+        ObjectId commentedOn = employeeCommentedOn.getObjectId();
+        System.out.println(commentedOn);
+        Comment comment2 = new Comment(commentedOn, employee.getObjectId(),date, comment);
+        database.addComment(comment2);
         return 1;
     }
 

@@ -1,30 +1,40 @@
 package domainEntities;
 
+import org.bson.types.ObjectId;
+
 import java.util.Date;
 
 public class Comment {
 
-    private int employeeId;
-    private int employerId;
+    private ObjectId employeeId;
+    private ObjectId authorId;
     private Date date;
     private String comment;
 
-    public void setEmployeeId(int id)
+    public Comment(ObjectId employeeId, ObjectId authorId, Date date, String comment )
+    {
+        this.employeeId = employeeId;
+        this.authorId = authorId;
+        this.date = date;
+        this.comment = comment;
+    }
+
+    public void setEmployeeId(ObjectId id)
     {
         this.employeeId = id;
     }
 
-    public int getEmployeeId()
+    public ObjectId getEmployeeId()
     {
         return employeeId;
     }
 
-    public int getEmployerId() {
-        return employerId;
+    public ObjectId getAuthorId() {
+        return authorId;
     }
 
-    public void setEmployerId(int employerId) {
-        this.employerId = employerId;
+    public void setAuthorId(ObjectId authorId) {
+        this.authorId = authorId;
     }
 
     public Date getDate() {

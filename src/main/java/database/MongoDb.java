@@ -104,6 +104,7 @@ public class MongoDb
     public boolean addEmployee(Employee employee)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
+
         Document doc = new Document("name", employee.getName())
                 .append("ssn", employee.getIdNumber())
                 .append("position", employee.getPosition().name())
@@ -112,7 +113,7 @@ public class MongoDb
                 .append("location", employee.getLocation().name())
                 .append("service_grade", employee.getServiceGrade())
                 .append("password", employee.getPassword())
-                .append("comments", "");
+                .append("comments", "{[]}");
         collection.insertOne(doc);
         return true;
     }
@@ -369,7 +370,7 @@ public class MongoDb
     public boolean addComment(Comment comment)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
-        collection.updateOne(eq("ssn", "840309-****"), new Document("$push", new Document("comment", comment)));
+        collection.updateOne(eq("_id", comment.getEmployeeId()), new Document("$push", new Document("comments", comment)));
         return true;
     }
 
