@@ -376,11 +376,9 @@ public class Controller {
         return products;
     }
 
-    public HashMap<Product, Integer> getProductsInStock(Location location, String dateFrom, String dateTo) {
+    public HashMap<Product, Integer> getProductsInStock(Location location, Date dateFrom, Date dateTo) {
         LinkedList<Product> availableProducts= getAvailableProducts();
         HashMap<Product, Integer> productQuantities = new HashMap<Product, Integer>();
-        Date dateFrom1 = Common.formatDate(dateFrom);
-        Date dateTo1 = Common.formatDate(dateTo);
         for(Product p : availableProducts){
             int stockQuantity = 1; //db.getStockQuantity(p, location,dateFrom1, dateTo1);
             productQuantities.put(p,stockQuantity);
