@@ -612,7 +612,6 @@ public class MongoDb
     public boolean addToStock(Location location, Product product)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
-        product.setUnits(17);
 
         collection.updateOne(eq("location", location.name() ), new Document("$push", new Document("Products", new Document("nameSwe", product.getNameSwe())
                 .append("name_eng", product.getNameEng())
