@@ -11,6 +11,7 @@ public class Product
     private int volume;
     private Flavour flavour;
     private boolean eligibleForDiscount, flavorEnabled;
+    private int units;
 
     public Product(String nameSwe, String nameEng, double priceSEK, double priceGBP, double priceUSD,
                    String unitType, int volume)
@@ -26,6 +27,16 @@ public class Product
         eligibleForDiscount = true;
         flavorEnabled = true;
 
+    }
+
+    public int getUnits()
+    {
+        return units;
+    }
+
+    public void setUnits(int units)
+    {
+        this.units = units;
     }
 
     public boolean isFlavorEnabled() {

@@ -35,8 +35,15 @@ public class TestClass
 //            Product p = new Product("Kaffe", "Coffee", 10, 2, 3,
 //                    "l", 2);
 //
-//            Product p2 = new Product("Sko", "Shoe", 10, 2, 3,
-//                    "kg", 6);
+            Product p2 = new Product("Testkaffe",
+                    "Half Bean Espresso Rostad",
+                    130 ,
+                    130 ,
+                    130 ,
+                    "g", 500);
+
+//            db.addProduct(p2);
+            db.addToStock(Location.SWEDEN,p2);
 //
 //            l.add(p);
 //            l.add(p2);
@@ -108,10 +115,10 @@ public class TestClass
 //            System.out.println(c.getOccupation());
 //            System.out.println(c.getIdNumber());
 
-            List <Product> list = db.getSalesOverTimePeriod(from, to);
-
-            for (Product p : list)
-                System.out.println(p.getNameEng());
+//            List <Product> list = db.getSalesOverTimePeriod(from, to);
+//
+//            for (Product p : list)
+//                System.out.println(p.getNameEng());
 
         } catch (UnknownHostException e)
         {
