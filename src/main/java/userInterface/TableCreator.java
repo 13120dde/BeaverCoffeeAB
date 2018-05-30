@@ -3,10 +3,7 @@ package userInterface;
 import domainEntities.*;
 import engine.Common;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TableCreator {
 
@@ -69,9 +66,14 @@ public class TableCreator {
         // System.out.format(leftAlignFormat,"ID","PRODUCT","FLAVOUR","VOLUME","UNIT","PRICE","CURRENCY" );
 
 
+        List<Product> discountedProducts = new LinkedList<Product>();
+
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             String flavour="";
+            double price = product.getPrice();
+            if(price==0)
+                discountedProducts.add(product);
             if(product.isFlavorEnabled()){
                 Flavour f = product.getFlavour();
                 if(f!=null)
@@ -85,10 +87,15 @@ public class TableCreator {
                     flavour,
                     Integer.toString(product.getVolume()),
                     product.getUnitType(),
-                    Double.toString(product.getPrice()),
+                    Double.toString(price),
                     Common.getLocalCurrency());
         }
         System.out.format("+-------+--------------------------------+----------------------+--------+--------+--------+----------+%n");
+        if(!discountedProducts.isEmpty()){
+            System.out.println(LocalisationStrings.discountTenthProduct()+":\n");
+            for(Product p : discountedProducts)
+                System.out.println(p.getProductName());
+        }
 
         System.out.println("\n"+LocalisationStrings.sum()+": "+sum+" "+Common.getLocalCurrency());
 
@@ -97,11 +104,11 @@ public class TableCreator {
     protected static void listCustomers(List<Customer> customers, Location locationToList, Date dateFrom, Date dateTo) {
         System.out.println("Listing all customers for dates: "+dateFrom+" - "+dateTo+"\nLocation: "+locationToList  +"\n");
 
-        String leftAlignFormat = "| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-10s |%n";
+        String leftAlignFormat = "| %-20s | %-20s | %-20s | %-20s | %-30s | %-10s | %-50s |%n";
 
-        System.out.format("+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+------------+%n");
-        System.out.format("|         NAME         |       OCCUPATION     |        BARCODE       |           ID         |        ADDRESS       |    DATE REGISTERED   | PURCHASES  |%n");
-        System.out.format("+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+------------+%n");
+        System.out.format("+----------------------+----------------------+----------------------+----------------------+--------------------------------+------------+--------------------------------+%n");
+        System.out.format("|         NAME         |       OCCUPATION     |        BARCODE       |           ID         |         DATE REGISTERED        | PURCHASES  |             ADDRESS            |%n");
+        System.out.format("+----------------------+----------------------+----------------------+----------------------+--------------------------------+------------+--------------------------------+%n");
         // System.out.format(leftAlignFormat,"ID","PRODUCT","FLAVOUR","VOLUME","UNIT","PRICE","CURRENCY" );
 
         for (int i = 0; i < customers.size(); i++) {
@@ -111,11 +118,13 @@ public class TableCreator {
                     customer.getOccupation(),
                     customer.getBarcode(),
                     customer.getIdNumber(),
-                    customer.getAddress().toString(),
                     customer.getRegisteredDate(),
-                    customer.getTotalPurchases());
+                    customer.getTotalPurchases(),
+                    customer.getAddress().toString()
+                    );
         }
-        System.out.format("+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-----------+%n");
+        System.out.format("+----------------------+----------------------+----------------------+----------------------+--------------------------------+------------+--------------------------------+%n");
+
 
     }
 

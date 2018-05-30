@@ -2,14 +2,14 @@ package domainEntities;
 
 public class Address
 {
-    private String Street;
+    private String street;
     private String zip;
     private String city;
     private Location location;
 
     public Address(String street, String zip, String city, Location location)
     {
-        Street = street;
+        this.street = street;
         this.zip = zip;
         this.city = city;
         this.location = location;
@@ -17,12 +17,12 @@ public class Address
 
     public String getStreet()
     {
-        return Street;
+        return street;
     }
 
     public void setStreet(String street)
     {
-        Street = street;
+        this.street = street;
     }
 
     public String getZip()
@@ -56,7 +56,7 @@ public class Address
     }
 
     public String toString(){
-        return city+", "+zip;
+        return street+", "+zip+", "+city;
     }
 
 }

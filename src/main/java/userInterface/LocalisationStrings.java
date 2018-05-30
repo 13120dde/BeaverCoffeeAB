@@ -1091,4 +1091,18 @@ public class LocalisationStrings {
         }
         return toReturn;
     }
+
+    public static String discountTenthProduct() {
+        String toReturn="";
+        switch (location){
+            case US:
+            case ENGLAND:
+                toReturn="Your 10th beverage is free";
+                break;
+            case SWEDEN:
+                toReturn= "Din tionde dryck är gratis";
+                break;
+        }
+        return toReturn;
+    }
 }
