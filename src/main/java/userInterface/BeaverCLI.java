@@ -44,7 +44,7 @@ public class BeaverCLI {
         }
     }
 
-    //TODO MASK PASSWORD
+    //TODO MASK PASSWORD, ONEWAY HASH ETC - not in scope
     private void loginMenu() {
         clearScreen();
         printHeader(LocalisationStrings.headerLogin());
@@ -422,7 +422,7 @@ public class BeaverCLI {
     private void stockMenu() {
         printHeader(LocalisationStrings.headerStock());
         Location location = Common.getCurrentLocation();
-        HashMap<Product,Integer> productsInStock = controller.getProductsInStock(location,"","");
+        HashMap<Product,Integer> productsInStock = controller.getProductsInStock(location,Common.getCurrentDate(),Common.getCurrentDate());
         TableCreator.showStock(productsInStock,location,new Date(),new Date());
 
         ArrayList<Product> productsToChoose = new ArrayList<Product>();
@@ -435,7 +435,7 @@ public class BeaverCLI {
         choices.add(choices.size()+1+" - "+LocalisationStrings.product()+" "+LocalisationStrings.listProductsOnTime());
         choices.add(choices.size()+1+" - "+LocalisationStrings.cancel());
 
-        //TODO choices must match realtime products when implemented
+        //TODO refactor to make more dynamic - need to scale when new type of products are put in the db
         printChoices(choices);
         int choice = getInput(productsToChoose.size()+choices.size());
         switch (choice){

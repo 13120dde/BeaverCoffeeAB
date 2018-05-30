@@ -13,6 +13,7 @@ import java.util.List;
 public class Common {
 
     private static Location currentLocation;
+    public static boolean fillDBWithProducts = true;
 
 
     public static Location getCurrentLocation() {

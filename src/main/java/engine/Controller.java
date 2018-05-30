@@ -11,14 +11,14 @@ public class Controller {
 
     private MongoDb database;
     private Employee employee;
-    private boolean employeeDiscount = false, fillDBWithProducts = false;
+    private boolean employeeDiscount = false;
 
 
     public Controller(MongoDb database) {
         this.database=database;
 
         //Just for filling db with products for the very first time
-        if(fillDBWithProducts){
+        if(Common.fillDBWithProducts){
             fillDbWithInitialVals();
         }
         Common.setCurrentLocation(Location.ENGLAND);
@@ -146,7 +146,6 @@ public class Controller {
      * @param barcode : String
      */
     public int registerOrder(List<Product> productsInOrder, String barcode) {
-        //TODO check class viariable employeeDiscount and this variable to order aswell, want to show in orderslistings
 
         //not a customer
         if(barcode.isEmpty()){
@@ -159,49 +158,61 @@ public class Controller {
                 sum*=0.9;
             order.setSum(sum);
             database.addOrder(order);
+            updateStock(productsInOrder, employee.getLocation());
             return -2;
 
-            //Customer check discount
+        //Customer check discount
         }else{
            Customer customer = database.getCustomerByBarcode(barcode);
-           int purchases, indexToDiscountedProduct=-1;
-           if(customer!=null){
-               purchases=customer.getTotalPurchases();
-               if(purchases !=0 && purchases%10==0){
-                   //get first eligible product and discount
-               }else{
-                   int rest = purchases%10;
-                   for(int i = 0;i<productsInOrder.size();i++){
-                       if(productsInOrder.get(i).isEligibleForDiscount()){
-                           rest++;
-                           if(rest%10==0){
-                               indexToDiscountedProduct=i;
-                               break;
+           if(customer==null)
+               return -3;
 
-                           }
-                       }
+           int counter = customer.getTotalPurchases();
+
+           //count all products that are eligible for increasing discount
+           int increasePurchases = 0;
+           for(Product p : productsInOrder)
+               if(p.isEligibleForDiscount())
+                   increasePurchases++;
+
+           int indexToDiscountedProduct=-3;
+           //Discount first eligible product, if for some reason the discount wasn't registered at previous order
+           if(counter%10==0){
+               for(int i = 0;i<productsInOrder.size();i++){
+                   Product p = productsInOrder.get(i);
+                   if(p.isEligibleForDiscount()){
+                       p.setPriceSEK(0);
+                       p.setPriceUSD(0);
+                       p.setPriceGBP(0);
+                       indexToDiscountedProduct = i;
+                       break;
                    }
-                   if(indexToDiscountedProduct>0 && indexToDiscountedProduct<productsInOrder.size()){
-                       productsInOrder.get(indexToDiscountedProduct).setPriceGBP(0);
-                       productsInOrder.get(indexToDiscountedProduct).setPriceSEK(0);
-                       productsInOrder.get(indexToDiscountedProduct).setPriceUSD(0);
-                   }
-                   Order order = new Order(barcode,employee.getObjectId(),Common.getCurrentDate(),Common.getCurrentLocation(),productsInOrder);
-                   double sum=0;
-                   for(Product p : productsInOrder){
-                       sum+=p.getPrice();
-                   }
-                   if(employeeDiscount)
-                       sum*=0.9;
-                   order.setSum(sum);
-                   database.addOrder(order);
-                   return indexToDiscountedProduct;
                }
+
+           }else{
+
            }
 
 
+            Order order = new Order(barcode,employee.getObjectId(),Common.getCurrentDate(),Common.getCurrentLocation(),productsInOrder);
+            double sum=0;
+            for(Product p : productsInOrder){
+                sum+=p.getPrice();
+            }
+            if(employeeDiscount)
+                sum*=0.9;
+            order.setSum(sum);
+            database.addOrder(order);
+            database.increasePurchases(customer.getBarcode(),increasePurchases);
+            updateStock(productsInOrder,employee.getLocation());
+            return indexToDiscountedProduct;
+
+
         }
-        return -3;
+    }
+
+    private void updateStock(List<Product> productsInOrder, Location location) {
+
     }
 
     public boolean registerNewCustomer(String name, String id, String occupation, String address) {

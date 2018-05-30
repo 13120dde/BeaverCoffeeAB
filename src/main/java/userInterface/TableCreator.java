@@ -200,12 +200,12 @@ public class TableCreator {
     public static void showStock(HashMap<Product, Integer> productsInStock, Location location, Date dateFrom, Date dateTo) {
         System.out.println(LocalisationStrings.stock()+" - "+location+"\n"+dateFrom+" - "+dateTo);
 
-        String leftAlignFormat = "| %-10s | %-20s | %-20s | %-20s |%n";
+        String leftAlignFormat = "| %-10s | %-30s | %-20s | %-20s |%n";
 
 
-        System.out.format("+------------+----------------------+----------------------+----------------------+%n");
-        System.out.format("|    ID      |       PRODUCT        |   NUMBER OF UNITS    |         VOLUME       |%n");
-        System.out.format("+------------|----------------------+----------------------+----------------------+%n");
+        System.out.format("+------------+--------------------------------+----------------------+----------------------+%n");
+        System.out.format("|    ID      |            PRODUCT             |   NUMBER OF UNITS    |         VOLUME       |%n");
+        System.out.format("+------------|--------------------------------+----------------------+----------------------+%n");
 
         int i =1;
         for(Product p : productsInStock.keySet()){
@@ -218,7 +218,7 @@ public class TableCreator {
                     p.getVolume()+" "+p.getUnitType()
             );
         }
-        System.out.format("+------------|----------------------+----------------------+----------------------+%n");
+        System.out.format("+------------|--------------------------------+----------------------+----------------------+%n");
 
     }
 }
