@@ -15,6 +15,9 @@ import java.net.UnknownHostException;
 import java.util.*;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.currentDate;
+import static com.mongodb.client.model.Updates.set;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -127,7 +130,7 @@ public class MongoDb
                 .append("date", order.getOrderDate())
                 .append("location", order.getLocation().name())
                 .append("products", order.getProducts())
-                .append("sum",order.getSum())
+                .append("sum", order.getSum())
                 .append("employee_discount", order.getEmployeeDiscount());
 
         collection.insertOne(doc);
@@ -377,13 +380,13 @@ public class MongoDb
         return true;
     }
 
-    public List <Comment> getComments(ObjectId employeeId)
+    public List<Comment> getComments(ObjectId employeeId)
     {
-        MongoCollection <Document> collection = mongoDb.getCollection("employee");
+        MongoCollection<Document> collection = mongoDb.getCollection("employee");
         Document employeeDoc = collection.find(eq("_id", employeeId)).first();
         List<Document> comments = (List<Document>) employeeDoc.get("comments");
 
-        List <Comment> commentList = new ArrayList<Comment>();
+        List<Comment> commentList = new ArrayList<Comment>();
 
         for (Document c : comments)
         {
@@ -414,7 +417,7 @@ public class MongoDb
     {
         MongoCollection<Document> collection = mongoDb.getCollection("customer");
         Document myDoc = collection.find(eq("name", customerName)).first();
-        if(myDoc==null)
+        if (myDoc == null)
             return null;
 
         String name = myDoc.getString("name");
@@ -444,7 +447,7 @@ public class MongoDb
         MongoCollection<Document> collection = mongoDb.getCollection("employee");
         Document myDoc = collection.find(eq("name", employeeName)).first();
 
-        if(myDoc==null)
+        if (myDoc == null)
             return null;
 
         String name = myDoc.getString("name");
@@ -500,7 +503,7 @@ public class MongoDb
 
                 List<Document> prods = (List<Document>) d.get("products");
                 Product p;
-                List <Product> productList = new ArrayList<Product>();
+                List<Product> productList = new ArrayList<Product>();
 
                 for (Document prod : prods)
                 {
@@ -512,7 +515,7 @@ public class MongoDb
                     String unit = prod.getString("unitType");
                     int volume = prod.getInteger("volume");
 
-                    p = new Product(nameSwe,nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
+                    p = new Product(nameSwe, nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
                     productList.add(p);
                 }
 
@@ -538,7 +541,7 @@ public class MongoDb
         MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
                 .append("$lt", to)).append("location", location.name())).iterator();
 
-        List <Product> productList = new ArrayList<Product>();
+        List<Product> productList = new ArrayList<Product>();
 
         while (cursor.hasNext())
         {
@@ -557,7 +560,7 @@ public class MongoDb
                 String unit = prod.getString("unitType");
                 int volume = prod.getInteger("volume");
 
-                p = new Product(nameSwe,nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
+                p = new Product(nameSwe, nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
                 productList.add(p);
             }
         }
@@ -570,7 +573,7 @@ public class MongoDb
         MongoCursor<Document> cursor = collection.find(new Document("date", new Document("$gte", from)
                 .append("$lt", to))).iterator();
 
-        List <Product> productList = new ArrayList<Product>();
+        List<Product> productList = new ArrayList<Product>();
 
         while (cursor.hasNext())
         {
@@ -589,20 +592,35 @@ public class MongoDb
                 String unit = prod.getString("unitType");
                 int volume = prod.getInteger("volume");
 
-                p = new Product(nameSwe,nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
+                p = new Product(nameSwe, nameEng, priceSEK, priceGBP, priceUSD, unit, volume);
                 productList.add(p);
             }
         }
         return productList;
     }
 
-    public LinkedList<Product> getSalesOnZipCode(String zip, Location location) {
+    public LinkedList<Product> getSalesOnZipCode(String zip, Location location)
+    {
         return null;
     }
 
-    public LinkedList<Product> getSalesOnOccupation(String occupation) {
+    public LinkedList<Product> getSalesOnOccupation(String occupation)
+    {
         return null;
     }
 
+    public boolean addToStock(Location location, Product product)
+    {
+        MongoCollection<Document> collection = mongoDb.getCollection("stock");
+
+        collection.updateOne(eq("location", location.name() ), new Document("$push", new Document("Products", new Document("nameSwe", product.getNameSwe())
+                .append("name_eng", product.getNameEng())
+                .append("name_eng", product.getNameEng())
+                .append("unit_type", product.getUnitType())
+                .append("volume", product.getVolume())
+                .append("units_in_stock", product.getUnits()))));
+
+        return true;
+    }
 
 }

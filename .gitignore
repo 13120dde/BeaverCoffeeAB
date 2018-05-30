@@ -28,3 +28,14 @@ target/classes/database/MongoDb.class
 target/classes/engine/Controller.class
 target/classes/userInterface/BeaverCLI.class
 .idea/workspace.xml
+target/classes/engine/Controller.class
+target/classes/engine/Common$1.class
+target/classes/engine/Common.class
+target/classes/Driver.class
+target/classes/engine/Common$1.class
+target/classes/domainEntities/Product.class
+target/classes/domainEntities/Customer.class
+target/classes/database/MongoDb.class
+.idea/workspace.xml
+.idea/misc.xml
+.idea/workspace.xml
