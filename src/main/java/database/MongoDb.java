@@ -4,6 +4,7 @@ import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.UpdateOptions;
 import domainEntities.*;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -612,27 +613,24 @@ public class MongoDb
     public boolean addProductToStock(Location location, Product product)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
+        UpdateOptions options = new UpdateOptions();
+        options.upsert(true);
 
         collection.updateOne(eq("location", location.name() ), new Document("$push", new Document("Products", new Document("nameSwe", product.getNameSwe())
                 .append("name_eng", product.getNameEng())
                 .append("name_swe", product.getNameSwe())
                 .append("unit_type", product.getUnitType())
                 .append("volume", product.getVolume())
-                .append("units_in_stock", product.getUnits()))));
+                .append("units_in_stock", product.getUnits()))),options);
 
         return true;
     }
 
-    public boolean createStock(Location location, Product product)
+    public boolean createStock(Location location)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
 
-        Document doc = new Document("location", location.name())
-                .append("name_eng", product.getNameEng())
-                .append("name_swe", product.getNameSwe())
-                .append("unit_type", product.getUnitType())
-                .append("volume", product.getVolume())
-                .append("units_in_stock", product.getUnits());
+        Document doc = new Document("location", location.name());
 
         collection.insertOne(doc);
 
