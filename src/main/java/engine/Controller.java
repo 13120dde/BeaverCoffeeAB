@@ -31,6 +31,10 @@ public class Controller {
             boolean ok = database.addProduct(p);
             if(!ok)
                 System.err.println("Failed to add product to db");
+            p.setUnits(500);
+            database.createStock(Location.SWEDEN,p);
+            database.createStock(Location.US,p);
+            database.createStock(Location.ENGLAND,p);
         }
         List<Flavour> flavours = BeaverProducts.getDomainFlavours();
         for(Flavour f: flavours){
@@ -318,7 +322,18 @@ public class Controller {
         }
     }
 
-    private void updateStock(List<Product> productsInOrder, Location location) {
+    public boolean updateStock(List<Product> productsInOrder, Location location) {
+        if(productsInOrder.isEmpty() || productsInOrder==null)
+            return false;
+        for(Product p :productsInOrder){
+            Flavour f = p.getFlavour();
+            if(f!=null){
+                database.addFlavourToStock(location,f);
+            }
+            p.setUnits(-1);
+            database.addProductToStock(location,p);
+        }
+        return true;
 
     }
 
@@ -498,11 +513,6 @@ public class Controller {
         }
 
         return  productQuantities;
-    }
-
-    public boolean updateQuantityForProduct(Product chosenProduct, int quantityNew)
-    {
-        return true;
     }
 
     public double calculateOrderSum(HashMap<String, String> prods) {

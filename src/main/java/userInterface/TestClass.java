@@ -2,14 +2,11 @@ package userInterface;
 
 import database.MongoDb;
 import domainEntities.*;
-import engine.Common;
 import org.bson.types.ObjectId;
 
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 public class TestClass
 {
@@ -43,7 +40,7 @@ public class TestClass
                     "g", 500);
 
 //            db.addProduct(p2);
-            db.addToStock(Location.SWEDEN,p2);
+            db.addProductToStock(Location.SWEDEN,p2);
 //
 //            l.add(p);
 //            l.add(p2);

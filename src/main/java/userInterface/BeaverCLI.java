@@ -497,7 +497,10 @@ public class BeaverCLI {
         System.out.println(chosenProduct.getProductName()+" "+LocalisationStrings.quantity()+": ");
         try {
             quantityNew = sc.nextInt();
-            boolean updateOk = controller.updateQuantityForProduct(chosenProduct, quantityNew);
+            chosenProduct.setUnits(quantityNew);
+            List<Product> p = new LinkedList<Product>();
+            p.add(chosenProduct);
+            boolean updateOk = controller.updateStock(p,Common.getCurrentLocation());
             if(!updateOk){
                 System.out.println(LocalisationStrings.someThingWrong());
             }else{
