@@ -88,8 +88,33 @@ public class Controller {
                 100,
                 Common.getCurrentDate(),
                 endDate,
-
                 EmployePosition.CORPORATE_SALES);
+
+        Employee employeeUs = new Employee("employeeUs",
+                "19840309****",
+                Location.US,
+                100,
+                Common.getCurrentDate(),
+                endDate,
+
+                EmployePosition.EMPLOYEE);
+
+        Employee managerUs = new Employee("managerUs",
+                "19840309****",
+                Location.US,
+                100,
+                Common.getCurrentDate(),
+                endDate,
+
+                EmployePosition.MANAGER);
+        Employee corpUs = new Employee("corpUs",
+                "19840309****",
+                Location.US,
+                100,
+                Common.getCurrentDate(),
+                endDate,
+                EmployePosition.CORPORATE_SALES);
+
 
         database.addEmployee(employeeEngland);
         database.addEmployee(managerEngland);
@@ -97,6 +122,79 @@ public class Controller {
         database.addEmployee(employeeSwe);
         database.addEmployee(managerSwe);
         database.addEmployee(corpSwe);
+        database.addEmployee(employeeUs);
+        database.addEmployee(managerUs);
+        database.addEmployee(corpUs);
+
+        Customer[] customers = new Customer[9];
+        customers[0] = new Customer("Patrik",
+                "Student",
+                "P111",
+                "19840309****",
+                new Address("Regementsgatan","21748","Malmö",Location.SWEDEN),
+                Common.getCurrentDate());
+
+        customers[1] = new Customer("Johan",
+                "Systemutvecklare",
+                "J111",
+                "19840309****",
+                new Address("Cedergatan","21122","Lund",Location.SWEDEN),
+                Common.getCurrentDate());
+
+        customers[2] = new Customer("Shipra",
+                "Scrum master",
+                "S111",
+                "19840309****",
+                new Address("Västergatan","21222","Malmö",Location.SWEDEN),
+                Common.getCurrentDate());
+
+        customers[3] = new Customer("Kevin",
+                "Coffe critic",
+                "K111",
+                "19840309****",
+                new Address("Coffe boulevard","12222","London",Location.ENGLAND),
+                Common.getCurrentDate());
+
+        customers[4] = new Customer("Claudia",
+                "Barista",
+                "C111",
+                "19840309****",
+                new Address("Westminister lane","21748","London",Location.ENGLAND),
+                Common.getCurrentDate());
+
+        customers[5] = new Customer("Vera",
+                "Student",
+                "V111",
+                "19840309****",
+                new Address("Espresso boulevard","21748","Manchester",Location.ENGLAND),
+                Common.getCurrentDate());
+
+        customers[6] = new Customer("Joe",
+                "Lawyer",
+                "J111",
+                "19840309****",
+                new Address("Somestreet","21748","Chicago",Location.US),
+                Common.getCurrentDate());
+
+        customers[7] = new Customer("Jane",
+                "Student",
+                "J112",
+                "19840309****",
+                new Address("Regementsgatan","21748","New York",Location.US),
+                Common.getCurrentDate());
+
+        customers[8] = new Customer("Janet",
+                "Doctor",
+                "J113",
+                "19840309****",
+                new Address("Regementsgatan","21748","Minnesota",Location.US),
+                Common.getCurrentDate());
+
+
+
+        for(int i =0;i<customers.length;i++){
+            database.addCustomer(customers[i]);
+        }
     }
 
     //DONE
@@ -161,7 +259,7 @@ public class Controller {
             updateStock(productsInOrder, employee.getLocation());
             return order;
 
-        //Customer check discount
+        //Customer check counter for free drink
         }else{
            Customer customer = database.getCustomerByBarcode(barcode);
            if(customer==null)
