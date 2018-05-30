@@ -145,7 +145,7 @@ public class Controller {
      *  @param productsInOrder :
      * @param barcode : String
      */
-    public int registerOrder(List<Product> productsInOrder, String barcode) {
+    public Order registerOrder(List<Product> productsInOrder, String barcode) {
 
         //not a customer
         if(barcode.isEmpty()){
@@ -159,23 +159,22 @@ public class Controller {
             order.setSum(sum);
             database.addOrder(order);
             updateStock(productsInOrder, employee.getLocation());
-            return -2;
+            return order;
 
         //Customer check discount
         }else{
            Customer customer = database.getCustomerByBarcode(barcode);
            if(customer==null)
-               return -3;
+               return null;
 
            int counter = customer.getTotalPurchases();
 
-           //count all products that are eligible for increasing discount
+           //count all products that are eligible for increasing discount-counter
            int increasePurchases = 0;
            for(Product p : productsInOrder)
                if(p.isEligibleForDiscount())
                    increasePurchases++;
 
-           int indexToDiscountedProduct=-3;
            //Discount first eligible product, if for some reason the discount wasn't registered at previous order
            if(counter%10==0){
                for(int i = 0;i<productsInOrder.size();i++){
@@ -184,12 +183,22 @@ public class Controller {
                        p.setPriceSEK(0);
                        p.setPriceUSD(0);
                        p.setPriceGBP(0);
-                       indexToDiscountedProduct = i;
                        break;
                    }
                }
 
            }else{
+               for(int i = 0; i<productsInOrder.size();i++){
+                   Product p = productsInOrder.get(i);
+                   if(p.isEligibleForDiscount()){
+                       counter++;
+                       if(counter%10==0){
+                           p.setPriceGBP(0);
+                           p.setPriceSEK(0);
+                           p.setPriceUSD(0);
+                       }
+                   }
+               }
 
            }
 
@@ -205,7 +214,7 @@ public class Controller {
             database.addOrder(order);
             database.increasePurchases(customer.getBarcode(),increasePurchases);
             updateStock(productsInOrder,employee.getLocation());
-            return indexToDiscountedProduct;
+            return order;
 
 
         }
@@ -302,17 +311,12 @@ public class Controller {
     }
 
     public List<Employee> getEmployeesByDateAndLocation(Date dateFrom, Date dateTo, Location location) {
-        List<Employee> employees = new LinkedList<Employee>();
 
-        return employees;
+        return database.getEmployeesByDateAndLocation(dateFrom,dateTo,location);
     }
 
     public List<Customer> getCustomersByDateAndLocation(Date dateFrom, Date dateTo, Location locationToList) {
-        List<Customer> customers = new LinkedList<Customer>();
-        customers.add(new Customer());
-        customers.add(new Customer());
-        customers.add(new Customer());
-        return customers;
+        return database.getCustomersByDateandLocation(dateFrom,dateTo,locationToList);
     }
 
     //TODO slå samman alla av samma produkter till en, listan som ska returneras ska innehålla UNIKA produkter, på volume ska antal försäljningar av den unika produkten summeras, på pris totalsumman av försäljningarna

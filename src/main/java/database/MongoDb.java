@@ -286,7 +286,7 @@ public class MongoDb
 
                 Object address = d.get("address");
                 Document addressDoc = (Document) address;
-                String city = addressDoc.getString("street");
+                String city = addressDoc.getString("city");
                 String loc = addressDoc.getString("location");
                 String street = addressDoc.getString("street");
                 String zip = addressDoc.getString("zip");
@@ -422,6 +422,7 @@ public class MongoDb
         String barcode = myDoc.getString("barcode");
         String idNumber = myDoc.getString("ssn");
         Date registered = myDoc.getDate("date");
+        int counter = myDoc.getInteger("counter");
 
         Object address = myDoc.get("address");
         Document addressDoc = (Document) address;
@@ -433,6 +434,7 @@ public class MongoDb
         Location l = Enum.valueOf(Location.class, location);
         Address ad = new Address(street, zip, city, l);
         Customer c = new Customer(name, occupation, barcode, idNumber, ad, registered);
+        c.setTotalPurchases(counter);
 
         return c;
     }
