@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 public class BeaverProducts {
 
-    protected static LinkedList<Product> getDomainProducts() {
+    public static LinkedList<Product> getDomainProducts() {
 
         LinkedList<Product> products = new LinkedList<Product>();
 
@@ -138,7 +138,7 @@ public class BeaverProducts {
         return products;
     }
 
-    protected static LinkedList<Flavour> getDomainFlavours(){
+    public static LinkedList<Flavour> getDomainFlavours(){
         LinkedList<Flavour> flavours = new LinkedList<Flavour>();
         flavours.add(new Flavour("Vanilj","Vanilla","cl",10));
         flavours.add(new Flavour("Karamell","Caramel","cl",10));
@@ -146,7 +146,7 @@ public class BeaverProducts {
         return flavours;
     }
 
-    private static double getLocationPriceMultiplier(Location location) {
+    public static double getLocationPriceMultiplier(Location location) {
         double multiplier = 1;
         switch (location) {
             case SWEDEN:

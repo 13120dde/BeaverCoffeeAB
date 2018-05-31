@@ -6,6 +6,8 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
 import domainEntities.*;
+import engine.BeaverProducts;
+import engine.Controller;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -628,8 +630,15 @@ public class MongoDb
 
     public boolean editStockQuantity(Product product, Location location){
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
-        collection.updateOne(new BasicDBObject("nameSwe", product.getNameSwe()),
-                new BasicDBObject("$set", new BasicDBObject("units_in_stock", product.getUnits())));
+        Document stocks = collection.find(eq("location", location.name())).first();
+        List<Document> products = (List<Document>) stocks.get("Products");
+        for(Document doc : products){
+            String name = doc.getString("nameSwe");
+            if(name.equals(product.getNameSwe())){
+                
+            }
+        }
+        System.out.println();
         return true;
     }
     public boolean createStock(Location location)
