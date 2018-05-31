@@ -27,10 +27,6 @@ public class Controller {
     //DONE
     private void fillDbWithInitialVals() {
         List<Product> products = BeaverProducts.getDomainProducts();
-      //  database.createStock(Location.SWEDEN);
-        //database.createStock(Location.US);
-        //database.createStock(Location.ENGLAND);
-
         for(Product p : products){
             boolean ok = database.addProduct(p);
             if(!ok)
