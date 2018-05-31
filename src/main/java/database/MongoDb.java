@@ -612,18 +612,21 @@ public class MongoDb
         return null;
     }
 
-    public boolean addProductToStock(Location location, Product product)
+    public boolean addProductToStock(Location location, StockItem stockItem)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
         UpdateOptions options = new UpdateOptions();
         options.upsert(true);
 
-        collection.updateOne(eq("location", location.name() ), new Document("$push", new Document("Products", new Document("nameSwe", product.getNameSwe())
-                .append("name_eng", product.getNameEng())
-                .append("name_swe", product.getNameSwe())
-                .append("unit_type", product.getUnitType())
-                .append("volume", product.getVolume())
-                .append("units_in_stock", product.getUnits()))),options);
+//        collection.updateOne(eq("location", location.name() ), new Document("$push", new Document("Products", new Document("nameSwe", product.getNameSwe())
+//                .append("name_eng", product.getNameEng())
+//                .append("name_swe", product.getNameSwe())
+//                .append("unit_type", product.getUnitType())
+//                .append("volume", product.getVolume())
+//                .append("units_in_stock", product.getUnits()))),options);
+
+        collection.updateOne(eq("location", location.name()), new Document("$push", new Document("product", stockItem)), options);
+
 
         return true;
     }
