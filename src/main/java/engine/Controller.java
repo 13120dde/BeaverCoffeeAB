@@ -335,7 +335,7 @@ public class Controller {
                 database.addFlavourToStock(location,f);
             }
             p.setUnits(-1);
-            database.addProductToStock(location,p);
+            database.editStockQuantity(p,location);
         }
         return true;
 

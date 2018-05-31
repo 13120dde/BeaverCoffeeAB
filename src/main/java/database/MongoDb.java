@@ -626,6 +626,12 @@ public class MongoDb
         return true;
     }
 
+    public boolean editStockQuantity(Product product, Location location){
+        MongoCollection<Document> collection = mongoDb.getCollection("stock");
+        collection.updateOne(new BasicDBObject("nameSwe", product.getNameSwe()),
+                new BasicDBObject("$set", new BasicDBObject("units_in_stock", product.getUnits())));
+        return true;
+    }
     public boolean createStock(Location location)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
