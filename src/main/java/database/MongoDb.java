@@ -6,8 +6,6 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
 import domainEntities.*;
-import engine.BeaverProducts;
-import engine.Controller;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -19,8 +17,6 @@ import java.util.*;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.combine;
-import static com.mongodb.client.model.Updates.currentDate;
-import static com.mongodb.client.model.Updates.set;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -409,7 +405,7 @@ public class MongoDb
         MongoCollection<Document> collection = mongoDb.getCollection("flavour");
         Document doc = new Document("name_swe", f.getNameSwe())
                 .append("name_eng", f.getNameEng())
-                .append("unit", f.getUnit())
+                .append("unit", f.getUnitType())
                 .append("volume", f.getVolume());
         collection.insertOne(doc);
 
@@ -628,11 +624,15 @@ public class MongoDb
     public boolean editStockQuantity(Product product, Location location){
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
         Document stocks = collection.find(eq("location", location.name())).first();
-        List<Document> products = (List<Document>) stocks.get("Products");
+        List<Document> products = (List<Document>) stocks.get("product");
+        int units, volume;
+        String nameEng, nameSwe, unitType;
+
         for(Document doc : products){
             String name = doc.getString("nameSwe");
             if(name.equals(product.getNameSwe())){
-                
+                units = doc.getInteger("units");
+
             }
         }
         System.out.println();

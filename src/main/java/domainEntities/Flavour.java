@@ -2,31 +2,41 @@ package domainEntities;
 
 import engine.Common;
 
-public class Flavour {
+public class Flavour implements Stockable {
 
-    private String nameSwe, nameEng, unit;
-    private int volume;
+    private String nameSwe, nameEng, unitType;
+    private int volume, units;
 
-    public Flavour(String nameSwe, String nameEng, String unit, int volume) {
+    public Flavour(String nameSwe, String nameEng, String unitType, int volume) {
         this.nameSwe = nameSwe;
         this.nameEng = nameEng;
-        this.unit = unit;
+        this.unitType = unitType;
         this.volume = volume;
     }
+
+
 
     public Flavour(){
         this.nameSwe = "Vanilj";
         this.nameEng = "Vanilla";
-        this.unit = "cl";
+        this.unitType = "cl";
         this.volume = 10;
     }
 
-    public String getUnit() {
-        return unit;
+    public int getUnits() {
+        return units;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public void setUnits(int units) {
+        this.units = units;
+    }
+
+    public String getUnitType() {
+        return unitType;
+    }
+
+    public void setUnitType(String unitType) {
+        this.unitType = unitType;
     }
 
     public String getNameSwe() {

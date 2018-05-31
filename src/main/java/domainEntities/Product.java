@@ -3,7 +3,7 @@ package domainEntities;
 
 import engine.Common;
 
-public class Product
+public class Product implements Stockable
 {
 
     private String nameSwe, nameEng, unitType;
