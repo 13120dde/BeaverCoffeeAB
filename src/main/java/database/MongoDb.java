@@ -619,13 +619,6 @@ public class MongoDb
         options.upsert(true);
 
         StockItem item = new StockItem(product.getNameEng(), product.getNameSwe(), product.getVolume(), product.getUnitType(), product.getUnits());
-//        collection.updateOne(eq("location", location.name() ), new Document("$push", new Document("Products", new Document("nameSwe", product.getNameSwe())
-//                .append("name_eng", product.getNameEng())
-//                .append("name_swe", product.getNameSwe())
-//                .append("unit_type", product.getUnitType())
-//                .append("volume", product.getVolume())
-//                .append("units_in_stock", product.getUnits()))),options);
-
         collection.updateOne(eq("location", location.name()), new Document("$push", new Document("product", item)), options);
 
 
@@ -654,6 +647,28 @@ public class MongoDb
         collection.insertOne(doc);
 
         return true;
+    }
+
+    public List <StockItem> getStock(Location location)
+    {
+        MongoCollection<Document> collection = mongoDb.getCollection("stock");
+        Document locationDoc = collection.find(eq("location", location.name())).first();
+        List<Document> itemDoc = (List<Document>) locationDoc.get("product");
+
+        List<StockItem> itemList = new ArrayList<StockItem>();
+
+        for (Document c : itemDoc)
+        {
+            String nameEng = c.getString("nameEng");
+            String nameSwe = c.getString("nameSwe");
+            String unitType = c.getString("unitType");
+            int units = c.getInteger("units");
+            int volume = c.getInteger("volume");
+            StockItem item = new StockItem(nameEng, nameSwe, volume, unitType, units);
+            itemList.add(item);
+        }
+
+        return itemList;
     }
 
     public void addFlavourToStock(Location location, Flavour f) {

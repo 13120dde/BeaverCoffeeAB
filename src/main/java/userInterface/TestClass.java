@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class TestClass
 {
@@ -33,17 +34,17 @@ public class TestClass
 //            Product p = new Product("Kaffe", "Coffee", 10, 2, 3,
 //                    "l", 2);
 //
-            Common.setCurrentLocation(Location.SWEDEN);
-            Product p2 = new Product("Potatis",
-                    "Potato",
-                    130 ,
-                    130 ,
-                    130 ,
-                    "g", 500);
+//            Common.setCurrentLocation(Location.SWEDEN);
+//            Product p2 = new Product("Potatis",
+//                    "Potato",
+//                    130 ,
+//                    130 ,
+//                    130 ,
+//                    "g", 500);
 
 //            db.addProduct(p2);
-            p2.setUnits(10);
-            db.addProductToStock(Location.SWEDEN,p2);
+//            p2.setUnits(10);
+//            db.addProductToStock(Location.SWEDEN,p2);
 //
 //            l.add(p);
 //            l.add(p2);
@@ -119,6 +120,13 @@ public class TestClass
 //
 //            for (Product p : list)
 //                System.out.println(p.getNameEng());
+
+            List<StockItem> list = db.getStock(Location.SWEDEN);
+
+            for (StockItem s : list)
+            {
+                System.out.println(s.getNameEng());
+            }
 
         } catch (UnknownHostException e)
         {
