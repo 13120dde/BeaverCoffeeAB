@@ -34,8 +34,8 @@ public class TestClass
 //                    "l", 2);
 //
             Common.setCurrentLocation(Location.SWEDEN);
-            Product p2 = new Product("Gröt",
-                    "Porridge",
+            Product p2 = new Product("Potatis",
+                    "Potato",
                     130 ,
                     130 ,
                     130 ,
