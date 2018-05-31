@@ -608,7 +608,7 @@ public class MongoDb
         return null;
     }
 
-    public boolean addProductToStock(Location location, Product product)
+    public boolean addProductToStock(Location location, Stockable product)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
         UpdateOptions options = new UpdateOptions();
@@ -621,7 +621,7 @@ public class MongoDb
         return true;
     }
 
-    public boolean editStockQuantity(Product product, Location location){
+    public boolean editStockQuantity(Stockable product, Location location){
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
         Document stocks = collection.find(eq("location", location.name())).first();
         List<Document> products = (List<Document>) stocks.get("product");
@@ -649,13 +649,13 @@ public class MongoDb
         return true;
     }
 
-    public List <StockItem> getStock(Location location)
+    public LinkedList<StockItem> getStock(Location location)
     {
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
         Document locationDoc = collection.find(eq("location", location.name())).first();
         List<Document> itemDoc = (List<Document>) locationDoc.get("product");
 
-        List<StockItem> itemList = new ArrayList<StockItem>();
+        LinkedList<StockItem> itemList = new LinkedList<StockItem>();
 
         for (Document c : itemDoc)
         {

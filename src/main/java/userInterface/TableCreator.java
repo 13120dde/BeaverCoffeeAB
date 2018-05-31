@@ -206,7 +206,7 @@ public class TableCreator {
 
     }
 
-    public static void showStock(HashMap<Product, Integer> productsInStock, Location location, Date dateFrom, Date dateTo) {
+    public static void showStock(LinkedList<StockItem> productsInStock, Location location, Date dateFrom, Date dateTo) {
         System.out.println(LocalisationStrings.stock()+" - "+location+"\n"+dateFrom+" - "+dateTo);
 
         String leftAlignFormat = "| %-10s | %-30s | %-20s | %-20s |%n";
@@ -216,14 +216,19 @@ public class TableCreator {
         System.out.format("|    ID      |            PRODUCT             |   NUMBER OF UNITS    |         VOLUME       |%n");
         System.out.format("+------------|--------------------------------+----------------------+----------------------+%n");
 
+        String name ="";
+
         int i =1;
-        for(Product p : productsInStock.keySet()){
-            int quantity = productsInStock.get(p);
+        for(StockItem p : productsInStock){
+            if(Common.getCurrentLocation()==Location.SWEDEN){
+                name = p.getNameSwe();
+            }else
+                name = p.getNameEng();
 
             System.out.format(leftAlignFormat,
                     Integer.toString(i++),
-                    p.getProductName(),
-                    Integer.toString(quantity),
+                    name,
+                    p.getUnits(),
                     p.getVolume()+" "+p.getUnitType()
             );
         }

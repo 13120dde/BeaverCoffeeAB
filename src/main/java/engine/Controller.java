@@ -41,6 +41,10 @@ public class Controller {
             boolean ok = database.addFlavour(f);
             if(!ok)
                 System.err.println("Failed to add flavour to db");
+            f.setUnits(500);
+            database.addProductToStock(Location.SWEDEN,f);
+            database.addProductToStock(Location.US,f);
+            database.addProductToStock(Location.ENGLAND,f);
         }
 
         Calendar calendar = Calendar.getInstance();
@@ -259,8 +263,11 @@ public class Controller {
             if(employeeDiscount)
                 sum*=0.9;
             order.setSum(sum);
+
             database.addOrder(order);
-            updateStock(productsInOrder, employee.getLocation());
+            for(Stockable s : productsInOrder){
+                database.editStockQuantity(s,Common.getCurrentLocation());
+            }
             return order;
 
         //Customer check counter for free drink
@@ -315,22 +322,20 @@ public class Controller {
             order.setSum(sum);
             database.addOrder(order);
             database.increasePurchases(customer.getBarcode(),increasePurchases);
-            updateStock(productsInOrder,employee.getLocation());
+            for(Stockable s : productsInOrder){
+                database.editStockQuantity(s,Common.getCurrentLocation());
+            }
+         //   updateStock(productsInOrder,employee.getLocation());
             return order;
 
 
         }
     }
 
-    public boolean updateStock(List<Product> productsInOrder, Location location) {
+    public boolean updateStock(List<Stockable> productsInOrder, Location location) {
         if(productsInOrder.isEmpty() || productsInOrder==null)
             return false;
-        for(Product p :productsInOrder){
-            Flavour f = p.getFlavour();
-            if(f!=null){
-                database.addFlavourToStock(location,f);
-            }
-            p.setUnits(-1);
+        for(Stockable p :productsInOrder){
             database.editStockQuantity(p,location);
         }
         return true;
@@ -504,15 +509,9 @@ public class Controller {
         return products;
     }
 
-    public HashMap<Product, Integer> getProductsInStock(Location location, Date dateFrom, Date dateTo) {
-        LinkedList<Product> availableProducts= getAvailableProducts();
-        HashMap<Product, Integer> productQuantities = new HashMap<Product, Integer>();
-        for(Product p : availableProducts){
-            int stockQuantity = 1; //db.getStockQuantity(p, location,dateFrom1, dateTo1);
-            productQuantities.put(p,stockQuantity);
-        }
-
-        return  productQuantities;
+    public LinkedList<StockItem> getProductsInStock(Location location, Date dateFrom, Date dateTo) {
+        LinkedList<StockItem> availableProducts= (LinkedList<StockItem>) database.getStock(location);
+        return availableProducts;
     }
 
     public double calculateOrderSum(HashMap<String, String> prods) {

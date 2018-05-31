@@ -422,11 +422,11 @@ public class BeaverCLI {
     private void stockMenu() {
         printHeader(LocalisationStrings.headerStock());
         Location location = Common.getCurrentLocation();
-        HashMap<Product,Integer> productsInStock = controller.getProductsInStock(location,Common.getCurrentDate(),Common.getCurrentDate());
+        LinkedList<StockItem> productsInStock = controller.getProductsInStock(location,Common.getCurrentDate(),Common.getCurrentDate());
         TableCreator.showStock(productsInStock,location,new Date(),new Date());
 
-        ArrayList<Product> productsToChoose = new ArrayList<Product>();
-        for(Product p : productsInStock.keySet())
+        ArrayList<StockItem> productsToChoose = new ArrayList<StockItem>();
+        for(StockItem p : productsInStock)
             productsToChoose.add(p);
 
         int amountOfProducts = productsToChoose.size()+1;
@@ -449,7 +449,7 @@ public class BeaverCLI {
                 stockMenu();
                 break;
             case 2:
-                productListOnTimeMenu(productsToChoose);
+                //productListOnTimeMenu(productsToChoose);
                 stockMenu();
             case 3:
                 showMainMenu();
@@ -460,18 +460,18 @@ public class BeaverCLI {
 
     }
 
-    private void productListOnTimeMenu(ArrayList<Product> productsToChoose) {
+    private void productListOnTimeMenu(ArrayList<StockItem> productsToChoose) {
         printHeader(LocalisationStrings.select()+" "+LocalisationStrings.product());
         LinkedList<String> choices = new LinkedList<String>();
-        for(Product p : productsToChoose)
-            choices.add(choices.size()+1+" -  "+p.getProductName());
+      //  for(Product p : productsToChoose)
+         //   choices.add(choices.size()+1+" -  "+p.getProductName());
         printChoices(choices);
         int choice = getInput(choices.size());
         if(choice<1 || choice>=choices.size()){
             System.out.println(LocalisationStrings.wrongChoice());
             stockMenu();
         }
-        Product chosenProduct = productsToChoose.get(choice-1);
+     //   Product chosenProduct = productsToChoose.get(choice-1);
         String[] date = inputDates();
         Location location = Common.getCurrentLocation();
         if(controller.getCurrentUserPosition()==EmployePosition.CORPORATE_SALES)
@@ -481,25 +481,37 @@ public class BeaverCLI {
 //        TableCreator.showStock(productToShow,location,Common.formatDate(date[0]),Common.formatDate(date[1]));
     }
 
-    private void editQuantityMenu(ArrayList<Product> productsToChoose) {
+    private void editQuantityMenu(ArrayList<StockItem> productsToChoose) {
         LinkedList<String> choices = new LinkedList<String>();
-        for(Product p : productsToChoose)
-            choices.add(choices.size()+1+" -  "+p.getProductName());
-        printChoices(choices);
+        String name="";
+        for(StockItem p : productsToChoose){
+            if(Common.getCurrentLocation()==Location.SWEDEN)
+                name = p.getNameSwe();
+            else
+                name = p.getNameEng();
+            choices.add(choices.size()+1+" -  "+name);
+
+        }
+            printChoices(choices);
         int choice = getInput(choices.size());
         if(choice<1 || choice>choices.size()){
             System.out.println(LocalisationStrings.wrongChoice());
             stockMenu();
         }
-        Product chosenProduct = productsToChoose.get(choice-1);
+        StockItem chosenProduct = productsToChoose.get(choice-1);
         Scanner sc = new Scanner(System.in);
         int quantityNew=0;
-        System.out.println(chosenProduct.getProductName()+" "+LocalisationStrings.quantity()+": ");
+        if(Common.getCurrentLocation()==Location.SWEDEN)
+            name = chosenProduct.getNameSwe();
+        else
+            name = chosenProduct.getNameEng();
+
+        System.out.println(name+" "+LocalisationStrings.quantity()+": ");
         try {
             quantityNew = sc.nextInt();
             chosenProduct.setUnits(quantityNew);
-            List<Product> p = new LinkedList<Product>();
-            p.add(chosenProduct);
+            List<Stockable> p = new LinkedList<Stockable>();
+          //  p.add(chosenProduct);
             boolean updateOk = controller.updateStock(p,Common.getCurrentLocation());
             if(!updateOk){
                 System.out.println(LocalisationStrings.someThingWrong());
