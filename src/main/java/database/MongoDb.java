@@ -621,21 +621,48 @@ public class MongoDb
         return true;
     }
 
-    public boolean editStockQuantity(Stockable product, Location location){
+
+    public boolean editStockQuantity(Product product, Location location){
+//        MongoCollection<Document> collection = mongoDb.getCollection("stock");
+//        Document stocks = collection.find(eq("location", location.name())).first();
+//        List<Document> products = (List<Document>) stocks.get("product");
+//        int units, volume;
+//        String nameEng, nameSwe, unitType;
+//
+//        for(Document doc : products){
+//            String name = doc.getString("nameSwe");
+//            if(name.equals(product.getNameSwe())){
+//                units = doc.getInteger("units");
+//
+//            }
+//        }
+//        System.out.println();
+        
         MongoCollection<Document> collection = mongoDb.getCollection("stock");
-        Document stocks = collection.find(eq("location", location.name())).first();
-        List<Document> products = (List<Document>) stocks.get("product");
-        int units, volume;
-        String nameEng, nameSwe, unitType;
+        Document locationDoc = collection.find(eq("location", location.name())).first();
+        List<Document> itemDoc = (List<Document>) locationDoc.get("product");
 
-        for(Document doc : products){
-            String name = doc.getString("nameSwe");
-            if(name.equals(product.getNameSwe())){
-                units = doc.getInteger("units");
 
-            }
+        List<StockItem> itemList = new ArrayList<StockItem>();
+
+        int units= 0;
+        for (Document c : itemDoc)
+        {
+            String nameEng = c.getString("nameEng");
+            units = c.getInteger("units");
+
+            if (nameEng.equals(product.getNameEng()))
+                units = (units - product.getUnits());
+
+            String nameSwe = c.getString("nameSwe");
+            String unitType = c.getString("unitType");
+            int volume = c.getInteger("volume");
+            StockItem item = new StockItem(nameEng, nameSwe, volume, unitType, units);
+            itemList.add(item);
         }
-        System.out.println();
+        collection.updateOne(eq("location", location.name()), new Document("$set", new Document("product", itemList)));
+
+
         return true;
     }
     public boolean createStock(Location location)
@@ -669,6 +696,36 @@ public class MongoDb
         }
 
         return itemList;
+    }
+
+    public void updateStock(Product p, Location location)
+    {
+        MongoCollection<Document> collection = mongoDb.getCollection("stock");
+        Document locationDoc = collection.find(eq("location", location.name())).first();
+        List<Document> itemDoc = (List<Document>) locationDoc.get("product");
+
+
+        List<StockItem> itemList = new ArrayList<StockItem>();
+
+        int units= 0;
+        for (Document c : itemDoc)
+        {
+            String nameEng = c.getString("nameEng");
+
+            if (nameEng.equals(p.getNameEng()))
+                units = p.getUnits();
+
+            else
+                units = c.getInteger("units");
+
+            String nameSwe = c.getString("nameSwe");
+            String unitType = c.getString("unitType");
+            int volume = c.getInteger("volume");
+            StockItem item = new StockItem(nameEng, nameSwe, volume, unitType, units);
+            itemList.add(item);
+        }
+        collection.updateOne(eq("location", location.name()), new Document("$set", new Document("product", itemList)));
+
     }
 
     public void addFlavourToStock(Location location, Flavour f) {

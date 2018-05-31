@@ -126,8 +126,26 @@ public class TestClass
             for (StockItem s : list)
             {
                 System.out.println(s.getNameEng());
+                System.out.println(s.getUnits());
             }
 
+            Product p2 = new Product("Hela Bönor Espresso Rostad",
+                    "Whole Bean Espresso Rostad",
+                    130,
+                    130,
+                    130,
+                    "g", 500);
+            p2.setUnits(5);
+
+            db.editStockQuantity(p2, Location.SWEDEN);
+
+            List<StockItem> list2 = db.getStock(Location.SWEDEN);
+
+            for (StockItem s : list2)
+            {
+                System.out.println(s.getNameEng());
+                System.out.println(s.getUnits());
+            }
         } catch (UnknownHostException e)
         {
             e.printStackTrace();
