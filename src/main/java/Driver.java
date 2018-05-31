@@ -9,7 +9,7 @@ public class Driver {
 
     public static void main(String[] args) {
 
-        Common.fillDBWithProducts=true;
+        Common.fillDBWithProducts=false;
 
         try {
             MongoDb database = new MongoDb();
