@@ -32,9 +32,10 @@ public class Controller {
             if(!ok)
                 System.err.println("Failed to add product to db");
             p.setUnits(500);
-            database.addProductToStock(Location.SWEDEN,p);
-            database.addProductToStock(Location.US,p);
-            database.addProductToStock(Location.ENGLAND,p);
+            StockItem s  = new StockItem(p.getNameEng(),p.getNameSwe(),p.getVolume(),p.getUnitType(),p.getUnits());
+            database.addProductToStock(Location.SWEDEN,s);
+            database.addProductToStock(Location.US,s);
+            database.addProductToStock(Location.ENGLAND,s);
         }
         List<Flavour> flavours = BeaverProducts.getDomainFlavours();
         for(Flavour f: flavours){
