@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f638bba9-e7b7-43ea-bcb6-3df167462f31" name="Default" comment="">
+    <list default="true" id="b08252b9-4a6d-4da0-bcf5-ff9d127e74a9" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/domainEntities/StockItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeaverCoffee.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BeaverCoffee.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/database/MongoDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/MongoDb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engine/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/userInterface/TestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInterface/TestClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Driver.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/database/MongoDb.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/database/MongoDb.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/domainEntities/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/domainEntities/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/domainEntities/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/domainEntities/Customer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/engine/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/engine/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/userInterface/BeaverCLI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInterface/BeaverCLI.class" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,53 +23,30 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/engine/Controller.java">
+    <leaf>
+      <file leaf-file-name="TestClass.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/TestClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="333" column="29" lean-forward="true" selection-start-line="333" selection-start-column="29" selection-end-line="333" selection-end-column="29" />
-              <folding>
-                <element signature="e#11439#11440#0" expanded="true" />
-                <element signature="e#11502#11503#0" expanded="true" />
-                <element signature="e#12526#12527#0" expanded="true" />
-                <element signature="e#12580#12581#0" expanded="true" />
-                <element signature="e#12623#12624#0" expanded="true" />
-                <element signature="e#12675#12676#0" expanded="true" />
-                <element signature="e#12953#12954#0" expanded="true" />
-                <element signature="e#12987#12988#0" expanded="true" />
-                <element signature="e#13191#13192#0" expanded="true" />
-                <element signature="e#13254#13255#0" expanded="true" />
-                <element signature="e#10613#10629#0" expanded="true" />
-                <element signature="e#12406#12415#0" expanded="true" />
-                <element signature="e#13335#13344#0" expanded="true" />
-                <element signature="e#14139#14157#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="232">
+              <caret line="35" column="53" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeaverCLI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java">
+      <file leaf-file-name="Product.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Product.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="424" column="67" selection-start-line="424" selection-start-column="67" selection-end-line="424" selection-end-column="67" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#20777#20786#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1836">
+              <caret line="170" column="44" selection-start-line="170" selection-start-column="33" selection-end-line="170" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Driver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Driver.java">
+      <file leaf-file-name="TableCreator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="164">
+              <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -78,25 +54,37 @@
       <file leaf-file-name="MongoDb.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/MongoDb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="611" column="19" selection-start-line="611" selection-start-column="19" selection-end-line="611" selection-end-column="19" />
+            <state relative-caret-position="327">
+              <caret line="626" lean-forward="true" selection-start-line="626" selection-end-line="626" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StockItem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/StockItem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-465">
+              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3577#3586#0" expanded="true" />
-                <element signature="e#10086#10096#0" expanded="true" />
-                <element signature="e#11662#11672#0" expanded="true" />
-                <element signature="e#13158#13168#0" expanded="true" />
-                <element signature="e#14519#14529#0" expanded="true" />
-                <element signature="e#16043#16052#0" expanded="true" />
-                <element signature="e#19182#19191#0" expanded="true" />
-                <element signature="e#20020#20027#0" expanded="true" />
-                <element signature="e#20752#20761#0" expanded="true" />
-                <element signature="e#22368#22377#0" expanded="true" />
-                <element signature="e#23572#23581#0" expanded="true" />
-                <element signature="e#24514#24515#0" expanded="true" />
-                <element signature="e#24541#24542#0" expanded="true" />
-                <element signature="e#24619#24620#0" expanded="true" />
-                <element signature="e#24646#24647#0" expanded="true" />
+                <element signature="e#510#511#0" expanded="true" />
+                <element signature="e#560#561#0" expanded="true" />
+                <element signature="e#598#599#0" expanded="true" />
+                <element signature="e#636#637#0" expanded="true" />
+                <element signature="e#666#667#0" expanded="true" />
+                <element signature="e#716#717#0" expanded="true" />
+                <element signature="e#754#755#0" expanded="true" />
+                <element signature="e#788#789#0" expanded="true" />
+                <element signature="e#817#818#0" expanded="true" />
+                <element signature="e#862#863#0" expanded="true" />
+                <element signature="e#898#899#0" expanded="true" />
+                <element signature="e#937#938#0" expanded="true" />
+                <element signature="e#968#969#0" expanded="true" />
+                <element signature="e#1020#1021#0" expanded="true" />
+                <element signature="e#1060#1061#0" expanded="true" />
+                <element signature="e#1093#1094#0" expanded="true" />
+                <element signature="e#1121#1122#0" expanded="true" />
+                <element signature="e#1164#1165#0" expanded="true" />
+                <element signature="e#1198#1199#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,15 +95,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>new Date</find>
+      <find>productName</find>
+      <find>addcomment</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,41 +111,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/database/Db.java" />
-        <option value="$PROJECT_DIR$/src/main/java/employees/EmployeStatus.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Employee.java" />
-        <option value="$PROJECT_DIR$/src/main/java/employees/Employee.java" />
-        <option value="$PROJECT_DIR$/src/main/java/people/Employee.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domainEntities/Stock.java" />
-        <option value="$PROJECT_DIR$/src/main/java/people/Customer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domainEntities/Location.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Utilities.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Common/CommonUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/CommonUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Common.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/stakeholders/EmployeStatus.java" />
-        <option value="$PROJECT_DIR$/src/main/java/stakeholders/EmployePosition.java" />
-        <option value="$PROJECT_DIR$/src/main/java/stakeholders/Employee.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domainEntities/Tabluar.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domainEntities/EmployePosition.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domainEntities/Comment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domainEntities/Flavour.java" />
-        <option value="$PROJECT_DIR$/src/main/java/userInterface/TestClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/domainEntities/Product.java" />
-        <option value="$PROJECT_DIR$/src/main/java/engine/BeaverProducts.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domainEntities/Employee.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domainEntities/Customer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domainEntities/Order.java" />
-        <option value="$PROJECT_DIR$/src/main/java/engine/Common.java" />
-        <option value="$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domainEntities/Address.java" />
-        <option value="$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Driver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/userInterface/TestClass.java" />
+        <option value="$PROJECT_DIR$/src/main/java/domainEntities/StockItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/MongoDb.java" />
-        <option value="$PROJECT_DIR$/src/main/java/engine/Controller.java" />
       </list>
     </option>
   </component>
@@ -168,46 +124,14 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="BeaverCoffee" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="BeaverCoffee" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="BeaverCoffee" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="BeaverCoffee" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
-  </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="width" value="1390" />
-    <option name="height" value="1756" />
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="2762" />
+    <option name="height" value="1770" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -216,36 +140,36 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="BeaverCoffee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeaverCoffee" type="462c0819:PsiDirectoryNode" />
+              <item name="BeaverCoffeeAB" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BeaverCoffee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeaverCoffee" type="462c0819:PsiDirectoryNode" />
+              <item name="BeaverCoffeeAB" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BeaverCoffee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeaverCoffee" type="462c0819:PsiDirectoryNode" />
+              <item name="BeaverCoffeeAB" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BeaverCoffee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeaverCoffee" type="462c0819:PsiDirectoryNode" />
+              <item name="BeaverCoffeeAB" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BeaverCoffee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeaverCoffee" type="462c0819:PsiDirectoryNode" />
+              <item name="BeaverCoffeeAB" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -253,7 +177,7 @@
             </path>
             <path>
               <item name="BeaverCoffee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeaverCoffee" type="462c0819:PsiDirectoryNode" />
+              <item name="BeaverCoffeeAB" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -261,7 +185,7 @@
             </path>
             <path>
               <item name="BeaverCoffee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeaverCoffee" type="462c0819:PsiDirectoryNode" />
+              <item name="BeaverCoffeeAB" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -269,7 +193,7 @@
             </path>
             <path>
               <item name="BeaverCoffee" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeaverCoffee" type="462c0819:PsiDirectoryNode" />
+              <item name="BeaverCoffeeAB" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -282,17 +206,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="startD&#9;PSI&#9;JAVA://userInterface.LocalisationStrings#startDate&#10;empl&#9;PSI&#9;JAVA://userInterface.BeaverCLI#employeeMenu&#10;customerId&#9;PSI&#9;JAVA://userInterface.LocalisationStrings#customerId&#10;proceed&#9;PSI&#9;JAVA://userInterface.LocalisationStrings#proceed" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="" />
-      <recent name="Common" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -306,22 +224,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Driver">
-    <configuration name="Common" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="engine.Common" />
-      <module name="BeaverCoffee" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="engine.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="Driver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Driver" />
-      <module name="BeaverCoffee" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
     <configuration name="TestClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="userInterface.TestClass" />
@@ -346,7 +251,7 @@
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="singleModule" />
@@ -364,7 +269,7 @@
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="OUTPUT_DIRECTORY" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
@@ -375,15 +280,8 @@
       <properties />
       <listeners />
     </configuration>
-    <list>
-      <item itemvalue="Application.Driver" />
-      <item itemvalue="Application.TestClass" />
-      <item itemvalue="Application.Common" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Driver" />
-        <item itemvalue="Application.Common" />
         <item itemvalue="Application.TestClass" />
       </list>
     </recent_temporary>
@@ -393,91 +291,53 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f638bba9-e7b7-43ea-bcb6-3df167462f31" name="Default" comment="" />
-      <created>1526824513657</created>
+      <changelist id="b08252b9-4a6d-4da0-bcf5-ff9d127e74a9" name="Default" comment="" />
+      <created>1527767258287</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1526824513657</updated>
-      <workItem from="1526824518148" duration="13854000" />
-      <workItem from="1526903136216" duration="18782000" />
-      <workItem from="1526939255173" duration="16936000" />
-      <workItem from="1526989809697" duration="9465000" />
-      <workItem from="1527078350379" duration="18446000" />
-      <workItem from="1527155606957" duration="13788000" />
-      <workItem from="1527587294457" duration="8990000" />
-      <workItem from="1527669028741" duration="15585000" />
+      <updated>1527767258287</updated>
+      <workItem from="1527767264687" duration="961000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137751000" />
+    <option name="totallyTimeSpent" value="961000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Palette" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32862645" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="6" weight="0.32991952" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" x="1" y="23" width="1367" height="849" id="Run" order="2" type="WINDOWED" visible="true" weight="0.20025674" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32901555" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28749084" />
-      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="bottom" id="Tool Output" />
+      <window_info anchor="bottom" id="Messages" weight="0.32988358" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info id="Image Layers" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32988358" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info id="Capture Tool" />
+      <window_info id="Designer" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24945135" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="ANTLR Preview" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3992298" />
-      <window_info anchor="bottom" id="Tool Output" order="7" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32991013" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="295" height="685" id="Documentation" order="9" side_tool="true" weight="0.41843453" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="UI Designer" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="ANTLR Preview" order="7" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="0" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.32991013" />
-      <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.24871983" />
-      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info id="Image Layers" order="0" />
-      <window_info id="Designer" order="1" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.32991013" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info id="Capture Tool" order="3" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Messages" order="4" weight="0.32991013" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info id="Favorites" order="4" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -485,567 +345,60 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/database/MongoDb.java</url>
-          <line>126</line>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/engine/Controller.java</url>
-          <line>453</line>
-          <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java</url>
-          <line>151</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java</url>
-          <line>177</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/engine/Controller.java</url>
-          <line>267</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/engine/Controller.java</url>
-          <line>33</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="12" />
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Stock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Comment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/MongoDb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="76" column="77" selection-start-line="76" selection-start-column="77" selection-end-line="76" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3577#3586#0" expanded="true" />
-            <element signature="e#10086#10096#0" expanded="true" />
-            <element signature="e#11662#11672#0" expanded="true" />
-            <element signature="e#13158#13168#0" expanded="true" />
-            <element signature="e#14519#14529#0" expanded="true" />
-            <element signature="e#16043#16052#0" expanded="true" />
-            <element signature="e#19182#19191#0" expanded="true" />
-            <element signature="e#20020#20027#0" expanded="true" />
-            <element signature="e#20752#20761#0" expanded="true" />
-            <element signature="e#22368#22377#0" expanded="true" />
-            <element signature="e#23572#23581#0" expanded="true" />
-            <element signature="e#24514#24515#0" expanded="true" />
-            <element signature="e#24541#24542#0" expanded="true" />
-            <element signature="e#24619#24620#0" expanded="true" />
-            <element signature="e#24646#24647#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13039">
-          <caret line="768" column="5" selection-start-line="768" selection-start-column="5" selection-end-line="768" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#241#242#0" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" selection-start-line="36" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Comment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/engine/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="87" column="23" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
-          <folding>
-            <element signature="e#11439#11440#0" expanded="true" />
-            <element signature="e#11502#11503#0" expanded="true" />
-            <element signature="e#12526#12527#0" expanded="true" />
-            <element signature="e#12580#12581#0" expanded="true" />
-            <element signature="e#12623#12624#0" expanded="true" />
-            <element signature="e#12675#12676#0" expanded="true" />
-            <element signature="e#12953#12954#0" expanded="true" />
-            <element signature="e#12987#12988#0" expanded="true" />
-            <element signature="e#13191#13192#0" expanded="true" />
-            <element signature="e#13254#13255#0" expanded="true" />
-            <element signature="e#10613#10629#0" expanded="true" />
-            <element signature="e#12406#12415#0" expanded="true" />
-            <element signature="e#13335#13344#0" expanded="true" />
-            <element signature="e#14139#14157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6392">
-          <caret line="376" column="36" selection-start-line="376" selection-start-column="36" selection-end-line="376" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#20777#20786#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="45" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2788">
-          <caret line="164" column="37" lean-forward="true" selection-start-line="164" selection-start-column="37" selection-end-line="164" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#20777#20786#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/engine/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="37" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
-          <folding>
-            <element signature="e#11439#11440#0" expanded="true" />
-            <element signature="e#11502#11503#0" expanded="true" />
-            <element signature="e#12526#12527#0" expanded="true" />
-            <element signature="e#12580#12581#0" expanded="true" />
-            <element signature="e#12623#12624#0" expanded="true" />
-            <element signature="e#12675#12676#0" expanded="true" />
-            <element signature="e#12953#12954#0" expanded="true" />
-            <element signature="e#12987#12988#0" expanded="true" />
-            <element signature="e#13191#13192#0" expanded="true" />
-            <element signature="e#13254#13255#0" expanded="true" />
-            <element signature="e#10613#10629#0" expanded="true" />
-            <element signature="e#12406#12415#0" expanded="true" />
-            <element signature="e#13335#13344#0" expanded="true" />
-            <element signature="e#14139#14157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8687">
-          <caret line="511" column="22" lean-forward="true" selection-start-line="511" selection-start-column="22" selection-end-line="511" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#241#242#0" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/engine/Common.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+        <state relative-caret-position="164">
+          <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Product.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="1836">
+          <caret line="170" column="44" selection-start-line="170" selection-start-column="33" selection-end-line="170" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/MongoDb.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/StockItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+        <state relative-caret-position="-465">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3577#3586#0" expanded="true" />
-            <element signature="e#10086#10096#0" expanded="true" />
-            <element signature="e#11662#11672#0" expanded="true" />
-            <element signature="e#13158#13168#0" expanded="true" />
-            <element signature="e#14519#14529#0" expanded="true" />
-            <element signature="e#16043#16052#0" expanded="true" />
-            <element signature="e#19182#19191#0" expanded="true" />
-            <element signature="e#20020#20027#0" expanded="true" />
-            <element signature="e#20752#20761#0" expanded="true" />
-            <element signature="e#22368#22377#0" expanded="true" />
-            <element signature="e#23572#23581#0" expanded="true" />
-            <element signature="e#24514#24515#0" expanded="true" />
-            <element signature="e#24541#24542#0" expanded="true" />
-            <element signature="e#24619#24620#0" expanded="true" />
-            <element signature="e#24646#24647#0" expanded="true" />
+            <element signature="e#510#511#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#598#599#0" expanded="true" />
+            <element signature="e#636#637#0" expanded="true" />
+            <element signature="e#666#667#0" expanded="true" />
+            <element signature="e#716#717#0" expanded="true" />
+            <element signature="e#754#755#0" expanded="true" />
+            <element signature="e#788#789#0" expanded="true" />
+            <element signature="e#817#818#0" expanded="true" />
+            <element signature="e#862#863#0" expanded="true" />
+            <element signature="e#898#899#0" expanded="true" />
+            <element signature="e#937#938#0" expanded="true" />
+            <element signature="e#968#969#0" expanded="true" />
+            <element signature="e#1020#1021#0" expanded="true" />
+            <element signature="e#1060#1061#0" expanded="true" />
+            <element signature="e#1093#1094#0" expanded="true" />
+            <element signature="e#1121#1122#0" expanded="true" />
+            <element signature="e#1164#1165#0" expanded="true" />
+            <element signature="e#1198#1199#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#20777#20786#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/EmployePosition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="63" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/engine/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-          <folding>
-            <element signature="e#11439#11440#0" expanded="true" />
-            <element signature="e#11502#11503#0" expanded="true" />
-            <element signature="e#12526#12527#0" expanded="true" />
-            <element signature="e#12580#12581#0" expanded="true" />
-            <element signature="e#12623#12624#0" expanded="true" />
-            <element signature="e#12675#12676#0" expanded="true" />
-            <element signature="e#12953#12954#0" expanded="true" />
-            <element signature="e#12987#12988#0" expanded="true" />
-            <element signature="e#13191#13192#0" expanded="true" />
-            <element signature="e#13254#13255#0" expanded="true" />
-            <element signature="e#10613#10629#0" expanded="true" />
-            <element signature="e#12406#12415#0" expanded="true" />
-            <element signature="e#13335#13344#0" expanded="true" />
-            <element signature="e#14139#14157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/engine/Common.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Location.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Driver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Stock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Common/CommonUtils.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/CommonUtils.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Tabluar.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/EmployePosition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/mongodb/mongo-java-driver/3.6.3/mongo-java-driver-3.6.3.jar!/org/bson/Document.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="28" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/mongodb/mongo-java-driver/3.6.3/mongo-java-driver-3.6.3.jar!/com/mongodb/connection/BsonWriterHelper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Location.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/TestClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/engine/BeaverProducts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2465">
-          <caret line="145" column="24" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Flavour.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="46" lean-forward="true" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="101" column="63" selection-start-line="101" selection-start-column="63" selection-end-line="101" selection-end-column="63" />
-          <folding>
-            <element signature="e#1300#1301#0" expanded="true" />
-            <element signature="e#1344#1345#0" expanded="true" />
-            <element signature="e#2288#2289#0" expanded="true" />
-            <element signature="e#2327#2328#0" expanded="true" />
-            <element signature="e#2450#2451#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Comment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/engine/Common.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-          <folding>
-            <element signature="e#2376#2377#0" expanded="true" />
-            <element signature="e#2432#2433#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Address.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
-          <folding>
-            <element signature="e#965#966#0" expanded="true" />
-            <element signature="e#1001#1002#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/domainEntities/Customer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="67" column="19" selection-start-line="67" selection-start-column="19" selection-end-line="67" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1649#1650#0" expanded="true" />
-            <element signature="e#1679#1680#0" expanded="true" />
-            <element signature="e#1898#1899#0" expanded="true" />
-            <element signature="e#1950#1951#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/LocalisationStrings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="1102" column="53" selection-start-line="1102" selection-start-column="53" selection-end-line="1102" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/TableCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
-          <folding>
-            <element signature="e#3664#3673#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/userInterface/BeaverCLI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="424" column="67" selection-start-line="424" selection-start-column="67" selection-end-line="424" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#20777#20786#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Driver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/engine/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="333" column="29" lean-forward="true" selection-start-line="333" selection-start-column="29" selection-end-line="333" selection-end-column="29" />
-          <folding>
-            <element signature="e#11439#11440#0" expanded="true" />
-            <element signature="e#11502#11503#0" expanded="true" />
-            <element signature="e#12526#12527#0" expanded="true" />
-            <element signature="e#12580#12581#0" expanded="true" />
-            <element signature="e#12623#12624#0" expanded="true" />
-            <element signature="e#12675#12676#0" expanded="true" />
-            <element signature="e#12953#12954#0" expanded="true" />
-            <element signature="e#12987#12988#0" expanded="true" />
-            <element signature="e#13191#13192#0" expanded="true" />
-            <element signature="e#13254#13255#0" expanded="true" />
-            <element signature="e#10613#10629#0" expanded="true" />
-            <element signature="e#12406#12415#0" expanded="true" />
-            <element signature="e#13335#13344#0" expanded="true" />
-            <element signature="e#14139#14157#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="232">
+          <caret line="35" column="53" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/MongoDb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="611" column="19" selection-start-line="611" selection-start-column="19" selection-end-line="611" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3577#3586#0" expanded="true" />
-            <element signature="e#10086#10096#0" expanded="true" />
-            <element signature="e#11662#11672#0" expanded="true" />
-            <element signature="e#13158#13168#0" expanded="true" />
-            <element signature="e#14519#14529#0" expanded="true" />
-            <element signature="e#16043#16052#0" expanded="true" />
-            <element signature="e#19182#19191#0" expanded="true" />
-            <element signature="e#20020#20027#0" expanded="true" />
-            <element signature="e#20752#20761#0" expanded="true" />
-            <element signature="e#22368#22377#0" expanded="true" />
-            <element signature="e#23572#23581#0" expanded="true" />
-            <element signature="e#24514#24515#0" expanded="true" />
-            <element signature="e#24541#24542#0" expanded="true" />
-            <element signature="e#24619#24620#0" expanded="true" />
-            <element signature="e#24646#24647#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="327">
+          <caret line="626" lean-forward="true" selection-start-line="626" selection-end-line="626" />
         </state>
       </provider>
     </entry>
@@ -1054,7 +407,7 @@
     <states>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>JDK 1.8</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

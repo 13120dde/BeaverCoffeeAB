@@ -2,6 +2,7 @@ package userInterface;
 
 import database.MongoDb;
 import domainEntities.*;
+import engine.Common;
 import org.bson.types.ObjectId;
 
 import java.net.UnknownHostException;
@@ -32,14 +33,16 @@ public class TestClass
 //            Product p = new Product("Kaffe", "Coffee", 10, 2, 3,
 //                    "l", 2);
 //
-            Product p2 = new Product("Testkaffe",
-                    "Half Bean Espresso Rostad",
+            Common.setCurrentLocation(Location.SWEDEN);
+            Product p2 = new Product("Gröt",
+                    "Porridge",
                     130 ,
                     130 ,
                     130 ,
                     "g", 500);
 
 //            db.addProduct(p2);
+            p2.setUnits(10);
             db.addProductToStock(Location.SWEDEN,p2);
 //
 //            l.add(p);
